@@ -1,0 +1,19 @@
+ENGLISH ADVANCED STUDIES — PWA
+
+Conteúdo:
+- index.html: página principal
+- manifest.webmanifest: configuração instalável
+- service-worker.js: cache para uso offline
+- icon.svg: ícone do aplicativo
+
+IMPORTANTE:
+Para instalar como aplicativo no Android, os arquivos precisam estar publicados em um endereço HTTPS.
+Abrir index.html diretamente pelo gerenciador de arquivos não instala o PWA.
+
+Depois de publicar:
+1. Abra o endereço HTTPS no Chrome do Android.
+2. Toque no menu ⋮.
+3. Escolha "Instalar app" ou "Adicionar à tela inicial".
+4. Confirme.
+
+O progresso marcado como "Estudado" fica salvo no armazenamento local do navegador/aplicativo.

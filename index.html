@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>English Advanced Studies — B2+ to C1</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#172b4d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--ink:#172033;--muted:#667085;--line:#e5e9f0;--accent:#3659a8;--accent2:#eaf0ff;--green:#16835d}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:linear-gradient(135deg,#172b4d,#3659a8);color:#fff;padding:38px 22px 32px}
+.wrap{max-width:1180px;margin:auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;font-weight:700}
+h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.12;margin:9px 0}
+header p{max-width:720px;margin:12px 0 0;color:#e6ecf8}
+main{max-width:1180px;margin:26px auto;padding:0 18px 50px}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+input,select{font:inherit;border:1px solid var(--line);border-radius:10px;padding:11px 13px;background:#fff;color:var(--ink)}
+input{flex:1;min-width:220px}
+.summary{color:var(--muted);font-size:.9rem;margin-left:auto}
+.legend{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0 20px}
+.pill{background:var(--accent2);color:var(--accent);padding:5px 10px;border-radius:999px;font-size:.8rem;font-weight:650}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:18px;box-shadow:0 3px 12px #17203308}
+.card.done{border-color:#a7d9c5;background:#fbfffd}
+.cardhead{display:flex;gap:12px;align-items:flex-start}
+.num{flex:0 0 34px;height:34px;border-radius:10px;background:var(--accent2);color:var(--accent);display:grid;place-items:center;font-weight:800}
+h2{font-size:1.08rem;line-height:1.3;margin:3px 0 12px}
+.links{display:grid;gap:10px}
+.linkrow{border-top:1px solid var(--line);padding-top:9px}
+.label{display:block;color:var(--muted);font-size:.73rem;font-weight:750;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+a{color:#2454a6;text-decoration:none;font-weight:650}
+a:hover{text-decoration:underline}
+.note{font-size:.82rem;color:var(--muted);margin:4px 0 0}
+.check{display:flex;align-items:center;gap:7px;margin-left:auto;color:var(--muted);font-size:.8rem;white-space:nowrap}
+.check input{min-width:0;flex:0 0 auto;accent-color:var(--green)}
+footer{color:var(--muted);font-size:.85rem;margin-top:24px;padding:16px 2px;border-top:1px solid var(--line)}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.summary{width:100%;margin-left:0}}
+@media print{body{background:#fff}.toolbar,.check{display:none}.grid{grid-template-columns:1fr 1fr}.card{break-inside:avoid;box-shadow:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="eyebrow">English learning library</div>
+<h1>Advanced Studies — B2+ to C1</h1>
+<p>Uma biblioteca de 15 temas para desenvolver compreensão, vocabulário e argumentação em inglês. Cada tema reúne um TED/TED-Ed, uma leitura e uma notícia ou podcast em vídeo.</p>
+</div></header>
+<main>
+<div class="toolbar">
+<input id="search" type="search" placeholder="Buscar tema, palavra ou assunto…">
+<select id="filter"><option value="all">Todos os temas</option><option value="work">Trabalho e economia</option><option value="society">Sociedade e política</option><option value="science">Ciência e tecnologia</option></select>
+<div class="summary" id="count">15 temas</div>
+</div>
+<div class="legend"><span class="pill">TED / TED-Ed</span><span class="pill">Texto / artigo</span><span class="pill">Notícia / podcast em vídeo</span><span class="pill">Marque os temas estudados</span></div>
+<section class="grid" id="cards">
+<!-- cards injected below -->
+</section>
+<footer>
+<strong>Como usar:</strong> assista ao vídeo explicativo, leia o artigo e depois acompanhe a notícia ou podcast. Anote expressões e argumentos — não apenas palavras isoladas. Ao terminar, marque o tema como estudado. Os links de YouTube com pesquisa direcionada ajudam a encontrar episódios adequados quando não há um único vídeo específico indicado.
+</footer>
+</main>
+<script>
+const topics = [
+{n:1,icon:"🌍",title:"Climate Change & Global Warming",cat:"science",ted:["TED – Climate change and global warming","https://www.ted.com/search?q=climate%20change%20global%20warming"],read:["Our World in Data – CO₂ and greenhouse gas emissions","https://ourworldindata.org/co2-and-greenhouse-gas-emissions"],news:["BBC – Climate change and global warming","https://www.youtube.com/results?search_query=BBC+The+Climate+Question+climate+change+global+warming"]},
+{n:2,icon:"🤖",title:"AI & Future of Work",cat:"work",ted:["TED – AI and the future of work","https://www.ted.com/search?q=AI%20future%20of%20work"],read:["World Economic Forum – Future of Jobs Report 2025","https://www.weforum.org/reports/the-future-of-jobs-report-2025/"],news:["BBC – AI and the job market","https://www.youtube.com/results?search_query=BBC+AI+future+of+work+jobs+podcast"]},
+{n:3,icon:"💰",title:"Income Inequality & Social Mobility",cat:"society",ted:["TED – Inequality and social mobility","https://www.ted.com/search?q=income%20inequality%20social%20mobility"],read:["Our World in Data – Economic inequality","https://ourworldindata.org/economic-inequality"],news:["DW News – Income inequality and social mobility","https://www.youtube.com/results?search_query=DW+News+income+inequality+social+mobility"]},
+{n:4,icon:"🏠",title:"Future of Remote Work",cat:"work",ted:["TED – Remote work and the future of work","https://www.ted.com/search?q=remote%20work%20future%20of%20work"],read:["OECD – Teleworking","https://www.oecd.org/en/topics/sub-issues/teleworking.html"],news:["BBC News – Remote and hybrid work","https://www.youtube.com/results?search_query=BBC+News+future+of+remote+work+hybrid+work"]},
+{n:5,icon:"🧑‍💼",title:"Leadership & Organisational Culture",cat:"work",ted:["TED – Leadership and organisational culture","https://www.ted.com/search?q=leadership%20organisational%20culture"],read:["Harvard Business Review – Organisational culture","https://hbr.org/topic/organizational-culture"],news:["Financial Times – Leadership and workplace culture","https://www.youtube.com/results?search_query=Financial+Times+leadership+workplace+culture+podcast"]},
+{n:6,icon:"📉",title:"Economic Crises & Employment",cat:"work",ted:["TED – Economic crises and recessions","https://www.ted.com/search?q=economic%20crisis%20recession"],read:["IMF – Finance & Development","https://www.imf.org/en/Publications/fandd"],news:["BBC News – Recession and unemployment","https://www.youtube.com/results?search_query=BBC+News+economic+crisis+recession+unemployment"]},
+{n:7,icon:"🌐",title:"Globalisation & Its Impact on Workers",cat:"work",ted:["TED – Globalisation and global trade","https://www.ted.com/search?q=globalization%20global%20trade"],read:["OECD – Globalisation","https://www.oecd.org/en/topics/globalisation.html"],news:["DW News – Globalisation, trade and workers","https://www.youtube.com/results?search_query=DW+News+globalisation+global+trade+workers"]},
+{n:8,icon:"🧳",title:"Immigration & Cultural Integration",cat:"society",ted:["TED – Immigration and cultural integration","https://www.ted.com/search?q=immigration%20cultural%20integration"],read:["UNHCR – Livelihoods and economic inclusion","https://www.unhcr.org/what-we-do/build-better-futures/livelihoods-and-economic-inclusion"],news:["BBC News – Immigration and integration debate","https://www.youtube.com/results?search_query=BBC+News+immigration+integration+debate"]},
+{n:9,icon:"🔐",title:"Technology & Privacy",cat:"science",ted:["Jen Golbeck – How surveillance tech erodes your privacy","https://www.ted.com/talks/jen_golbeck_how_surveillance_tech_erodes_your_privacy"],read:["Electronic Frontier Foundation – Privacy","https://www.eff.org/issues/privacy"],news:["BBC / technology – Privacy and surveillance","https://www.youtube.com/results?search_query=BBC+technology+privacy+surveillance+podcast"]},
+{n:10,icon:"🎓",title:"Education & Social Inequality",cat:"society",ted:["TED – Education and inequality","https://www.ted.com/search?q=education%20inequality"],read:["OECD – Education","https://www.oecd.org/en/topics/education.html"],news:["BBC News – Education inequality","https://www.youtube.com/results?search_query=BBC+News+education+inequality+schools"]},
+{n:11,icon:"🏛️",title:"Government Regulation & Companies",cat:"society",ted:["TED – Government regulation and business","https://www.ted.com/search?q=government%20regulation%20business"],read:["The Economist – Finance and economics","https://www.economist.com/finance-and-economics/"],news:["Financial Times – Regulation and business","https://www.youtube.com/results?search_query=Financial+Times+government+regulation+business+podcast"]},
+{n:12,icon:"⚖️",title:"Work-Life Balance",cat:"work",ted:["TED – Work-life balance","https://www.ted.com/search?q=work%20life%20balance"],read:["WHO – Mental health at work","https://www.who.int/news-room/fact-sheets/detail/mental-health-at-work"],news:["BBC – Work, wellbeing and burnout","https://www.youtube.com/results?search_query=BBC+worklife+balance+burnout+podcast"]},
+{n:13,icon:"📅",title:"The Four-Day Workweek",cat:"work",ted:["Juliet Schor – The case for a 4-day work week","https://www.ted.com/talks/juliet_schor_the_case_for_a_4_day_work_week"],read:["4 Day Week Global – Research","https://www.4dayweek.com/research"],news:["BBC News – Four-day working week","https://www.youtube.com/results?search_query=BBC+News+four+day+working+week+trial"]},
+{n:14,icon:"🏆",title:"Meritocracy vs. Inequality",cat:"society",ted:["TED – Meritocracy and inequality","https://www.ted.com/search?q=meritocracy%20inequality"],read:["Our World in Data – Social mobility","https://ourworldindata.org/social-mobility"],news:["BBC Ideas – Meritocracy and social mobility","https://www.youtube.com/results?search_query=BBC+Ideas+meritocracy+social+mobility+debate"]},
+{n:15,icon:"⚙️",title:"Automation & Unemployment",cat:"science",ted:["TED – Automation and jobs","https://www.ted.com/search?q=automation%20jobs"],read:["World Economic Forum – Future of Jobs Report 2025","https://www.weforum.org/reports/the-future-of-jobs-report-2025/"],news:["DW News – Automation and employment","https://www.youtube.com/results?search_query=DW+News+automation+robots+unemployment+jobs"]}
+];
+const labels=[["TED / TED-Ed", "ted"],["TEXT / ARTICLE","read"],["NEWS / VIDEO PODCAST","news"]];
+const root=document.getElementById('cards');
+function render(){
+ const q=document.getElementById('search').value.toLowerCase();
+ const f=document.getElementById('filter').value;
+ const list=topics.filter(t=>(f==='all'||t.cat===f)&&(t.title+' '+t.ted[0]+' '+t.read[0]+' '+t.news[0]).toLowerCase().includes(q));
+ root.innerHTML=list.map(t=>`<article class="card" data-id="${t.n}">
+ <div class="cardhead"><div class="num">${t.n}</div><div style="flex:1"><h2>${t.icon} ${t.title}</h2></div>
+ <label class="check"><input type="checkbox" class="donebox" data-id="${t.n}"> Estudado</label></div>
+ <div class="links">${labels.map(([label,key])=>`<div class="linkrow"><span class="label">${label}</span><a href="${t[key][1]}" target="_blank" rel="noopener noreferrer">${t[key][0]} ↗</a></div>`).join('')}</div>
+ </article>`).join('');
+ document.querySelectorAll('.donebox').forEach(cb=>{
+ const saved = JSON.parse(localStorage.getItem('englishStudiesDone') || '[]');
+ cb.checked = saved.includes(Number(cb.dataset.id));
+ cb.closest('.card').classList.toggle('done', cb.checked);
+ cb.addEventListener('change',e=>{
+   e.target.closest('.card').classList.toggle('done',e.target.checked);
+   const current = JSON.parse(localStorage.getItem('englishStudiesDone') || '[]');
+   const id = Number(e.target.dataset.id);
+   const updated = e.target.checked ? [...new Set([...current,id])] : current.filter(x=>x!==id);
+   localStorage.setItem('englishStudiesDone', JSON.stringify(updated));
+ });
+});
+ document.getElementById('count').textContent=`${list.length} de 15 temas`;
+}
+document.getElementById('search').addEventListener('input',render);
+document.getElementById('filter').addEventListener('change',render);
+render();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+}
+</script>
+</body>
+</html>

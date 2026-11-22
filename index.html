@@ -9,32 +9,34 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
+<script>(function(){try{var p=JSON.parse(localStorage.getItem('englishStudiesTheme'))||'auto';var d=p==='dark'||(p==='auto'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.dataset.theme=d?'dark':'light'}catch(e){}})()</script>
 <style>
-:root{--bg:#f5f7fb;--card:#fff;--ink:#172033;--muted:#667085;--line:#e5e9f0;--accent:#3659a8;--accent2:#eaf0ff;--green:#16835d}
+:root{--bg:#f5f7fb;--card:#fff;--ink:#172033;--muted:#667085;--line:#e5e9f0;--accent:#3659a8;--accent2:#eaf0ff;--green:#16835d;--field:#fff;--btn:#3659a8;--ok:#16835d;--link:#2454a6;--danger:#b42318;--danger-bg:#fef3f2;--done-bg:#fbfffd;--done-line:#a7d9c5;--hdr1:#172b4d;--hdr2:#3659a8;color-scheme:light}
+:root[data-theme="dark"]{--bg:#0d1322;--card:#151d32;--ink:#e6eaf5;--muted:#98a4bd;--line:#26314c;--accent:#86a9f5;--accent2:#1d2a4a;--green:#3dbd8d;--field:#0f1628;--btn:#3a62c4;--ok:#17805e;--link:#8fb4ff;--danger:#ff8d84;--danger-bg:#3a1d22;--done-bg:#112a22;--done-line:#215a46;--hdr1:#0a1020;--hdr2:#1f3b78;color-scheme:dark}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-header{background:linear-gradient(135deg,#172b4d,#3659a8);color:#fff;padding:38px 22px 32px}
+header{background:linear-gradient(135deg,var(--hdr1),var(--hdr2));color:#fff;padding:38px 22px 32px}
 .wrap{max-width:1180px;margin:auto}
 .eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;font-weight:700}
 h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.12;margin:9px 0}
 header p{max-width:720px;margin:12px 0 0;color:#e6ecf8}
 main{max-width:1180px;margin:26px auto;padding:0 18px 50px}
 .toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
-input,select{font:inherit;border:1px solid var(--line);border-radius:10px;padding:11px 13px;background:#fff;color:var(--ink)}
+input,select{font:inherit;border:1px solid var(--line);border-radius:10px;padding:11px 13px;background:var(--field);color:var(--ink)}
 input{flex:1;min-width:220px}
 .summary{color:var(--muted);font-size:.9rem;margin-left:auto}
 .legend{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0 20px}
 .pill{background:var(--accent2);color:var(--accent);padding:5px 10px;border-radius:999px;font-size:.8rem;font-weight:650}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:18px;box-shadow:0 3px 12px #17203308}
-.card.done{border-color:#a7d9c5;background:#fbfffd}
+.card.done{border-color:var(--done-line);background:var(--done-bg)}
 .cardhead{display:flex;gap:12px;align-items:flex-start}
 .num{flex:0 0 34px;height:34px;border-radius:10px;background:var(--accent2);color:var(--accent);display:grid;place-items:center;font-weight:800}
 h2{font-size:1.08rem;line-height:1.3;margin:3px 0 12px}
 .links{display:grid;gap:10px}
 .linkrow{border-top:1px solid var(--line);padding-top:9px}
 .label{display:block;color:var(--muted);font-size:.73rem;font-weight:750;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
-a{color:#2454a6;text-decoration:none;font-weight:650}
+a{color:var(--link);text-decoration:none;font-weight:650}
 a:hover{text-decoration:underline}
 .note{font-size:.82rem;color:var(--muted);margin:4px 0 0}
 .check{display:flex;align-items:center;gap:7px;margin-left:auto;color:var(--muted);font-size:.8rem;white-space:nowrap}
@@ -45,33 +47,33 @@ footer{color:var(--muted);font-size:.85rem;margin-top:24px;padding:16px 2px;bord
 .ptop{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:10px}
 .bar{height:12px;border-radius:999px;background:var(--accent2);overflow:hidden}
 .bar span{display:block;height:100%;width:0;background:var(--green);border-radius:999px;transition:width .3s ease}
-.btn{font:inherit;font-weight:650;font-size:.88rem;border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:10px;padding:9px 14px;cursor:pointer}
+.btn{font:inherit;font-weight:650;font-size:.88rem;border:1px solid var(--btn);background:var(--btn);color:#fff;border-radius:10px;padding:9px 14px;cursor:pointer}
 .btn:hover{filter:brightness(1.08)}
 .btn:disabled{opacity:.45;cursor:not-allowed}
-.btn.ghost{background:#fff;color:var(--accent)}
-.btn.ok{background:var(--green);border-color:var(--green)}
-.btn.bad{background:#fff;color:#b42318;border-color:#b42318}
+.btn.ghost{background:var(--card);color:var(--accent);border-color:var(--accent)}
+.btn.ok{background:var(--ok);border-color:var(--ok)}
+.btn.bad{background:var(--field);color:var(--danger);border-color:var(--danger)}
 .btn:focus-visible,summary:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .panel{border-top:1px solid var(--line);margin-top:12px;padding-top:10px}
 .panel summary{cursor:pointer;font-weight:650;font-size:.9rem;color:var(--ink)}
 .panel[open] summary{margin-bottom:10px}
-textarea{width:100%;min-height:110px;resize:vertical;font:inherit;font-size:.92rem;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff;color:var(--ink)}
+textarea{width:100%;min-height:110px;resize:vertical;font:inherit;font-size:.92rem;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--field);color:var(--ink)}
 .saved{min-height:1.2em}
 .fc{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;border-bottom:1px solid var(--line);padding:7px 0;font-size:.92rem}
 .fc span{flex:1;min-width:0;overflow-wrap:anywhere}
 .fc small{display:block;color:var(--muted)}
-.del{border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:1rem;padding:2px 6px;border-radius:6px}
-.del:hover{color:#b42318;background:#fef3f2}
+.del{border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:1rem;padding:6px 10px;border-radius:6px}
+.del:hover{color:var(--danger);background:var(--danger-bg)}
 .addfc{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .addfc input{flex:1 1 150px;min-width:0;padding:9px 11px;font-size:.9rem}
 .fcactions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-dialog#review{border:0;border-radius:18px;padding:0;width:min(560px,92vw);box-shadow:0 20px 60px #17203340;color:var(--ink)}
+dialog#review{border:0;border-radius:18px;padding:0;width:min(560px,92vw);box-shadow:0 20px 60px #17203340;color:var(--ink);background:var(--card)}
 dialog#review::backdrop{background:#172033b0}
 .rv{padding:20px}
 .rvhead{display:flex;justify-content:space-between;align-items:center;gap:10px;color:var(--muted);font-size:.85rem;margin-bottom:12px}
 .rvtopic{color:var(--muted);font-size:.82rem;margin:0 0 8px}
 .fcard{min-height:150px;display:grid;place-items:center;text-align:center;padding:22px;border-radius:14px;background:var(--accent2);font-size:1.6rem;font-weight:750;overflow-wrap:anywhere}
-.fcard.back{background:#fff;border:1px solid var(--line);font-size:1.1rem;font-weight:500;margin-top:10px;min-height:90px}
+.fcard.back{background:var(--field);border:1px solid var(--line);font-size:1.1rem;font-weight:500;margin-top:10px;min-height:90px}
 .rvbtns{display:flex;gap:10px;margin-top:16px;justify-content:center;flex-wrap:wrap}
 .rvsum{text-align:center;padding:18px 0}
 
@@ -80,7 +82,7 @@ dialog#review::backdrop{background:#172033b0}
 .vtitle{font-size:1.6rem;line-height:1.2;margin:0 0 6px}
 .vsub{color:var(--muted);margin:0 0 20px;max-width:760px}
 .homeh{font-size:1.25rem;margin:4px 0 16px}
-.menu{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .menucard{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:15px;padding:20px;color:var(--ink);box-shadow:0 3px 12px #17203308}
 .menucard:hover{border-color:var(--accent);text-decoration:none}
 .menucard:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -89,12 +91,12 @@ dialog#review::backdrop{background:#172033b0}
 .menucard small{display:block;color:var(--muted);font-weight:400;font-size:.88rem;margin:4px 0 8px}
 .mstat{font-style:normal;font-size:.82rem;font-weight:650;color:var(--accent)}
 .plgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
-.pl{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:18px;box-shadow:0 3px 12px #17203308}
+.pl,.box{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:18px;box-shadow:0 3px 12px #17203308}
 .plhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
 .plhead h3{margin:0;font-size:1.1rem}
 .plcount{color:var(--muted);font-size:.85rem}
 .plfilter{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
-.plfilter button{font:inherit;font-size:.8rem;font-weight:650;border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:999px;padding:4px 11px;cursor:pointer}
+.plfilter button{font:inherit;font-size:.8rem;font-weight:650;border:1px solid var(--line);background:var(--field);color:var(--muted);border-radius:999px;padding:4px 11px;cursor:pointer}
 .plfilter button[aria-pressed="true"]{background:var(--accent2);border-color:var(--accent);color:var(--accent)}
 .pitems{list-style:none;margin:0;padding:0}
 .pi{display:flex;gap:10px;align-items:flex-start;border-top:1px solid var(--line);padding:10px 0}
@@ -103,33 +105,71 @@ dialog#review::backdrop{background:#172033b0}
 .ptitle{font-weight:650;overflow-wrap:anywhere}
 .pmeta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:.82rem;margin-top:3px}
 .badge{background:var(--accent2);color:var(--accent);border-radius:999px;padding:1px 8px;font-size:.75rem;font-weight:650}
-.pi .check{margin-left:0;flex-direction:column;align-items:center;gap:2px;font-size:.7rem;min-width:56px;text-align:center;white-space:normal}
+.pi .check{margin:6px 0 0;font-size:.82rem}
 .empty{color:var(--muted);font-size:.9rem;padding:12px 0}
 .addpl{display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:14px;margin-top:6px}
 .addpl input,.addpl select{flex:1 1 150px;min-width:0;padding:9px 11px;font-size:.9rem}
 .addpl select{flex:0 0 auto}
-.formerr{flex:1 0 100%;margin:0;color:#b42318;font-size:.82rem;min-height:0}
-.soon{border:2px dashed var(--line);border-radius:15px;padding:34px 20px;text-align:center;color:var(--muted);background:#fff}
+.formerr{flex:1 0 100%;margin:0;color:var(--danger);font-size:.82rem;min-height:0}
+.soon{border:2px dashed var(--line);border-radius:15px;padding:34px 20px;text-align:center;color:var(--muted);background:var(--card)}
 .soon strong{display:block;color:var(--ink);font-size:1.1rem;margin-bottom:4px}
-@media(max-width:760px){.menu,.plgrid{grid-template-columns:1fr}}
+@media(max-width:760px){.menu,.plgrid,.setgrid{grid-template-columns:1fr}.week{margin-left:0}}
+
+.hdrtop{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.chip{background:#ffffff26;border-radius:999px;padding:3px 11px;font-weight:700;font-size:.85rem;white-space:nowrap}
+.streak{display:flex;gap:14px;flex-wrap:wrap;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:15px;padding:14px 18px;margin-bottom:18px}
+.flame{font-size:2rem;line-height:1}
+.sinfo strong{display:block;font-size:1.15rem}
+.sinfo span{color:var(--muted);font-size:.85rem}
+.week{display:flex;gap:6px;list-style:none;margin:0 0 0 auto;padding:0}
+.wd{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:.72rem;font-weight:700;color:var(--muted)}
+.wd.on{background:var(--ok);border-color:var(--ok);color:#fff}
+.wd.today{outline:2px solid var(--accent);outline-offset:2px}
+.setgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.box h3{margin:0 0 6px;font-size:1.1rem}
+.box .note{margin:10px 0 0}
+.plfilter.big button{font-size:.9rem;padding:8px 14px}
+.pthumb{position:relative;flex:0 0 56px;height:56px;border-radius:10px;background:var(--accent2);display:grid;place-items:center;overflow:hidden;font-size:1.4rem}
+.pthumb.watch{height:84px}
+.pthumb img,.sugg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.psub{color:var(--muted);font-size:.85rem;overflow-wrap:anywhere}
+.pact{display:flex;flex-direction:column;gap:2px}
+.titlewrap{position:relative;flex:1 1 100%;min-width:0}
+.addpl .titlewrap input{width:100%;flex:none}
+.formhint{flex:1 0 100%;margin:0}
+.sugg{position:absolute;z-index:20;left:0;right:0;top:calc(100% + 4px);margin:0;padding:4px;list-style:none;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 30px #17203333;max-height:340px;overflow:auto}
+.sugg li{display:flex;gap:10px;align-items:center;padding:7px;border-radius:8px;cursor:pointer}
+.sugg li[aria-selected="true"],.sugg li:hover{background:var(--accent2)}
+.sugg li.state{cursor:default;color:var(--muted);font-size:.85rem;padding:10px}
+.sugg li.state:hover{background:transparent}
+.sugg .sth{position:relative;flex:0 0 40px;height:40px;border-radius:6px;background:var(--accent2);overflow:hidden}
+.sugg .st{min-width:0}
+.sugg .st strong{display:block;overflow-wrap:anywhere}
+.sugg small{display:block;color:var(--muted)}
 @media(prefers-reduced-motion:reduce){.bar span{transition:none}}
 @media(max-width:760px){.grid{grid-template-columns:1fr}.summary{width:100%;margin-left:0}}
-@media print{body{background:#fff}.toolbar,.check,.progress,.addfc,.addpl,.fcactions,.del,.back{display:none}.grid{grid-template-columns:1fr 1fr}.card{break-inside:avoid;box-shadow:none}}
+@media print{:root[data-theme="dark"]{--bg:#fff;--card:#fff;--ink:#172033;--muted:#667085;--line:#e5e9f0;--accent:#3659a8;--accent2:#eaf0ff;--field:#fff;--link:#2454a6;--done-bg:#fbfffd;--done-line:#a7d9c5}body{background:#fff}.toolbar,.check,.progress,.addfc,.addpl,.fcactions,.del,.back,.streak,.sugg,.pact,.chip{display:none}.grid{grid-template-columns:1fr 1fr}.card{break-inside:avoid;box-shadow:none}}
 </style>
 </head>
 <body>
 <header><div class="wrap">
-<div class="eyebrow">English learning library</div>
+<div class="hdrtop"><div class="eyebrow">English learning library</div><span class="chip" id="streakChip" title="Sequência de dias"></span></div>
 <h1>Advanced Studies — B2+ to C1</h1>
 <p>Seu espaço para estudar inglês: temas para aprofundar, uma playlist pessoal de músicas e filmes, e exercícios para praticar.</p>
 </div></header>
 <main>
 <section id="view-home" class="view" hidden>
+<div class="streak" id="streakBox" aria-live="polite">
+<div class="flame" aria-hidden="true">🔥</div>
+<div class="sinfo"><strong id="streakNum"></strong><span id="streakSub"></span></div>
+<ol class="week" id="weekDots" aria-label="Últimos 7 dias"></ol>
+</div>
 <h2 class="homeh">O que você quer fazer hoje?</h2>
 <nav class="menu" aria-label="Menu principal">
 <a class="menucard" href="#topics"><span class="micon" aria-hidden="true">📚</span><span><strong>Relevant Topics</strong><small>15 temas com TED, leitura e notícia, além de anotações e flashcards.</small><em class="mstat" id="homeTopics"></em></span></a>
 <a class="menucard" href="#playlist"><span class="micon" aria-hidden="true">🎧</span><span><strong>My English Playlist</strong><small>Suas músicas, filmes e séries em inglês para ouvir e assistir.</small><em class="mstat" id="homePlaylist"></em></span></a>
 <a class="menucard" href="#practice"><span class="micon" aria-hidden="true">✏️</span><span><strong>Practice Exercises</strong><small>Exercícios para praticar o que você estuda.</small><em class="mstat" id="homePractice"></em></span></a>
+<a class="menucard" href="#settings"><span class="micon" aria-hidden="true">⚙️</span><span><strong>Settings &amp; Backup</strong><small>Tema claro, escuro ou automático e cópia de segurança dos seus dados.</small><em class="mstat" id="homeSettings"></em></span></a>
 </nav>
 </section>
 
@@ -165,9 +205,10 @@ dialog#review::backdrop{background:#172033b0}
 <div class="plfilter" role="group" aria-label="Filtrar músicas"><button type="button" data-f="all">Todas</button><button type="button" data-f="todo">Para ouvir</button><button type="button" data-f="done">Já ouvi</button></div>
 <ul class="pitems"></ul>
 <form class="addpl" autocomplete="off">
-<input name="ptitle" placeholder="Música e artista" aria-label="Título da música" maxlength="120">
+<div class="titlewrap"><input name="ptitle" placeholder="Digite o nome da música para buscar…" aria-label="Título da música" maxlength="120" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="sg-music"><ul class="sugg" id="sg-music" role="listbox" hidden></ul></div>
 <input name="plink" placeholder="Link do YouTube ou Spotify" aria-label="Link da música" inputmode="url">
 <button class="btn" type="submit">Adicionar</button>
+<p class="note formhint">Ao digitar, o app sugere resultados com capa. Toque em um para adicionar.</p>
 <p class="formerr" role="alert"></p>
 </form>
 </section>
@@ -176,10 +217,11 @@ dialog#review::backdrop{background:#172033b0}
 <div class="plfilter" role="group" aria-label="Filtrar filmes e séries"><button type="button" data-f="all">Todos</button><button type="button" data-f="todo">Para assistir</button><button type="button" data-f="done">Já assisti</button></div>
 <ul class="pitems"></ul>
 <form class="addpl" autocomplete="off">
-<input name="ptitle" placeholder="Título" aria-label="Título do filme ou série" maxlength="120">
+<div class="titlewrap"><input name="ptitle" placeholder="Digite o título para buscar…" aria-label="Título do filme ou série" maxlength="120" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="sg-watch"><ul class="sugg" id="sg-watch" role="listbox" hidden></ul></div>
 <select name="pkind" aria-label="Tipo"><option value="movie">Filme</option><option value="series">Série</option></select>
 <input name="plink" placeholder="Link (opcional)" aria-label="Link do filme ou série" inputmode="url">
 <button class="btn" type="submit">Adicionar</button>
+<p class="note formhint">Ao digitar, o app sugere resultados com capa. Toque em um para adicionar.</p>
 <p class="formerr" role="alert"></p>
 </form>
 </section>
@@ -191,6 +233,25 @@ dialog#review::backdrop{background:#172033b0}
 <h2 class="vtitle">✏️ Practice Exercises</h2>
 <p class="vsub">Exercícios para praticar o inglês.</p>
 <div id="exList"></div>
+</section>
+<section id="view-settings" class="view" hidden>
+<a class="back" href="#home">← Menu principal</a>
+<h2 class="vtitle">⚙️ Settings &amp; Backup</h2>
+<p class="vsub">Aparência do app e cópia de segurança dos seus dados.</p>
+<div class="setgrid">
+<section class="box" aria-label="Aparência">
+<h3>🎨 Aparência</h3>
+<div class="plfilter big" id="themeSeg" role="group" aria-label="Tema"><button type="button" data-theme="auto">🖥️ Automático</button><button type="button" data-theme="light">☀️ Claro</button><button type="button" data-theme="dark">🌙 Escuro</button></div>
+<p class="note">Automático acompanha o tema do seu aparelho.</p>
+</section>
+<section class="box" aria-label="Backup">
+<h3>💾 Backup</h3>
+<p class="note" style="margin-top:0">Seus dados ficam só neste aparelho. Exporte um arquivo para guardar uma cópia ou levar tudo para outro aparelho.</p>
+<div class="fcactions"><button class="btn" type="button" id="exportBtn">Exportar backup</button><button class="btn ghost" type="button" id="importBtn">Importar backup</button><input type="file" id="importFile" accept=".json,application/json" hidden></div>
+<p class="note" id="lastBackup"></p>
+<p class="note" id="backupMsg" role="status"></p>
+</section>
+</div>
 </section>
 </main>
 <dialog id="review" aria-label="Revisão de flashcards"><div class="rv" id="rvBody"></div></dialog>
@@ -213,7 +274,7 @@ const topics = [
 {n:15,icon:"⚙️",title:"Automation & Unemployment",cat:"science",ted:["TED – Automation and jobs","https://www.ted.com/search?q=automation%20jobs"],read:["World Economic Forum – Future of Jobs Report 2025","https://www.weforum.org/reports/the-future-of-jobs-report-2025/"],news:["DW News – Automation and employment","https://www.youtube.com/results?search_query=DW+News+automation+robots+unemployment+jobs"]}
 ];
 const labels=[["TED / TED-Ed","ted"],["TEXT / ARTICLE","read"],["NEWS / VIDEO PODCAST","news"]];
-const KEYS={done:'englishStudiesDone',notes:'englishStudiesNotes',cards:'englishStudiesCards'};
+const KEYS={done:'englishStudiesDone',notes:'englishStudiesNotes',cards:'englishStudiesCards',streak:'englishStudiesStreak',theme:'englishStudiesTheme',backup:'englishStudiesLastBackup'};
 const DAY=864e5, INTERVALS=[0,1,2,4,8,16];
 const store={
  get(k,fb){try{const v=JSON.parse(localStorage.getItem(k));return v==null?fb:v}catch(e){return fb}},
@@ -380,12 +441,13 @@ document.getElementById('filter').addEventListener('change',render);
 /* ---------- My English Playlist ---------- */
 const PL_KEY='englishStudiesPlaylist';
 let playlist=store.get(PL_KEY,{});
+if(!playlist||typeof playlist!=='object')playlist={};
 if(!Array.isArray(playlist.music))playlist.music=[];
 if(!Array.isArray(playlist.watch))playlist.watch=[];
 const plFilter={music:'all',watch:'all'};
 const PL_TEXT={
- music:{done:'Já ouvi',count:'ouvidas',empty:'Nenhuma música ainda. Adicione a primeira abaixo.'},
- watch:{done:'Já assisti',count:'assistidos',empty:'Nenhum filme ou série ainda. Adicione o primeiro abaixo.'}
+ music:{done:'Já ouvi',count:'ouvidas',empty:'Nenhuma música ainda. Digite acima para buscar e adicionar.'},
+ watch:{done:'Já assisti',count:'assistidos',empty:'Nenhum filme ou série ainda. Digite acima para buscar e adicionar.'}
 };
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 function normalizeLink(v){
@@ -393,13 +455,32 @@ function normalizeLink(v){
  if(!/^https?:\/\//i.test(v))v='https://'+v;
  try{const u=new URL(v); if(!/^https?:$/.test(u.protocol)||!u.hostname.includes('.'))return null; return u.href}catch(e){return null}
 }
+function ytId(link){
+ try{
+  const u=new URL(link), h=u.hostname.replace(/^www\.|^m\./,'');
+  let id=null;
+  if(h==='youtu.be')id=u.pathname.slice(1).split('/')[0];
+  else if(/(^|\.)youtube\.com$/.test(h)){
+   if(u.pathname==='/watch')id=u.searchParams.get('v');
+   else{const m=u.pathname.match(/^\/(?:shorts|embed|live)\/([\w-]+)/);if(m)id=m[1]}
+  }
+  return id&&/^[\w-]{6,15}$/.test(id)?id:null;
+ }catch(e){return null}
+}
+const ytSearch=q=>'https://www.youtube.com/results?search_query='+encodeURIComponent(q);
+const spSearch=q=>'https://open.spotify.com/search/'+encodeURIComponent(q);
 function sourceOf(link){
  try{
-  const h=new URL(link).hostname.replace(/^www\./,'');
+  const u=new URL(link), h=u.hostname.replace(/^www\./,'');
+  if(/(^|\.)youtube\.com$/.test(h)&&u.pathname==='/results')return '▶ Buscar no YouTube';
   if(/(^|\.)youtube\.com$|^youtu\.be$/.test(h))return '▶ YouTube';
   if(/(^|\.)spotify\.com$/.test(h))return '♫ Spotify';
   return h;
  }catch(e){return 'Link'}
+}
+function thumbOf(i){
+ const id=ytId(i.link||'');
+ return id?`https://i.ytimg.com/vi/${id}/mqdefault.jpg`:(i.thumb||'');
 }
 function renderPlaylist(){
  ['music','watch'].forEach(key=>{
@@ -408,50 +489,178 @@ function renderPlaylist(){
   sec.querySelector('.plcount').textContent=items.length?`${nDone} de ${items.length} ${T.count}`:'lista vazia';
   sec.querySelectorAll('.plfilter button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.f===f)));
   const shown=items.filter(i=>f==='all'||(f==='done'?i.done:!i.done)).sort((a,b)=>Number(a.done)-Number(b.done));
-  sec.querySelector('.pitems').innerHTML=shown.length?shown.map(i=>`<li class="pi ${i.done?'done':''}">
-   <label class="check"><input type="checkbox" data-id="${i.id}" ${i.done?'checked':''}> ${T.done}</label>
-   <div class="pmain"><div class="ptitle">${esc(i.title)}</div>
-    <div class="pmeta">${i.kind?`<span class="badge">${i.kind==='series'?'Série':'Filme'}</span>`:''}${i.link?`<a href="${esc(i.link)}" target="_blank" rel="noopener noreferrer">${esc(sourceOf(i.link))} ↗</a>`:''}</div></div>
-   <button class="del" type="button" data-del="${i.id}" aria-label="Remover ${esc(i.title)}">✕</button>
-  </li>`).join(''):`<li class="empty">${items.length?'Nada neste filtro.':T.empty}</li>`;
+  sec.querySelector('.pitems').innerHTML=shown.length?shown.map(i=>{
+   const th=thumbOf(i), icon=key==='music'?'🎵':(i.kind==='series'?'📺':'🎬');
+   const q=(i.title+' '+(i.sub||'').split(' · ')[0]).trim();
+   return `<li class="pi ${i.done?'done':''}">
+   <div class="pthumb ${key}" aria-hidden="true"><span>${icon}</span>${th?`<img src="${esc(th)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:''}</div>
+   <div class="pmain"><div class="ptitle">${esc(i.title)}</div>${i.sub?`<div class="psub">${esc(i.sub)}</div>`:''}
+    <div class="pmeta">${i.kind?`<span class="badge">${i.kind==='series'?'Série':'Filme'}</span>`:''}${i.link?`<a href="${esc(i.link)}" target="_blank" rel="noopener noreferrer">${esc(sourceOf(i.link))} ↗</a>`:''}${key==='music'&&!/spotify\.com/.test(i.link||'')?`<a href="${esc(spSearch(q))}" target="_blank" rel="noopener noreferrer">♫ Buscar no Spotify ↗</a>`:''}</div>
+    <label class="check"><input type="checkbox" data-id="${i.id}" ${i.done?'checked':''}> ${T.done}</label></div>
+   <div class="pact"><button class="del" type="button" data-edit="${i.id}" aria-label="Editar link de ${esc(i.title)}" title="Editar link">✎</button><button class="del" type="button" data-del="${i.id}" aria-label="Remover ${esc(i.title)}" title="Remover">✕</button></div>
+  </li>`}).join(''):`<li class="empty">${items.length?'Nada neste filtro.':T.empty}</li>`;
  });
+}
+
+/* Busca automática (iTunes Search API, sem chave) */
+function jsonp(url){
+ return new Promise((res,rej)=>{
+  const cb='_itcb'+Math.random().toString(36).slice(2), sc=document.createElement('script');
+  const clean=()=>{clearTimeout(t);delete window[cb];sc.remove()};
+  const t=setTimeout(()=>{clean();rej(new Error('timeout'))},6000);
+  window[cb]=d=>{clean();res(d)};
+  sc.onerror=()=>{clean();rej(new Error('network'))};
+  sc.src=url+'&callback='+cb; document.head.appendChild(sc);
+ });
+}
+async function itunes(term,params,signal){
+ const url='https://itunes.apple.com/search?'+new URLSearchParams({term,limit:'25',country:'us',lang:'en_us',...params});
+ try{const r=await fetch(url,{signal}); if(!r.ok)throw new Error('http'); return await r.json()}
+ catch(e){if(signal&&signal.aborted)throw e; return jsonp(url)}
+}
+function mapResults(key,kind,res){
+ const seen=new Set(), out=[];
+ for(const r of res){
+  const year=(r.releaseDate||'').slice(0,4);
+  const art=(r.artworkUrl100||'').replace('100x100bb',key==='music'?'200x200bb':'200x300bb');
+  let title,sub,q;
+  if(key==='music'){title=r.trackName;sub=[r.artistName,year].filter(Boolean).join(' · ');q=`${r.trackName||''} ${r.artistName||''}`}
+  else if(kind==='series'){title=r.artistName;sub=[r.primaryGenreName,year].filter(Boolean).join(' · ');q=`${r.artistName||''} trailer`}
+  else{title=r.trackName;sub=[r.artistName,year].filter(Boolean).join(' · ');q=`${r.trackName||''} trailer`}
+  if(!title)continue;
+  const k=(title+'|'+(key==='music'?r.artistName:'')).toLowerCase();
+  if(seen.has(k))continue; seen.add(k);
+  out.push({title,sub,thumb:art,q:q.trim()});
+  if(out.length>=6)break;
+ }
+ return out;
+}
+const sg={music:{items:[],active:-1,seq:0,timer:null,ctl:null},watch:{items:[],active:-1,seq:0,timer:null,ctl:null}};
+const sgBox=k=>document.getElementById('sg-'+k);
+const plForm=k=>document.querySelector('#pl-'+k+' form');
+function hideSugg(key){
+ const s=sg[key]; clearTimeout(s.timer); if(s.ctl)s.ctl.abort(); s.seq++; s.items=[]; s.active=-1;
+ const b=sgBox(key); b.hidden=true; b.innerHTML='';
+ plForm(key).elements.ptitle.setAttribute('aria-expanded','false');
+}
+function showState(key,msg){const b=sgBox(key);b.hidden=false;b.innerHTML=`<li class="state">${esc(msg)}</li>`}
+function showSugg(key){
+ const b=sgBox(key); b.hidden=false;
+ b.innerHTML=sg[key].items.map((it,i)=>`<li role="option" id="sg-${key}-${i}" data-i="${i}" aria-selected="false"><span class="sth">${it.thumb?`<img src="${esc(it.thumb)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:''}</span><span class="st"><strong>${esc(it.title)}</strong><small>${esc(it.sub)}</small></span></li>`).join('');
+ plForm(key).elements.ptitle.setAttribute('aria-expanded','true');
+}
+function markActive(key){
+ const s=sg[key], inp=plForm(key).elements.ptitle;
+ sgBox(key).querySelectorAll('li[data-i]').forEach(li=>{
+  const on=Number(li.dataset.i)===s.active;
+  li.setAttribute('aria-selected',String(on));
+  if(on){inp.setAttribute('aria-activedescendant',li.id);if(li.scrollIntoView)li.scrollIntoView({block:'nearest'})}
+ });
+}
+function scheduleSearch(key){
+ const s=sg[key], form=plForm(key), q=form.elements.ptitle.value.trim();
+ clearTimeout(s.timer); if(s.ctl)s.ctl.abort();
+ if(q.length<3){hideSugg(key);return}
+ const seq=++s.seq;
+ showState(key,'Buscando…');
+ s.timer=setTimeout(async()=>{
+  const ctl=new AbortController(); s.ctl=ctl;
+  const kind=form.elements.pkind?form.elements.pkind.value:'';
+  const params=key==='music'?{media:'music',entity:'song'}:(kind==='series'?{media:'tvShow',entity:'tvSeason'}:{media:'movie',entity:'movie'});
+  try{
+   const data=await itunes(q,params,ctl.signal);
+   if(seq!==s.seq)return;
+   s.items=mapResults(key,kind,data.results||[]); s.active=-1;
+   s.items.length?showSugg(key):showState(key,'Nada encontrado. Você ainda pode adicionar manualmente.');
+  }catch(e){
+   if(seq!==s.seq||(e&&e.name==='AbortError'))return;
+   showState(key,'Busca indisponível agora. Você ainda pode adicionar manualmente.');
+  }
+ },350);
+}
+async function fillFromYouTube(form){
+ const t=form.elements.ptitle, link=normalizeLink(form.elements.plink.value);
+ if(!link||t.value.trim()||!ytId(link))return;
+ try{
+  const r=await fetch('https://www.youtube.com/oembed?format=json&url='+encodeURIComponent(link));
+  if(!r.ok)return;
+  const d=await r.json();
+  if(d.title&&!t.value.trim())t.value=d.title;
+ }catch(e){}
+}
+function addItem(key,form,d){
+ const err=form.querySelector('.formerr'), link=normalizeLink(form.elements.plink.value);
+ if(link===null){err.textContent='Link inválido. Use um endereço como https://youtube.com/…';form.elements.plink.focus();return}
+ err.textContent='';
+ const item={id:uid(),title:d.title,sub:d.sub||'',thumb:d.thumb||'',link:link||(d.q?ytSearch(d.q):''),done:false};
+ if(key==='watch')item.kind=form.elements.pkind.value;
+ playlist[key].push(item);
+ store.set(PL_KEY,playlist);
+ hideSugg(key);
+ form.reset();
+ renderPlaylist();
+ form.elements.ptitle.focus();
 }
 const plView=document.getElementById('view-playlist');
 plView.addEventListener('submit',e=>{
  e.preventDefault();
- const form=e.target, key=form.closest('.pl').dataset.list, err=form.querySelector('.formerr');
- const title=form.elements.ptitle.value.trim(), link=normalizeLink(form.elements.plink.value);
- if(!title){err.textContent='Digite o título.';form.elements.ptitle.focus();return}
- if(link===null){err.textContent='Link inválido. Use um endereço como https://youtube.com/…';form.elements.plink.focus();return}
- err.textContent='';
- const item={id:uid(),title,link,done:false};
- if(key==='watch')item.kind=form.elements.pkind.value;
- playlist[key].push(item);
- store.set(PL_KEY,playlist);
- form.reset();
- renderPlaylist();
- form.elements.ptitle.focus();
+ const form=e.target, key=form.closest('.pl').dataset.list, title=form.elements.ptitle.value.trim();
+ if(!title){form.querySelector('.formerr').textContent='Digite o título.';form.elements.ptitle.focus();return}
+ addItem(key,form,{title});
+});
+plView.addEventListener('input',e=>{
+ if(e.target.name==='ptitle')scheduleSearch(e.target.closest('.pl').dataset.list);
+ else if(e.target.name==='plink'&&e.inputType==='insertFromPaste')setTimeout(()=>fillFromYouTube(e.target.form),50);
 });
 plView.addEventListener('change',e=>{
- if(e.target.type!=='checkbox')return;
- const key=e.target.closest('.pl').dataset.list;
- const item=playlist[key].find(i=>i.id===e.target.dataset.id);
- if(!item)return;
- item.done=e.target.checked;
- store.set(PL_KEY,playlist);
- renderPlaylist();
+ const t=e.target, sec=t.closest('.pl'); if(!sec)return;
+ const key=sec.dataset.list;
+ if(t.type==='checkbox'){
+  const item=playlist[key].find(i=>i.id===t.dataset.id);
+  if(!item)return;
+  item.done=t.checked; store.set(PL_KEY,playlist); renderPlaylist();
+ }else if(t.name==='pkind')scheduleSearch(key);
+ else if(t.name==='plink')fillFromYouTube(t.form);
 });
+plView.addEventListener('keydown',e=>{
+ if(e.target.name!=='ptitle')return;
+ const key=e.target.closest('.pl').dataset.list, s=sg[key], n=s.items.length;
+ if(sgBox(key).hidden)return;
+ if(e.key==='Escape'){hideSugg(key);return}
+ if(!n)return;
+ if(e.key==='ArrowDown'||e.key==='ArrowUp'){
+  e.preventDefault();
+  s.active=e.key==='ArrowDown'?(s.active+1)%n:(s.active<=0?n-1:s.active-1);
+  markActive(key);
+ }else if(e.key==='Enter'&&s.active>=0){
+  e.preventDefault(); addItem(key,plForm(key),s.items[s.active]);
+ }
+});
+plView.addEventListener('focusout',e=>{
+ const w=e.target.closest&&e.target.closest('.titlewrap'); if(!w)return;
+ setTimeout(()=>{const key=w.closest('.pl').dataset.list; if(!w.contains(document.activeElement))hideSugg(key)},200);
+});
+plView.addEventListener('error',e=>{if(e.target.tagName==='IMG')e.target.remove()},true);
 plView.addEventListener('click',e=>{
  const sec=e.target.closest('.pl'); if(!sec)return;
  const key=sec.dataset.list;
- if(e.target.dataset.f){plFilter[key]=e.target.dataset.f;renderPlaylist()}
- else if(e.target.dataset.del){
-  const item=playlist[key].find(i=>i.id===e.target.dataset.del);
+ const opt=e.target.closest('li[data-i]');
+ if(opt){addItem(key,plForm(key),sg[key].items[Number(opt.dataset.i)]);return}
+ const btn=e.target.closest('button'); if(!btn)return;
+ if(btn.dataset.f){plFilter[key]=btn.dataset.f;renderPlaylist()}
+ else if(btn.dataset.del){
+  const item=playlist[key].find(i=>i.id===btn.dataset.del);
   if(item&&confirm(`Remover "${item.title}"?`)){
    playlist[key]=playlist[key].filter(i=>i.id!==item.id);
-   store.set(PL_KEY,playlist);
-   renderPlaylist();
+   store.set(PL_KEY,playlist); renderPlaylist();
   }
+ }else if(btn.dataset.edit){
+  const item=playlist[key].find(i=>i.id===btn.dataset.edit); if(!item)return;
+  const v=prompt('Cole o link do YouTube, Spotify ou outro site (deixe vazio para remover o link):',item.link||'');
+  if(v===null)return;
+  const link=normalizeLink(v);
+  if(link===null){alert('Link inválido. Use um endereço como https://youtube.com/…');return}
+  item.link=link; store.set(PL_KEY,playlist); renderPlaylist();
  }
 });
 
@@ -465,13 +674,124 @@ function renderPractice(){
   :'<div class="soon"><strong>🚧 Em preparação</strong>Os exercícios vão aparecer aqui. Esta aba já está pronta para recebê-los.</div>';
 }
 
+/* ---------- Sequência diária ---------- */
+const DAYRE=/^\d{4}-\d{2}-\d{2}$/;
+const pad2=n=>String(n).padStart(2,'0');
+const dayStr=d=>`${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`;
+function cleanStreak(o){
+ o=o&&typeof o==='object'?o:{};
+ const n=v=>Math.max(0,Math.floor(Number(v))||0);
+ return {current:n(o.current),best:n(o.best),last:DAYRE.test(o.last)?o.last:'',days:(Array.isArray(o.days)?o.days:[]).filter(x=>DAYRE.test(x)).slice(-120)};
+}
+let streak=cleanStreak(store.get(KEYS.streak,null));
+function registerVisit(){
+ const now=new Date(), today=dayStr(now);
+ if(streak.last===today)return;
+ const y=dayStr(new Date(now.getFullYear(),now.getMonth(),now.getDate()-1));
+ if(streak.last<=today)streak.current=(streak.last===y)?streak.current+1:1; // se o relógio voltou no tempo, mantém a sequência
+ streak.last=today;
+ streak.best=Math.max(streak.best,streak.current);
+ streak.days=[...new Set([...streak.days,today])].sort().slice(-120);
+ store.set(KEYS.streak,streak);
+}
+function renderStreak(){
+ const n=streak.current, now=new Date(), today=dayStr(now);
+ document.getElementById('streakChip').textContent=`🔥 ${n}`;
+ document.getElementById('streakNum').textContent=`${n} ${n===1?'dia seguido':'dias seguidos'}`;
+ document.getElementById('streakSub').textContent=n>1&&n>=streak.best?'Seu recorde! Continue voltando todo dia.':(n<=1?'Volte amanhã para continuar a sequência.':`Recorde: ${streak.best} dias`);
+ const L=['D','S','T','Q','Q','S','S'], names=['domingo','segunda','terça','quarta','quinta','sexta','sábado'];
+ let html='';
+ for(let i=6;i>=0;i--){
+  const d=new Date(now.getFullYear(),now.getMonth(),now.getDate()-i), ds=dayStr(d), on=streak.days.includes(ds);
+  html+=`<li class="wd ${on?'on':''} ${ds===today?'today':''}" aria-label="${names[d.getDay()]}${ds===today?' (hoje)':''}: ${on?'você entrou':'sem acesso'}" title="${names[d.getDay()]}">${L[d.getDay()]}</li>`;
+ }
+ document.getElementById('weekDots').innerHTML=html;
+}
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){registerVisit();renderStreak()}});
+
+/* ---------- Tema (automático / claro / escuro) ---------- */
+const THEME_LABEL={auto:'Automático',light:'Claro',dark:'Escuro'};
+let themePref=store.get(KEYS.theme,'auto');
+if(!(themePref in THEME_LABEL))themePref='auto';
+const darkMQ=window.matchMedia?window.matchMedia('(prefers-color-scheme: dark)'):null;
+function applyTheme(){
+ const dark=themePref==='dark'||(themePref==='auto'&&!!darkMQ&&darkMQ.matches);
+ document.documentElement.dataset.theme=dark?'dark':'light';
+ const m=document.querySelector('meta[name="theme-color"]'); if(m)m.setAttribute('content',dark?'#0a1020':'#172b4d');
+ document.querySelectorAll('#themeSeg button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.theme===themePref)));
+}
+if(darkMQ){darkMQ.addEventListener?darkMQ.addEventListener('change',applyTheme):darkMQ.addListener(applyTheme)}
+document.getElementById('themeSeg').addEventListener('click',e=>{
+ const b=e.target.closest('button'); if(!b)return;
+ themePref=b.dataset.theme; store.set(KEYS.theme,themePref); applyTheme();
+});
+
+/* ---------- Backup ---------- */
+const str=(v,n)=>typeof v==='string'?v.slice(0,n):'';
+function sanitizeBackup(o){
+ if(!o||o.app!=='english-advanced-studies'||!o.data||typeof o.data!=='object')throw new Error('Este arquivo não parece um backup do English Advanced Studies.');
+ const d=o.data, ids=new Set(topics.map(t=>t.n));
+ const doneArr=[...new Set((Array.isArray(d.done)?d.done:[]).map(Number).filter(n=>ids.has(n)))];
+ const notesObj={};
+ if(d.notes&&typeof d.notes==='object')for(const [k,v] of Object.entries(d.notes))if(ids.has(Number(k))&&typeof v==='string'&&v.trim())notesObj[k]=v.slice(0,20000);
+ const cardsArr=(Array.isArray(d.cards)?d.cards:[]).filter(c=>c&&ids.has(Number(c.topic))&&str(c.front,1)&&str(c.back,1)).map(c=>({id:str(c.id,30)||uid(),topic:Number(c.topic),front:str(c.front,200),back:str(c.back,400),box:Math.min(Math.max(Math.floor(Number(c.box))||0,0),INTERVALS.length-1),due:Number(c.due)||0}));
+ const pl=d.playlist&&typeof d.playlist==='object'?d.playlist:{};
+ const cleanList=(arr,watch)=>(Array.isArray(arr)?arr:[]).filter(i=>i&&str(i.title,1)).map(i=>{
+  const it={id:str(i.id,30)||uid(),title:str(i.title,120),sub:str(i.sub,120),thumb:/^https:\/\//.test(str(i.thumb,500))?str(i.thumb,500):'',link:normalizeLink(str(i.link,500))||'',done:!!i.done};
+  if(watch)it.kind=i.kind==='series'?'series':'movie';
+  return it;
+ });
+ return {done:doneArr,notes:notesObj,cards:cardsArr,playlist:{music:cleanList(pl.music,false),watch:cleanList(pl.watch,true)},streak:cleanStreak(d.streak)};
+}
+function applyState(st){
+ done=new Set(st.done); notes=st.notes; cards=st.cards; playlist=st.playlist; streak=st.streak;
+ store.set(KEYS.done,[...done]); store.set(KEYS.notes,notes); store.set(KEYS.cards,cards); store.set(PL_KEY,playlist); store.set(KEYS.streak,streak);
+ registerVisit(); route();
+}
+function renderSettings(){
+ applyTheme();
+ const lb=store.get(KEYS.backup,'');
+ const el=document.getElementById('lastBackup');
+ if(lb&&!isNaN(new Date(lb))){
+  const days=Math.floor((Date.now()-new Date(lb))/864e5);
+  el.textContent=`Último backup: ${new Date(lb).toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'})}${days>=7?` (há ${days} dias — vale fazer um novo)`:''}`;
+ }else el.textContent='Você ainda não fez backup neste aparelho.';
+}
+document.getElementById('exportBtn').addEventListener('click',()=>{
+ const payload={app:'english-advanced-studies',version:4,exportedAt:new Date().toISOString(),data:{done:[...done],notes,cards,playlist,streak}};
+ const url=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}));
+ const a=document.createElement('a'); a.href=url; a.download=`english-studies-backup-${dayStr(new Date())}.json`;
+ document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),3000);
+ store.set(KEYS.backup,new Date().toISOString());
+ document.getElementById('backupMsg').textContent='Backup exportado. Guarde o arquivo em um lugar seguro (Drive, e-mail, computador).';
+ renderSettings();
+});
+document.getElementById('importBtn').addEventListener('click',()=>document.getElementById('importFile').click());
+document.getElementById('importFile').addEventListener('change',async e=>{
+ const file=e.target.files[0]; e.target.value=''; if(!file)return;
+ const msg=document.getElementById('backupMsg');
+ try{
+  const text=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=()=>rej(r.error);r.readAsText(file)});
+  const st=sanitizeBackup(JSON.parse(text));
+  const resumo=`${st.done.length} temas estudados, ${Object.keys(st.notes).length} anotações, ${st.cards.length} flashcards, ${st.playlist.music.length} músicas e ${st.playlist.watch.length} filmes/séries`;
+  if(!confirm(`Este backup tem: ${resumo}.\n\nIsso vai SUBSTITUIR os dados atuais deste aparelho. Continuar?`)){msg.textContent='Importação cancelada. Nada foi alterado.';return}
+  applyState(st);
+  msg.textContent=`Backup importado: ${resumo}.`;
+ }catch(err){
+  msg.textContent=err&&err.message&&err.message.startsWith('Este arquivo')?err.message:'Não foi possível ler este arquivo. Use um backup exportado por este app.';
+ }
+});
+
 /* ---------- Menu principal e navegação ---------- */
-const VIEWS={home:'English Advanced Studies',topics:'Relevant Topics',playlist:'My English Playlist',practice:'Practice Exercises'};
+const VIEWS={home:'English Advanced Studies',topics:'Relevant Topics',playlist:'My English Playlist',practice:'Practice Exercises',settings:'Settings & Backup'};
 function updateHome(){
- const n=topics.filter(t=>done.has(t.n)).length;
+ const n=topics.filter(t=>done.has(t.n)).length, m=playlist.music.length, w=playlist.watch.length;
  document.getElementById('homeTopics').textContent=`${n} de ${topics.length} temas estudados · ${cards.length} flashcards`;
- document.getElementById('homePlaylist').textContent=`${playlist.music.length} ${playlist.music.length===1?'música':'músicas'} · ${playlist.watch.length} ${playlist.watch.length===1?'filme/série':'filmes e séries'}`;
+ document.getElementById('homePlaylist').textContent=`${m} ${m===1?'música':'músicas'} · ${w} ${w===1?'filme/série':'filmes e séries'}`;
  document.getElementById('homePractice').textContent=exercises.length?`${exercises.length} exercícios`:'Em breve';
+ const lb=store.get(KEYS.backup,'');
+ document.getElementById('homeSettings').textContent=`Tema: ${THEME_LABEL[themePref]} · ${lb&&!isNaN(new Date(lb))?'backup em '+new Date(lb).toLocaleDateString('pt-BR'):'sem backup ainda'}`;
+ renderStreak();
 }
 function route(){
  let v=location.hash.slice(1);
@@ -481,10 +801,14 @@ function route(){
  if(v==='home')updateHome();
  else if(v==='topics')render();
  else if(v==='playlist')renderPlaylist();
+ else if(v==='settings')renderSettings();
  else renderPractice();
  window.scrollTo(0,0);
 }
 window.addEventListener('hashchange',route);
+registerVisit();
+applyTheme();
+renderStreak();
 route();
 </script>
 <script>

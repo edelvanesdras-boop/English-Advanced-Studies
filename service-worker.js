@@ -1,4 +1,4 @@
-const CACHE = 'english-advanced-studies-v3';
+const CACHE = 'english-advanced-studies-v4';
 const FILES = ['./', './index.html', './manifest.webmanifest', './icon.svg'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(FILES)));
@@ -9,10 +9,13 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 self.addEventListener('fetch', event => {
-  if (event.request.method !== 'GET') return;
-  event.respondWith(caches.match(event.request).then(cached => cached || fetch(event.request).then(response => {
+  const req = event.request;
+  if (req.method !== 'GET') return;
+  // Buscas (iTunes/YouTube) e imagens externas passam direto pela rede.
+  if (new URL(req.url).origin !== self.location.origin) return;
+  event.respondWith(caches.match(req).then(cached => cached || fetch(req).then(response => {
     const copy = response.clone();
-    caches.open(CACHE).then(cache => cache.put(event.request, copy));
+    caches.open(CACHE).then(cache => cache.put(req, copy));
     return response;
   }).catch(() => caches.match('./index.html'))));
 });

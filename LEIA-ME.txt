@@ -37,3 +37,20 @@ NOVIDADES (v3):
   * Practice Exercises: aba preparada para receber exercícios no futuro.
 - O botão "voltar" do celular/navegador funciona entre as áreas.
 - A playlist também fica salva apenas neste dispositivo.
+
+NOVIDADES (v4):
+- Sequência diária: cada dia em que você abre o app soma na sequência
+  (contador no topo e no menu, com os últimos 7 dias). Pular um dia zera a
+  sequência atual, mas o recorde fica guardado.
+- Settings & Backup (novo botão no menu):
+  * Tema: Automático (segue o aparelho), Claro ou Escuro.
+  * Exportar backup: baixa um arquivo .json com tudo (temas estudados,
+    anotações, flashcards, playlist e sequência).
+  * Importar backup: restaura um arquivo exportado (substitui os dados atuais).
+- My English Playlist:
+  * Ao digitar um título (3+ letras), o app busca sugestões com capa
+    (API pública do iTunes, precisa de internet). Tocar em uma sugestão adiciona.
+  * Sem link, o app cria um link de busca no YouTube. Cole o link exato do vídeo
+    ou do Spotify antes de adicionar (ou use o botão ✎ depois) para trocar.
+  * Links de vídeo do YouTube mostram a miniatura do próprio vídeo.
+  * Músicas têm atalho "Buscar no Spotify".

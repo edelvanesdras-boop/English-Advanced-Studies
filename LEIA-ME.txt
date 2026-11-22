@@ -28,3 +28,12 @@ NOVIDADES (v2):
 
 Tudo fica salvo no armazenamento local do navegador, neste dispositivo.
 Limpar os dados do site apaga o progresso, as anotações e os flashcards.
+
+NOVIDADES (v3):
+- Menu principal com 3 áreas:
+  * Relevant Topics: os 15 temas, progresso, anotações e flashcards (tudo da v2).
+  * My English Playlist: lista de músicas e lista de filmes/séries, com link
+    (YouTube, Spotify ou outro site) e marcação "Já ouvi" / "Já assisti".
+  * Practice Exercises: aba preparada para receber exercícios no futuro.
+- O botão "voltar" do celular/navegador funciona entre as áreas.
+- A playlist também fica salva apenas neste dispositivo.

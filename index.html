@@ -74,18 +74,69 @@ dialog#review::backdrop{background:#172033b0}
 .fcard.back{background:#fff;border:1px solid var(--line);font-size:1.1rem;font-weight:500;margin-top:10px;min-height:90px}
 .rvbtns{display:flex;gap:10px;margin-top:16px;justify-content:center;flex-wrap:wrap}
 .rvsum{text-align:center;padding:18px 0}
+
+.view[hidden]{display:none}
+.back{display:inline-block;margin-bottom:14px;font-weight:650}
+.vtitle{font-size:1.6rem;line-height:1.2;margin:0 0 6px}
+.vsub{color:var(--muted);margin:0 0 20px;max-width:760px}
+.homeh{font-size:1.25rem;margin:4px 0 16px}
+.menu{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.menucard{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:15px;padding:20px;color:var(--ink);box-shadow:0 3px 12px #17203308}
+.menucard:hover{border-color:var(--accent);text-decoration:none}
+.menucard:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.micon{font-size:2rem;line-height:1}
+.menucard strong{display:block;font-size:1.1rem}
+.menucard small{display:block;color:var(--muted);font-weight:400;font-size:.88rem;margin:4px 0 8px}
+.mstat{font-style:normal;font-size:.82rem;font-weight:650;color:var(--accent)}
+.plgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.pl{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:18px;box-shadow:0 3px 12px #17203308}
+.plhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.plhead h3{margin:0;font-size:1.1rem}
+.plcount{color:var(--muted);font-size:.85rem}
+.plfilter{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.plfilter button{font:inherit;font-size:.8rem;font-weight:650;border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:999px;padding:4px 11px;cursor:pointer}
+.plfilter button[aria-pressed="true"]{background:var(--accent2);border-color:var(--accent);color:var(--accent)}
+.pitems{list-style:none;margin:0;padding:0}
+.pi{display:flex;gap:10px;align-items:flex-start;border-top:1px solid var(--line);padding:10px 0}
+.pi.done .ptitle{text-decoration:line-through;color:var(--muted)}
+.pmain{flex:1;min-width:0}
+.ptitle{font-weight:650;overflow-wrap:anywhere}
+.pmeta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:.82rem;margin-top:3px}
+.badge{background:var(--accent2);color:var(--accent);border-radius:999px;padding:1px 8px;font-size:.75rem;font-weight:650}
+.pi .check{margin-left:0;flex-direction:column;align-items:center;gap:2px;font-size:.7rem;min-width:56px;text-align:center;white-space:normal}
+.empty{color:var(--muted);font-size:.9rem;padding:12px 0}
+.addpl{display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:14px;margin-top:6px}
+.addpl input,.addpl select{flex:1 1 150px;min-width:0;padding:9px 11px;font-size:.9rem}
+.addpl select{flex:0 0 auto}
+.formerr{flex:1 0 100%;margin:0;color:#b42318;font-size:.82rem;min-height:0}
+.soon{border:2px dashed var(--line);border-radius:15px;padding:34px 20px;text-align:center;color:var(--muted);background:#fff}
+.soon strong{display:block;color:var(--ink);font-size:1.1rem;margin-bottom:4px}
+@media(max-width:760px){.menu,.plgrid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.bar span{transition:none}}
 @media(max-width:760px){.grid{grid-template-columns:1fr}.summary{width:100%;margin-left:0}}
-@media print{body{background:#fff}.toolbar,.check,.progress,.addfc,.fcactions,.del{display:none}.grid{grid-template-columns:1fr 1fr}.card{break-inside:avoid;box-shadow:none}}
+@media print{body{background:#fff}.toolbar,.check,.progress,.addfc,.addpl,.fcactions,.del,.back{display:none}.grid{grid-template-columns:1fr 1fr}.card{break-inside:avoid;box-shadow:none}}
 </style>
 </head>
 <body>
 <header><div class="wrap">
 <div class="eyebrow">English learning library</div>
 <h1>Advanced Studies — B2+ to C1</h1>
-<p>Uma biblioteca de 15 temas para desenvolver compreensão, vocabulário e argumentação em inglês. Cada tema reúne um TED/TED-Ed, uma leitura e uma notícia ou podcast em vídeo.</p>
+<p>Seu espaço para estudar inglês: temas para aprofundar, uma playlist pessoal de músicas e filmes, e exercícios para praticar.</p>
 </div></header>
 <main>
+<section id="view-home" class="view" hidden>
+<h2 class="homeh">O que você quer fazer hoje?</h2>
+<nav class="menu" aria-label="Menu principal">
+<a class="menucard" href="#topics"><span class="micon" aria-hidden="true">📚</span><span><strong>Relevant Topics</strong><small>15 temas com TED, leitura e notícia, além de anotações e flashcards.</small><em class="mstat" id="homeTopics"></em></span></a>
+<a class="menucard" href="#playlist"><span class="micon" aria-hidden="true">🎧</span><span><strong>My English Playlist</strong><small>Suas músicas, filmes e séries em inglês para ouvir e assistir.</small><em class="mstat" id="homePlaylist"></em></span></a>
+<a class="menucard" href="#practice"><span class="micon" aria-hidden="true">✏️</span><span><strong>Practice Exercises</strong><small>Exercícios para praticar o que você estuda.</small><em class="mstat" id="homePractice"></em></span></a>
+</nav>
+</section>
+
+<section id="view-topics" class="view" hidden>
+<a class="back" href="#home">← Menu principal</a>
+<h2 class="vtitle">📚 Relevant Topics</h2>
+<p class="vsub">Uma biblioteca de 15 temas para desenvolver compreensão, vocabulário e argumentação em inglês. Cada tema reúne um TED/TED-Ed, uma leitura e uma notícia ou podcast em vídeo.</p>
 <section class="progress" aria-label="Seu progresso">
 <div class="ptop"><strong id="ptext">0 de 15 temas estudados</strong><button class="btn ghost" id="reviewBtn" type="button">🗂️ Revisar flashcards</button></div>
 <div class="bar" id="pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Temas estudados"><span id="pfill"></span></div>
@@ -102,6 +153,45 @@ dialog#review::backdrop{background:#172033b0}
 <footer>
 <strong>Como usar:</strong> assista ao vídeo explicativo, leia o artigo e depois acompanhe a notícia ou podcast. Anote expressões e argumentos — não apenas palavras isoladas. Ao terminar, marque o tema como estudado. Os links de YouTube com pesquisa direcionada ajudam a encontrar episódios adequados quando não há um único vídeo específico indicado.
 </footer>
+</section>
+
+<section id="view-playlist" class="view" hidden>
+<a class="back" href="#home">← Menu principal</a>
+<h2 class="vtitle">🎧 My English Playlist</h2>
+<p class="vsub">Músicas, filmes e séries em inglês que você quer ouvir ou assistir. Cole o link do YouTube, Spotify ou outro site e marque quando terminar.</p>
+<div class="plgrid">
+<section class="pl" id="pl-music" data-list="music" aria-label="Playlist de músicas">
+<div class="plhead"><h3>🎵 Músicas</h3><span class="plcount"></span></div>
+<div class="plfilter" role="group" aria-label="Filtrar músicas"><button type="button" data-f="all">Todas</button><button type="button" data-f="todo">Para ouvir</button><button type="button" data-f="done">Já ouvi</button></div>
+<ul class="pitems"></ul>
+<form class="addpl" autocomplete="off">
+<input name="ptitle" placeholder="Música e artista" aria-label="Título da música" maxlength="120">
+<input name="plink" placeholder="Link do YouTube ou Spotify" aria-label="Link da música" inputmode="url">
+<button class="btn" type="submit">Adicionar</button>
+<p class="formerr" role="alert"></p>
+</form>
+</section>
+<section class="pl" id="pl-watch" data-list="watch" aria-label="Lista de filmes e séries">
+<div class="plhead"><h3>🎬 Filmes e séries</h3><span class="plcount"></span></div>
+<div class="plfilter" role="group" aria-label="Filtrar filmes e séries"><button type="button" data-f="all">Todos</button><button type="button" data-f="todo">Para assistir</button><button type="button" data-f="done">Já assisti</button></div>
+<ul class="pitems"></ul>
+<form class="addpl" autocomplete="off">
+<input name="ptitle" placeholder="Título" aria-label="Título do filme ou série" maxlength="120">
+<select name="pkind" aria-label="Tipo"><option value="movie">Filme</option><option value="series">Série</option></select>
+<input name="plink" placeholder="Link (opcional)" aria-label="Link do filme ou série" inputmode="url">
+<button class="btn" type="submit">Adicionar</button>
+<p class="formerr" role="alert"></p>
+</form>
+</section>
+</div>
+</section>
+
+<section id="view-practice" class="view" hidden>
+<a class="back" href="#home">← Menu principal</a>
+<h2 class="vtitle">✏️ Practice Exercises</h2>
+<p class="vsub">Exercícios para praticar o inglês.</p>
+<div id="exList"></div>
+</section>
 </main>
 <dialog id="review" aria-label="Revisão de flashcards"><div class="rv" id="rvBody"></div></dialog>
 <script>
@@ -287,7 +377,115 @@ document.getElementById('reviewBtn').addEventListener('click',()=>startReview())
 
 document.getElementById('search').addEventListener('input',render);
 document.getElementById('filter').addEventListener('change',render);
-render();
+/* ---------- My English Playlist ---------- */
+const PL_KEY='englishStudiesPlaylist';
+let playlist=store.get(PL_KEY,{});
+if(!Array.isArray(playlist.music))playlist.music=[];
+if(!Array.isArray(playlist.watch))playlist.watch=[];
+const plFilter={music:'all',watch:'all'};
+const PL_TEXT={
+ music:{done:'Já ouvi',count:'ouvidas',empty:'Nenhuma música ainda. Adicione a primeira abaixo.'},
+ watch:{done:'Já assisti',count:'assistidos',empty:'Nenhum filme ou série ainda. Adicione o primeiro abaixo.'}
+};
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+function normalizeLink(v){
+ v=v.trim(); if(!v)return '';
+ if(!/^https?:\/\//i.test(v))v='https://'+v;
+ try{const u=new URL(v); if(!/^https?:$/.test(u.protocol)||!u.hostname.includes('.'))return null; return u.href}catch(e){return null}
+}
+function sourceOf(link){
+ try{
+  const h=new URL(link).hostname.replace(/^www\./,'');
+  if(/(^|\.)youtube\.com$|^youtu\.be$/.test(h))return '▶ YouTube';
+  if(/(^|\.)spotify\.com$/.test(h))return '♫ Spotify';
+  return h;
+ }catch(e){return 'Link'}
+}
+function renderPlaylist(){
+ ['music','watch'].forEach(key=>{
+  const sec=document.getElementById('pl-'+key), items=playlist[key], T=PL_TEXT[key], f=plFilter[key];
+  const nDone=items.filter(i=>i.done).length;
+  sec.querySelector('.plcount').textContent=items.length?`${nDone} de ${items.length} ${T.count}`:'lista vazia';
+  sec.querySelectorAll('.plfilter button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.f===f)));
+  const shown=items.filter(i=>f==='all'||(f==='done'?i.done:!i.done)).sort((a,b)=>Number(a.done)-Number(b.done));
+  sec.querySelector('.pitems').innerHTML=shown.length?shown.map(i=>`<li class="pi ${i.done?'done':''}">
+   <label class="check"><input type="checkbox" data-id="${i.id}" ${i.done?'checked':''}> ${T.done}</label>
+   <div class="pmain"><div class="ptitle">${esc(i.title)}</div>
+    <div class="pmeta">${i.kind?`<span class="badge">${i.kind==='series'?'Série':'Filme'}</span>`:''}${i.link?`<a href="${esc(i.link)}" target="_blank" rel="noopener noreferrer">${esc(sourceOf(i.link))} ↗</a>`:''}</div></div>
+   <button class="del" type="button" data-del="${i.id}" aria-label="Remover ${esc(i.title)}">✕</button>
+  </li>`).join(''):`<li class="empty">${items.length?'Nada neste filtro.':T.empty}</li>`;
+ });
+}
+const plView=document.getElementById('view-playlist');
+plView.addEventListener('submit',e=>{
+ e.preventDefault();
+ const form=e.target, key=form.closest('.pl').dataset.list, err=form.querySelector('.formerr');
+ const title=form.elements.ptitle.value.trim(), link=normalizeLink(form.elements.plink.value);
+ if(!title){err.textContent='Digite o título.';form.elements.ptitle.focus();return}
+ if(link===null){err.textContent='Link inválido. Use um endereço como https://youtube.com/…';form.elements.plink.focus();return}
+ err.textContent='';
+ const item={id:uid(),title,link,done:false};
+ if(key==='watch')item.kind=form.elements.pkind.value;
+ playlist[key].push(item);
+ store.set(PL_KEY,playlist);
+ form.reset();
+ renderPlaylist();
+ form.elements.ptitle.focus();
+});
+plView.addEventListener('change',e=>{
+ if(e.target.type!=='checkbox')return;
+ const key=e.target.closest('.pl').dataset.list;
+ const item=playlist[key].find(i=>i.id===e.target.dataset.id);
+ if(!item)return;
+ item.done=e.target.checked;
+ store.set(PL_KEY,playlist);
+ renderPlaylist();
+});
+plView.addEventListener('click',e=>{
+ const sec=e.target.closest('.pl'); if(!sec)return;
+ const key=sec.dataset.list;
+ if(e.target.dataset.f){plFilter[key]=e.target.dataset.f;renderPlaylist()}
+ else if(e.target.dataset.del){
+  const item=playlist[key].find(i=>i.id===e.target.dataset.del);
+  if(item&&confirm(`Remover "${item.title}"?`)){
+   playlist[key]=playlist[key].filter(i=>i.id!==item.id);
+   store.set(PL_KEY,playlist);
+   renderPlaylist();
+  }
+ }
+});
+
+/* ---------- Practice Exercises ---------- */
+// Futuros exercícios entram aqui. Formato sugerido: {id, title, type, ...}
+const exercises=[];
+function renderPractice(){
+ const box=document.getElementById('exList');
+ box.innerHTML=exercises.length
+  ?exercises.map(x=>`<article class="card"><h2>${esc(x.title)}</h2></article>`).join('')
+  :'<div class="soon"><strong>🚧 Em preparação</strong>Os exercícios vão aparecer aqui. Esta aba já está pronta para recebê-los.</div>';
+}
+
+/* ---------- Menu principal e navegação ---------- */
+const VIEWS={home:'English Advanced Studies',topics:'Relevant Topics',playlist:'My English Playlist',practice:'Practice Exercises'};
+function updateHome(){
+ const n=topics.filter(t=>done.has(t.n)).length;
+ document.getElementById('homeTopics').textContent=`${n} de ${topics.length} temas estudados · ${cards.length} flashcards`;
+ document.getElementById('homePlaylist').textContent=`${playlist.music.length} ${playlist.music.length===1?'música':'músicas'} · ${playlist.watch.length} ${playlist.watch.length===1?'filme/série':'filmes e séries'}`;
+ document.getElementById('homePractice').textContent=exercises.length?`${exercises.length} exercícios`:'Em breve';
+}
+function route(){
+ let v=location.hash.slice(1);
+ if(!(v in VIEWS))v='home';
+ Object.keys(VIEWS).forEach(n=>{document.getElementById('view-'+n).hidden=n!==v});
+ document.title=v==='home'?VIEWS.home:`${VIEWS[v]} — English Advanced Studies`;
+ if(v==='home')updateHome();
+ else if(v==='topics')render();
+ else if(v==='playlist')renderPlaylist();
+ else renderPractice();
+ window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',route);
+route();
 </script>
 <script>
 if ('serviceWorker' in navigator) {

@@ -40,8 +40,43 @@ a:hover{text-decoration:underline}
 .check{display:flex;align-items:center;gap:7px;margin-left:auto;color:var(--muted);font-size:.8rem;white-space:nowrap}
 .check input{min-width:0;flex:0 0 auto;accent-color:var(--green)}
 footer{color:var(--muted);font-size:.85rem;margin-top:24px;padding:16px 2px;border-top:1px solid var(--line)}
+
+.progress{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:16px 18px;margin-bottom:18px}
+.ptop{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:10px}
+.bar{height:12px;border-radius:999px;background:var(--accent2);overflow:hidden}
+.bar span{display:block;height:100%;width:0;background:var(--green);border-radius:999px;transition:width .3s ease}
+.btn{font:inherit;font-weight:650;font-size:.88rem;border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:10px;padding:9px 14px;cursor:pointer}
+.btn:hover{filter:brightness(1.08)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.ghost{background:#fff;color:var(--accent)}
+.btn.ok{background:var(--green);border-color:var(--green)}
+.btn.bad{background:#fff;color:#b42318;border-color:#b42318}
+.btn:focus-visible,summary:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.panel{border-top:1px solid var(--line);margin-top:12px;padding-top:10px}
+.panel summary{cursor:pointer;font-weight:650;font-size:.9rem;color:var(--ink)}
+.panel[open] summary{margin-bottom:10px}
+textarea{width:100%;min-height:110px;resize:vertical;font:inherit;font-size:.92rem;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff;color:var(--ink)}
+.saved{min-height:1.2em}
+.fc{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;border-bottom:1px solid var(--line);padding:7px 0;font-size:.92rem}
+.fc span{flex:1;min-width:0;overflow-wrap:anywhere}
+.fc small{display:block;color:var(--muted)}
+.del{border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:1rem;padding:2px 6px;border-radius:6px}
+.del:hover{color:#b42318;background:#fef3f2}
+.addfc{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.addfc input{flex:1 1 150px;min-width:0;padding:9px 11px;font-size:.9rem}
+.fcactions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+dialog#review{border:0;border-radius:18px;padding:0;width:min(560px,92vw);box-shadow:0 20px 60px #17203340;color:var(--ink)}
+dialog#review::backdrop{background:#172033b0}
+.rv{padding:20px}
+.rvhead{display:flex;justify-content:space-between;align-items:center;gap:10px;color:var(--muted);font-size:.85rem;margin-bottom:12px}
+.rvtopic{color:var(--muted);font-size:.82rem;margin:0 0 8px}
+.fcard{min-height:150px;display:grid;place-items:center;text-align:center;padding:22px;border-radius:14px;background:var(--accent2);font-size:1.6rem;font-weight:750;overflow-wrap:anywhere}
+.fcard.back{background:#fff;border:1px solid var(--line);font-size:1.1rem;font-weight:500;margin-top:10px;min-height:90px}
+.rvbtns{display:flex;gap:10px;margin-top:16px;justify-content:center;flex-wrap:wrap}
+.rvsum{text-align:center;padding:18px 0}
+@media(prefers-reduced-motion:reduce){.bar span{transition:none}}
 @media(max-width:760px){.grid{grid-template-columns:1fr}.summary{width:100%;margin-left:0}}
-@media print{body{background:#fff}.toolbar,.check{display:none}.grid{grid-template-columns:1fr 1fr}.card{break-inside:avoid;box-shadow:none}}
+@media print{body{background:#fff}.toolbar,.check,.progress,.addfc,.fcactions,.del{display:none}.grid{grid-template-columns:1fr 1fr}.card{break-inside:avoid;box-shadow:none}}
 </style>
 </head>
 <body>
@@ -51,6 +86,10 @@ footer{color:var(--muted);font-size:.85rem;margin-top:24px;padding:16px 2px;bord
 <p>Uma biblioteca de 15 temas para desenvolver compreensão, vocabulário e argumentação em inglês. Cada tema reúne um TED/TED-Ed, uma leitura e uma notícia ou podcast em vídeo.</p>
 </div></header>
 <main>
+<section class="progress" aria-label="Seu progresso">
+<div class="ptop"><strong id="ptext">0 de 15 temas estudados</strong><button class="btn ghost" id="reviewBtn" type="button">🗂️ Revisar flashcards</button></div>
+<div class="bar" id="pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Temas estudados"><span id="pfill"></span></div>
+</section>
 <div class="toolbar">
 <input id="search" type="search" placeholder="Buscar tema, palavra ou assunto…">
 <select id="filter"><option value="all">Todos os temas</option><option value="work">Trabalho e economia</option><option value="society">Sociedade e política</option><option value="science">Ciência e tecnologia</option></select>
@@ -64,6 +103,7 @@ footer{color:var(--muted);font-size:.85rem;margin-top:24px;padding:16px 2px;bord
 <strong>Como usar:</strong> assista ao vídeo explicativo, leia o artigo e depois acompanhe a notícia ou podcast. Anote expressões e argumentos — não apenas palavras isoladas. Ao terminar, marque o tema como estudado. Os links de YouTube com pesquisa direcionada ajudam a encontrar episódios adequados quando não há um único vídeo específico indicado.
 </footer>
 </main>
+<dialog id="review" aria-label="Revisão de flashcards"><div class="rv" id="rvBody"></div></dialog>
 <script>
 const topics = [
 {n:1,icon:"🌍",title:"Climate Change & Global Warming",cat:"science",ted:["TED – Climate change and global warming","https://www.ted.com/search?q=climate%20change%20global%20warming"],read:["Our World in Data – CO₂ and greenhouse gas emissions","https://ourworldindata.org/co2-and-greenhouse-gas-emissions"],news:["BBC – Climate change and global warming","https://www.youtube.com/results?search_query=BBC+The+Climate+Question+climate+change+global+warming"]},
@@ -82,31 +122,169 @@ const topics = [
 {n:14,icon:"🏆",title:"Meritocracy vs. Inequality",cat:"society",ted:["TED – Meritocracy and inequality","https://www.ted.com/search?q=meritocracy%20inequality"],read:["Our World in Data – Social mobility","https://ourworldindata.org/social-mobility"],news:["BBC Ideas – Meritocracy and social mobility","https://www.youtube.com/results?search_query=BBC+Ideas+meritocracy+social+mobility+debate"]},
 {n:15,icon:"⚙️",title:"Automation & Unemployment",cat:"science",ted:["TED – Automation and jobs","https://www.ted.com/search?q=automation%20jobs"],read:["World Economic Forum – Future of Jobs Report 2025","https://www.weforum.org/reports/the-future-of-jobs-report-2025/"],news:["DW News – Automation and employment","https://www.youtube.com/results?search_query=DW+News+automation+robots+unemployment+jobs"]}
 ];
-const labels=[["TED / TED-Ed", "ted"],["TEXT / ARTICLE","read"],["NEWS / VIDEO PODCAST","news"]];
+const labels=[["TED / TED-Ed","ted"],["TEXT / ARTICLE","read"],["NEWS / VIDEO PODCAST","news"]];
+const KEYS={done:'englishStudiesDone',notes:'englishStudiesNotes',cards:'englishStudiesCards'};
+const DAY=864e5, INTERVALS=[0,1,2,4,8,16];
+const store={
+ get(k,fb){try{const v=JSON.parse(localStorage.getItem(k));return v==null?fb:v}catch(e){return fb}},
+ set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let done=new Set(store.get(KEYS.done,[]).map(Number));
+let notes=store.get(KEYS.notes,{});
+let cards=store.get(KEYS.cards,[]);
+const openPanels=new Set();
 const root=document.getElementById('cards');
+const topicById=id=>topics.find(t=>t.n===Number(id));
+const cardsOf=id=>cards.filter(c=>c.topic===Number(id));
+const dueCards=()=>cards.filter(c=>c.due<=Date.now());
+
+function updateProgress(){
+ const total=topics.length, n=topics.filter(t=>done.has(t.n)).length, pct=Math.round(n/total*100);
+ document.getElementById('ptext').textContent=`${n} de ${total} temas estudados (${pct}%)`;
+ document.getElementById('pfill').style.width=pct+'%';
+ document.getElementById('pbar').setAttribute('aria-valuenow',pct);
+ const b=document.getElementById('reviewBtn'), due=dueCards().length;
+ b.disabled=cards.length===0;
+ b.textContent=cards.length?`🗂️ Revisar flashcards (${due} para hoje · ${cards.length} no total)`:'🗂️ Revisar flashcards (nenhum ainda)';
+}
+
+function cardHTML(t){
+ const mine=cardsOf(t.n), nOpen=openPanels.has('notes-'+t.n), cOpen=openPanels.has('cards-'+t.n);
+ return `<article class="card ${done.has(t.n)?'done':''}" data-id="${t.n}">
+ <div class="cardhead"><div class="num">${t.n}</div><div style="flex:1"><h2>${t.icon} ${t.title}</h2></div>
+ <label class="check"><input type="checkbox" class="donebox" data-id="${t.n}" ${done.has(t.n)?'checked':''}> Estudado</label></div>
+ <div class="links">${labels.map(([label,key])=>`<div class="linkrow"><span class="label">${label}</span><a href="${t[key][1]}" target="_blank" rel="noopener noreferrer">${t[key][0]} ↗</a></div>`).join('')}</div>
+ <details class="panel" data-panel="notes-${t.n}" ${nOpen?'open':''}>
+  <summary>📝 Anotações${notes[t.n]?' ✓':''}</summary>
+  <textarea class="notes" data-id="${t.n}" placeholder="Expressões, argumentos, ideias principais…" aria-label="Anotações do tema ${t.n}">${esc(notes[t.n]||'')}</textarea>
+  <p class="note saved"></p>
+ </details>
+ <details class="panel" data-panel="cards-${t.n}" ${cOpen?'open':''}>
+  <summary>🗂️ Flashcards (${mine.length})</summary>
+  ${mine.map(c=>`<div class="fc"><span><strong>${esc(c.front)}</strong><small>${esc(c.back)}</small></span><button class="del" type="button" data-del="${c.id}" aria-label="Remover flashcard ${esc(c.front)}">✕</button></div>`).join('')}
+  <div class="addfc">
+   <input class="fcfront" placeholder="Palavra ou expressão" aria-label="Frente do flashcard">
+   <input class="fcback" placeholder="Significado ou exemplo" aria-label="Verso do flashcard">
+   <button class="btn addbtn" type="button">Adicionar</button>
+  </div>
+  ${mine.length?`<div class="fcactions"><button class="btn ghost reviewtopic" type="button" data-id="${t.n}">Revisar este tema</button></div>`:''}
+ </details>
+ </article>`;
+}
+
 function render(){
  const q=document.getElementById('search').value.toLowerCase();
  const f=document.getElementById('filter').value;
- const list=topics.filter(t=>(f==='all'||t.cat===f)&&(t.title+' '+t.ted[0]+' '+t.read[0]+' '+t.news[0]).toLowerCase().includes(q));
- root.innerHTML=list.map(t=>`<article class="card" data-id="${t.n}">
- <div class="cardhead"><div class="num">${t.n}</div><div style="flex:1"><h2>${t.icon} ${t.title}</h2></div>
- <label class="check"><input type="checkbox" class="donebox" data-id="${t.n}"> Estudado</label></div>
- <div class="links">${labels.map(([label,key])=>`<div class="linkrow"><span class="label">${label}</span><a href="${t[key][1]}" target="_blank" rel="noopener noreferrer">${t[key][0]} ↗</a></div>`).join('')}</div>
- </article>`).join('');
- document.querySelectorAll('.donebox').forEach(cb=>{
- const saved = JSON.parse(localStorage.getItem('englishStudiesDone') || '[]');
- cb.checked = saved.includes(Number(cb.dataset.id));
- cb.closest('.card').classList.toggle('done', cb.checked);
- cb.addEventListener('change',e=>{
-   e.target.closest('.card').classList.toggle('done',e.target.checked);
-   const current = JSON.parse(localStorage.getItem('englishStudiesDone') || '[]');
-   const id = Number(e.target.dataset.id);
-   const updated = e.target.checked ? [...new Set([...current,id])] : current.filter(x=>x!==id);
-   localStorage.setItem('englishStudiesDone', JSON.stringify(updated));
- });
-});
- document.getElementById('count').textContent=`${list.length} de 15 temas`;
+ const hay=t=>[t.title,t.ted[0],t.read[0],t.news[0],notes[t.n]||'',...cardsOf(t.n).map(c=>c.front+' '+c.back)].join(' ').toLowerCase();
+ const list=topics.filter(t=>(f==='all'||t.cat===f)&&hay(t).includes(q));
+ root.innerHTML=list.length?list.map(cardHTML).join(''):'<p class="note">Nenhum tema encontrado.</p>';
+ document.getElementById('count').textContent=`${list.length} de ${topics.length} temas`;
+ updateProgress();
 }
+
+let savedTimer;
+root.addEventListener('change',e=>{
+ if(!e.target.classList.contains('donebox'))return;
+ const id=Number(e.target.dataset.id);
+ e.target.checked?done.add(id):done.delete(id);
+ e.target.closest('.card').classList.toggle('done',e.target.checked);
+ store.set(KEYS.done,[...done]);
+ updateProgress();
+});
+root.addEventListener('input',e=>{
+ if(!e.target.classList.contains('notes'))return;
+ const id=e.target.dataset.id, v=e.target.value;
+ v.trim()?notes[id]=v:delete notes[id];
+ store.set(KEYS.notes,notes);
+ const msg=e.target.parentElement.querySelector('.saved');
+ msg.textContent='Salvo neste dispositivo';
+ clearTimeout(savedTimer); savedTimer=setTimeout(()=>msg.textContent='',1500);
+});
+root.addEventListener('toggle',e=>{
+ const k=e.target.dataset&&e.target.dataset.panel;
+ if(!k)return;
+ e.target.open?openPanels.add(k):openPanels.delete(k);
+},true);
+function addCard(article){
+ const id=Number(article.dataset.id);
+ const fi=article.querySelector('.fcfront'), bi=article.querySelector('.fcback');
+ const front=fi.value.trim(), back=bi.value.trim();
+ if(!front){fi.focus();return}
+ if(!back){bi.focus();return}
+ cards.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),topic:id,front,back,box:0,due:0});
+ store.set(KEYS.cards,cards);
+ openPanels.add('cards-'+id);
+ render();
+ const again=root.querySelector(`.card[data-id="${id}"] .fcfront`);
+ if(again)again.focus();
+}
+root.addEventListener('click',e=>{
+ const article=e.target.closest('.card');
+ if(e.target.classList.contains('addbtn'))addCard(article);
+ else if(e.target.dataset.del){
+  cards=cards.filter(c=>c.id!==e.target.dataset.del);
+  store.set(KEYS.cards,cards); render();
+ }
+ else if(e.target.classList.contains('reviewtopic'))startReview(Number(e.target.dataset.id));
+});
+root.addEventListener('keydown',e=>{
+ if(e.key==='Enter'&&(e.target.classList.contains('fcfront')||e.target.classList.contains('fcback')))addCard(e.target.closest('.card'));
+});
+
+/* ---------- Revisão de flashcards ---------- */
+const dlg=document.getElementById('review'), rvBody=document.getElementById('rvBody');
+let session=null;
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function startReview(topic){
+ const pool=cards.filter(c=>!topic||c.topic===topic);
+ if(!pool.length)return;
+ const due=pool.filter(c=>c.due<=Date.now());
+ const useAll=!due.length;
+ const queue=shuffle((useAll?pool:due).map(c=>c.id));
+ session={queue,total:queue.length,firstTry:new Set(),wrong:new Set(),revealed:false,note:useAll?'Nenhum cartão vence hoje, então você está revisando todos.':''};
+ renderReview();
+ if(!dlg.open)dlg.showModal();
+}
+function renderReview(){
+ const closeBtn='<button class="btn ghost" type="button" data-rv="close">Fechar</button>';
+ if(!session.queue.length){
+  const ok=session.total-session.wrong.size;
+  rvBody.innerHTML=`<div class="rvsum"><h2>Sessão concluída 🎉</h2><p>Você acertou ${ok} de ${session.total} de primeira.</p></div><div class="rvbtns">${closeBtn}</div>`;
+  updateProgress(); render(); rvBody.querySelector('button').focus(); return;
+ }
+ const c=cards.find(x=>x.id===session.queue[0]);
+ const t=topicById(c.topic);
+ rvBody.innerHTML=`<div class="rvhead"><span>${session.queue.length} na fila · ${session.total} no total</span><button class="btn ghost" type="button" data-rv="close">Fechar</button></div>
+ ${session.note?`<p class="note">${esc(session.note)}</p>`:''}
+ <p class="rvtopic">${t?esc(t.icon+' '+t.title):''}</p>
+ <div class="fcard" aria-live="polite">${esc(c.front)}</div>
+ ${session.revealed?`<div class="fcard back">${esc(c.back)}</div>
+ <div class="rvbtns"><button class="btn bad" type="button" data-rv="wrong">Errei</button><button class="btn ok" type="button" data-rv="right">Acertei</button></div>`
+ :`<div class="rvbtns"><button class="btn" type="button" data-rv="show">Mostrar resposta</button></div>`}`;
+ rvBody.querySelector('[data-rv="show"],[data-rv="right"]').focus();
+}
+function answer(right){
+ const id=session.queue.shift();
+ const c=cards.find(x=>x.id===id);
+ if(c){
+  if(right){c.box=Math.min((c.box||0)+1,INTERVALS.length-1);c.due=Date.now()+INTERVALS[c.box]*DAY}
+  else{c.box=0;c.due=0;session.wrong.add(id);session.queue.push(id)}
+  store.set(KEYS.cards,cards);
+ }
+ session.revealed=false;
+ renderReview();
+}
+rvBody.addEventListener('click',e=>{
+ const a=e.target.dataset.rv;
+ if(!a)return;
+ if(a==='close'){dlg.close();return}
+ if(a==='show'){session.revealed=true;renderReview()}
+ else answer(a==='right');
+});
+dlg.addEventListener('close',()=>{session=null;updateProgress();render()});
+document.getElementById('reviewBtn').addEventListener('click',()=>startReview());
+
 document.getElementById('search').addEventListener('input',render);
 document.getElementById('filter').addEventListener('change',render);
 render();

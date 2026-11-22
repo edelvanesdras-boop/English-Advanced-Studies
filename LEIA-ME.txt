@@ -17,3 +17,14 @@ Depois de publicar:
 4. Confirme.
 
 O progresso marcado como "Estudado" fica salvo no armazenamento local do navegador/aplicativo.
+
+NOVIDADES (v2):
+- Barra de progresso no topo com o total de temas estudados.
+- Anotações por tema (salvas automaticamente).
+- Flashcards por tema: adicione palavra/expressão + significado, e use
+  "Revisar flashcards" para estudar com repetição espaçada
+  (acertou = volta em 1, 2, 4, 8, 16 dias; errou = volta na mesma sessão).
+- A busca também procura dentro das suas anotações e flashcards.
+
+Tudo fica salvo no armazenamento local do navegador, neste dispositivo.
+Limpar os dados do site apaga o progresso, as anotações e os flashcards.

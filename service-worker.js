@@ -1,4 +1,4 @@
-const CACHE = 'english-advanced-studies-v1';
+const CACHE = 'english-advanced-studies-v2';
 const FILES = ['./', './index.html', './manifest.webmanifest', './icon.svg'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(FILES)));

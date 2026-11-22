@@ -149,6 +149,53 @@ dialog#review::backdrop{background:#172033b0}
 @media(prefers-reduced-motion:reduce){.bar span{transition:none}}
 @media(max-width:760px){.grid{grid-template-columns:1fr}.summary{width:100%;margin-left:0}}
 @media print{:root[data-theme="dark"]{--bg:#fff;--card:#fff;--ink:#172033;--muted:#667085;--line:#e5e9f0;--accent:#3659a8;--accent2:#eaf0ff;--field:#fff;--link:#2454a6;--done-bg:#fbfffd;--done-line:#a7d9c5}body{background:#fff}.toolbar,.check,.progress,.addfc,.addpl,.fcactions,.del,.back,.streak,.sugg,.pact,.chip{display:none}.grid{grid-template-columns:1fr 1fr}.card{break-inside:avoid;box-shadow:none}}
+
+/* ---------- Practice Exercises ---------- */
+.practice-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.practice-tab{font:inherit;font-weight:700;border:1px solid var(--line);background:var(--field);color:var(--muted);border-radius:999px;padding:8px 14px;cursor:pointer}
+.practice-tab[aria-selected="true"]{background:var(--accent2);border-color:var(--accent);color:var(--accent)}
+.practice-panel[hidden]{display:none}
+.lesson-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.lesson-card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:17px;box-shadow:0 3px 12px #17203308}
+.lesson-card h3{margin:0 0 8px;font-size:1rem}
+.lesson-card p{margin:7px 0;color:var(--muted);font-size:.92rem}
+.lesson-card ul{margin:8px 0;padding-left:20px}
+.lesson-card li{margin:5px 0}
+.example{border-left:3px solid var(--accent);background:var(--accent2);padding:9px 11px;border-radius:0 9px 9px 0;margin-top:10px}
+.example strong{display:block;color:var(--accent);font-size:.8rem;margin-bottom:2px}
+.practice-setup{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.practice-setup label{display:flex;flex-direction:column;gap:6px;font-size:.85rem;font-weight:700;color:var(--muted)}
+.practice-setup select{width:100%}
+.practice-actions{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.practice-statgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}
+.practice-stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+.practice-stat strong{display:block;font-size:1.25rem}
+.practice-stat span{font-size:.78rem;color:var(--muted)}
+.practice-session{max-width:850px;margin:18px auto 0}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 3px 12px #17203308}
+.qmeta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:.82rem;margin-bottom:12px}
+.qtopic{color:var(--accent);font-weight:750}
+.qtext{font-size:1.12rem;line-height:1.5;margin:8px 0 18px;font-weight:650}
+.qoptions{display:grid;gap:9px}
+.qoption{width:100%;text-align:left;font:inherit;border:1px solid var(--line);background:var(--field);color:var(--ink);border-radius:11px;padding:11px 13px;cursor:pointer}
+.qoption:hover{border-color:var(--accent);background:var(--accent2)}
+.qoption:disabled{cursor:default;opacity:1}
+.qoption.correct{border-color:var(--ok);background:var(--done-bg);color:var(--ok);font-weight:700}
+.qoption.wrong{border-color:var(--danger);background:var(--danger-bg);color:var(--danger);font-weight:700}
+.feedback{margin-top:15px;border-radius:12px;padding:13px 14px;border:1px solid var(--line)}
+.feedback.ok{border-color:var(--done-line);background:var(--done-bg)}
+.feedback.bad{border-color:var(--danger);background:var(--danger-bg)}
+.feedback strong{display:block;margin-bottom:4px}
+.sessionbar{height:9px;border-radius:999px;background:var(--accent2);overflow:hidden;margin:10px 0 16px}
+.sessionbar span{display:block;height:100%;background:var(--green);width:0;transition:width .25s ease}
+.practice-history{margin-top:18px}
+.practice-history summary{cursor:pointer;font-weight:700}
+.error-item{border-top:1px solid var(--line);padding:10px 0}
+.error-item strong{display:block}
+.error-item small{color:var(--muted)}
+.practice-empty{border:2px dashed var(--line);border-radius:15px;padding:28px 20px;text-align:center;color:var(--muted);background:var(--card)}
+@media(max-width:760px){.lesson-grid,.practice-setup{grid-template-columns:1fr}.practice-statgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
 </style>
 </head>
 <body>
@@ -229,11 +276,156 @@ dialog#review::backdrop{background:#172033b0}
 </section>
 
 <section id="view-practice" class="view" hidden>
-<a class="back" href="#home">← Menu principal</a>
+<a class="back" href="#home">← Main menu</a>
 <h2 class="vtitle">✏️ Practice Exercises</h2>
-<p class="vsub">Exercícios para praticar o inglês.</p>
-<div id="exList"></div>
+<p class="vsub">Review the grammar you have studied, then practise one question at a time. Your results are saved on this device.</p>
+
+<div class="practice-tabs" role="tablist" aria-label="Practice sections">
+<button class="practice-tab" id="practiceTabLessons" type="button" role="tab" aria-selected="true" aria-controls="practiceLessons">Explanations &amp; Examples</button>
+<button class="practice-tab" id="practiceTabExercises" type="button" role="tab" aria-selected="false" aria-controls="practiceExercises">Exercises</button>
+</div>
+
+<section id="practiceLessons" class="practice-panel" role="tabpanel" aria-labelledby="practiceTabLessons">
+<div class="lesson-grid">
+<article class="lesson-card">
+<h3>1. To vs. -ing</h3>
+<p>Some verbs change meaning depending on whether they are followed by the infinitive or the -ing form.</p>
+<ul>
+<li><strong>remember + -ing:</strong> remember a past action.</li>
+<li><strong>remember + to + verb:</strong> remember something you need to do.</li>
+<li><strong>stop + -ing:</strong> finish an activity.</li>
+<li><strong>stop + to + verb:</strong> pause one activity in order to do another.</li>
+<li><strong>try + to + verb:</strong> make an attempt.</li>
+<li><strong>try + -ing:</strong> experiment with a possible solution.</li>
+</ul>
+<div class="example"><strong>Examples</strong>He stopped checking his emails. / He stopped to check his emails.</div>
+<div class="example"><strong>Examples</strong>I tried to restart my computer. / I tried restarting my computer.</div>
+</article>
+
+<article class="lesson-card">
+<h3>2. Active &amp; Passive Voice</h3>
+<p>In the active voice, the subject performs the action. In the passive voice, the subject receives the action.</p>
+<ul>
+<li><strong>Active:</strong> The HR team reviewed the structure.</li>
+<li><strong>Passive:</strong> The structure was reviewed by the HR team.</li>
+<li>Present simple passive: <strong>am/is/are + past participle</strong>.</li>
+<li>Past simple passive: <strong>was/were + past participle</strong>.</li>
+<li>Present perfect passive: <strong>has/have been + past participle</strong>.</li>
+<li>Future passive: <strong>will be + past participle</strong>.</li>
+</ul>
+<div class="example"><strong>Example</strong>The policy has been updated.</div>
+</article>
+
+<article class="lesson-card">
+<h3>3. Conditionals</h3>
+<p>Choose the conditional according to whether you are talking about a general truth, a real possibility, an unreal present/future situation, or an unreal past situation.</p>
+<ul>
+<li><strong>Zero:</strong> if + present, present.</li>
+<li><strong>First:</strong> if + present, will + verb.</li>
+<li><strong>Second:</strong> if + past, would + verb.</li>
+<li><strong>Third:</strong> if + past perfect, would have + past participle.</li>
+<li><strong>Mixed:</strong> a past condition can have a present result, or a present condition can explain a past result.</li>
+</ul>
+<div class="example"><strong>Example</strong>If I had accepted that job, I would live in London now.</div>
+</article>
+
+<article class="lesson-card">
+<h3>4. Relative Pronouns</h3>
+<p>Relative pronouns connect a noun to additional information about it.</p>
+<ul>
+<li><strong>who:</strong> people.</li>
+<li><strong>which:</strong> things.</li>
+<li><strong>whose:</strong> possession.</li>
+<li><strong>whom:</strong> a person as an object, especially after a preposition in formal English.</li>
+<li><strong>that:</strong> commonly used in defining clauses for people or things, but not after a comma in non-defining clauses.</li>
+<li><strong>where:</strong> places.</li>
+</ul>
+<div class="example"><strong>Examples</strong>The analyst who prepared the report is on leave. / The policy, which was introduced last year, has been updated.</div>
+</article>
+
+<article class="lesson-card">
+<h3>5. In vs. On vs. At</h3>
+<p>Use the preposition according to the type of time or place you are describing.</p>
+<ul>
+<li><strong>in:</strong> countries, cities, years, months, parts of the day.</li>
+<li><strong>on:</strong> days, dates, and surfaces.</li>
+<li><strong>at:</strong> specific clock times and specific points/locations.</li>
+</ul>
+<div class="example"><strong>Examples</strong>in Brazil · in London · in 2012 · in the evening · on Monday · on the table · at 9 a.m. · at the entrance</div>
+</article>
+
+<article class="lesson-card">
+<h3>6. To vs. For</h3>
+<p>Both can express relationships of purpose, direction or benefit, but they are not interchangeable.</p>
+<ul>
+<li><strong>to:</strong> destination or recipient — send it to me; go to London.</li>
+<li><strong>for:</strong> benefit or intended use — a gift for you; a room for meetings.</li>
+<li><strong>for + -ing:</strong> purpose/function — useful for analysing data.</li>
+<li><strong>to + verb:</strong> purpose — to improve the process.</li>
+</ul>
+<div class="example"><strong>Examples</strong>I sent the report to my manager. / This tool is useful for analysing data.</div>
+</article>
+</div>
 </section>
+
+<section id="practiceExercises" class="practice-panel" role="tabpanel" aria-labelledby="practiceTabExercises" hidden>
+<section id="practiceSetup">
+<div class="box">
+<h3 style="margin-top:0">Build your practice session</h3>
+<p class="note">Choose the amount of questions and whether you want to mix the six topics or focus on one.</p>
+<div class="practice-setup">
+<label>Topic
+<select id="practiceTopic">
+<option value="mixed">Mixed — all topics</option>
+<option value="To vs. -ing">To vs. -ing</option>
+<option value="Active &amp; Passive Voice">Active &amp; Passive Voice</option>
+<option value="Conditionals">Conditionals</option>
+<option value="Relative Pronouns">Relative Pronouns</option>
+<option value="In vs. On vs. At">In vs. On vs. At</option>
+<option value="To vs. For">To vs. For</option>
+</select>
+</label>
+<label>Number of questions
+<select id="practiceAmount">
+<option value="5">5</option><option value="10" selected>10</option><option value="15">15</option><option value="20">20</option><option value="30">30</option><option value="40">40</option><option value="60">60</option>
+</select>
+</label>
+<label>Mode
+<select id="practiceMode">
+<option value="normal">Practice</option>
+<option value="review">Review mistakes only</option>
+</select>
+</label>
+</div>
+<div class="practice-actions">
+<button class="btn" id="startPractice" type="button">Start practice</button>
+<button class="btn ghost" id="clearPracticeProgress" type="button">Reset saved progress</button>
+</div>
+</div>
+
+<div class="practice-statgrid" aria-label="Practice progress">
+<div class="practice-stat"><strong id="practiceAnswered">0</strong><span>Questions answered</span></div>
+<div class="practice-stat"><strong id="practiceAccuracy">0%</strong><span>Overall accuracy</span></div>
+<div class="practice-stat"><strong id="practiceTopicsDone">0/6</strong><span>Topics practised</span></div>
+<div class="practice-stat"><strong id="practiceErrors">0</strong><span>Saved mistakes</span></div>
+</div>
+
+<div id="practiceTopicProgress" class="legend" aria-label="Topic performance"></div>
+
+<details class="practice-history">
+<summary>Review my mistakes</summary>
+<div id="practiceErrorList" class="note" style="margin-top:10px"></div>
+</details>
+</section>
+
+<section id="practiceSession" class="practice-session" hidden>
+<div class="qmeta"><span id="practiceCounter"></span><span id="practiceTopicLabel" class="qtopic"></span></div>
+<div class="sessionbar" aria-hidden="true"><span id="practiceSessionFill"></span></div>
+<div id="questionCard"></div>
+</section>
+</section>
+</section>
+
 <section id="view-settings" class="view" hidden>
 <a class="back" href="#home">← Menu principal</a>
 <h2 class="vtitle">⚙️ Settings &amp; Backup</h2>
@@ -664,15 +856,163 @@ plView.addEventListener('click',e=>{
  }
 });
 
+
 /* ---------- Practice Exercises ---------- */
-// Futuros exercícios entram aqui. Formato sugerido: {id, title, type, ...}
-const exercises=[];
-function renderPractice(){
- const box=document.getElementById('exList');
- box.innerHTML=exercises.length
-  ?exercises.map(x=>`<article class="card"><h2>${esc(x.title)}</h2></article>`).join('')
-  :'<div class="soon"><strong>🚧 Em preparação</strong>Os exercícios vão aparecer aqui. Esta aba já está pronta para recebê-los.</div>';
+const practiceQuestions = [{"topic":"To vs. -ing","q":"I remember ___ him about the deadline yesterday.","options":["to remind","reminding","remind","to reminding"],"answer":1,"explanation":"After remember + -ing, we refer to a memory of a past action. 'Remember to + verb' means not forget a future/intended action."},{"topic":"To vs. -ing","q":"Please remember ___ the final version before Friday.","options":["sending","to send","send","to sending"],"answer":1,"explanation":"Remember + to-infinitive refers to an action that still needs to be done."},{"topic":"To vs. -ing","q":"He stopped ___ his emails because he was too busy.","options":["checking","to check","check","to checking"],"answer":0,"explanation":"Stop + -ing means cease the activity."},{"topic":"To vs. -ing","q":"He stopped ___ his emails because he wanted to reply to an urgent message.","options":["checking","to check","check","to checking"],"answer":1,"explanation":"Stop + to-infinitive means pause one activity in order to do another."},{"topic":"To vs. -ing","q":"I tried ___ my computer, but it didn't work.","options":["restarting","to restart","restart","to restarting"],"answer":1,"explanation":"Try + to-infinitive means make an attempt to do something."},{"topic":"To vs. -ing","q":"The computer was slow, so I tried ___ it.","options":["to restart","restarting","restart","to restarting"],"answer":1,"explanation":"Try + -ing suggests experimenting with a possible solution."},{"topic":"To vs. -ing","q":"She regrets ___ her previous job because she really enjoyed working there.","options":["to leave","leaving","leave","to leaving"],"answer":1,"explanation":"Regret + -ing refers to feeling sorry about something already done."},{"topic":"To vs. -ing","q":"We regret ___ you that the meeting has been cancelled.","options":["informing","to inform","inform","to informing"],"answer":1,"explanation":"Regret + to-infinitive is used in formal notices when announcing unpleasant information."},{"topic":"To vs. -ing","q":"I remember ___ this issue with my manager last year.","options":["to discuss","discussing","discuss","to discussing"],"answer":1,"explanation":"Remember + -ing refers to remembering a past experience."},{"topic":"To vs. -ing","q":"She went on ___ about the problem for another twenty minutes.","options":["to talk","talking","talk","to talking"],"answer":1,"explanation":"Go on + -ing means continue the same activity."},{"topic":"Active & Passive Voice","q":"The HR team ___ the salary structure last year.","options":["reviewed","was reviewed","is reviewed","has reviewed"],"answer":0,"explanation":"The subject performs the action, so the sentence is active."},{"topic":"Active & Passive Voice","q":"The salary structure ___ by the HR team last year.","options":["reviewed","was reviewed","has reviewed","is reviewing"],"answer":1,"explanation":"The subject receives the action, so use the passive: was + past participle."},{"topic":"Active & Passive Voice","q":"The report ___ tomorrow.","options":["will publish","will be published","is publishing","published"],"answer":1,"explanation":"For a future passive, use will be + past participle."},{"topic":"Active & Passive Voice","q":"They have updated the policy.","options":["The policy has updated.","The policy has been updated.","The policy was updating.","The policy is updated by them."],"answer":1,"explanation":"Present perfect passive = has/have been + past participle."},{"topic":"Active & Passive Voice","q":"People speak English in many countries.","options":["English is spoken in many countries.","English speaks in many countries.","English was spoken in many countries.","English has spoken in many countries."],"answer":0,"explanation":"Present simple passive = am/is/are + past participle."},{"topic":"Active & Passive Voice","q":"Someone is checking the figures right now.","options":["The figures are checked right now.","The figures are being checked right now.","The figures were checked right now.","The figures have been checking right now."],"answer":1,"explanation":"Present continuous passive = am/is/are being + past participle."},{"topic":"Active & Passive Voice","q":"The company had completed the project before the audit.","options":["The project had completed before the audit.","The project had been completed before the audit.","The project was completing before the audit.","The project has been completed before the audit."],"answer":1,"explanation":"Past perfect passive = had been + past participle."},{"topic":"Active & Passive Voice","q":"Which sentence is active?","options":["The contract was signed yesterday.","The results are being reviewed.","The manager approved the proposal.","The proposal has been approved."],"answer":2,"explanation":"In the active sentence, the subject 'the manager' performs the action 'approved'."},{"topic":"Active & Passive Voice","q":"The committee will assess all applications.","options":["All applications will assess by the committee.","All applications will be assessed by the committee.","All applications are assessing by the committee.","All applications were assessed by the committee."],"answer":1,"explanation":"Future passive = will be + past participle."},{"topic":"Active & Passive Voice","q":"Which sentence is passive?","options":["The analyst prepared the report.","The client requested changes.","The report was prepared by the analyst.","The team discussed the findings."],"answer":2,"explanation":"'The report' receives the action, shown by was + past participle."},{"topic":"Conditionals","q":"If you heat ice, it ___.","options":["melts","will melt","would melt","melted"],"answer":0,"explanation":"Zero conditional describes general truths: if + present simple, present simple."},{"topic":"Conditionals","q":"If I finish early, I ___ you tonight.","options":["call","would call","will call","called"],"answer":2,"explanation":"First conditional uses if + present simple and will + base verb for a real future possibility."},{"topic":"Conditionals","q":"If I had more time, I ___ another language.","options":["will learn","would learn","learned","would have learned"],"answer":1,"explanation":"Second conditional describes an unreal or unlikely present/future situation: if + past, would + base verb."},{"topic":"Conditionals","q":"If she had studied harder, she ___ the exam.","options":["would pass","will pass","would have passed","passed"],"answer":2,"explanation":"Third conditional refers to an unreal past result: if + past perfect, would have + past participle."},{"topic":"Conditionals","q":"If I had accepted that job, I ___ in London now.","options":["would live","would have lived","will live","lived"],"answer":0,"explanation":"Mixed conditional: an unreal past condition has a present result."},{"topic":"Conditionals","q":"If I weren't so busy, I ___ the meeting yesterday.","options":["would attend","would have attended","will attend","attended"],"answer":1,"explanation":"Mixed conditional: an unreal present condition explains an unreal past result."},{"topic":"Conditionals","q":"If companies invest in training, employees usually ___ more confident.","options":["become","will become","would become","became"],"answer":0,"explanation":"This is a general relationship, so the zero conditional is appropriate."},{"topic":"Conditionals","q":"If the client agrees, we ___ the project next month.","options":["would start","started","will start","would have started"],"answer":2,"explanation":"A possible future condition takes first conditional form."},{"topic":"Conditionals","q":"If I were you, I ___ the offer carefully.","options":["will consider","would consider","considered","would have considered"],"answer":1,"explanation":"'If I were you' is a common second-conditional form for advice."},{"topic":"Conditionals","q":"If they had invested earlier, they ___ the technology now.","options":["would own","would have owned","will own","owned"],"answer":0,"explanation":"The past condition ('had invested') leads to a present result ('would own')."},{"topic":"Relative Pronouns","q":"The analyst ___ prepared the report is on leave today.","options":["which","who","where","whose"],"answer":1,"explanation":"Use who for people when it is the subject of a defining relative clause."},{"topic":"Relative Pronouns","q":"The report ___ you sent was very clear.","options":["who","where","which","whose"],"answer":2,"explanation":"Use which for things in a defining relative clause."},{"topic":"Relative Pronouns","q":"The manager ___ team won the award thanked everyone.","options":["who","which","whose","whom"],"answer":2,"explanation":"Whose shows possession and can refer to people or things."},{"topic":"Relative Pronouns","q":"The colleague to ___ I spoke yesterday is from Finance.","options":["who","whom","which","that"],"answer":1,"explanation":"After a preposition in formal English, whom is used for a person as the object."},{"topic":"Relative Pronouns","q":"The company ___ I work for is expanding.","options":["who","where","which","whose"],"answer":2,"explanation":"Which can refer to a company; 'that' would also be possible in this defining clause."},{"topic":"Relative Pronouns","q":"The office ___ we had the meeting was very small.","options":["who","where","whose","whom"],"answer":1,"explanation":"Where refers to a place and means 'in/at which'."},{"topic":"Relative Pronouns","q":"Which sentence is correct?","options":["The person which called me was helpful.","The person who called me was helpful.","The person where called me was helpful.","The person whose called me was helpful."],"answer":1,"explanation":"Who is used for people as the subject of the relative clause."},{"topic":"Relative Pronouns","q":"The policy, ___ was introduced last year, has been updated.","options":["that","who","which","whom"],"answer":2,"explanation":"In a non-defining relative clause set off by commas, use which for things, not that."},{"topic":"Relative Pronouns","q":"The consultant ___ we hired has extensive experience.","options":["whom","where","which","whose"],"answer":0,"explanation":"Whom is grammatically possible as the object of 'hired'; in everyday English, who or that is also common."},{"topic":"Relative Pronouns","q":"The employees ___ contracts expire this month will be contacted.","options":["who","whose","which","whom"],"answer":1,"explanation":"Whose indicates possession: the contracts belong to the employees."},{"topic":"In vs. On vs. At","q":"I was born ___ Brazil.","options":["at","on","in","to"],"answer":2,"explanation":"Use in with countries, cities, and other larger areas."},{"topic":"In vs. On vs. At","q":"The meeting is ___ Monday morning.","options":["in","on","at","by"],"answer":1,"explanation":"Use on with days and dates, including specific days such as Monday morning."},{"topic":"In vs. On vs. At","q":"The meeting starts ___ 9 a.m.","options":["in","on","at","by"],"answer":2,"explanation":"Use at with a specific clock time."},{"topic":"In vs. On vs. At","q":"She works ___ London.","options":["at","on","in","by"],"answer":2,"explanation":"Use in with cities."},{"topic":"In vs. On vs. At","q":"The report is ___ the table.","options":["in","on","at","to"],"answer":1,"explanation":"Use on when something is physically positioned on a surface."},{"topic":"In vs. On vs. At","q":"We met ___ the entrance.","options":["in","on","at","to"],"answer":2,"explanation":"At is commonly used for a specific point or location."},{"topic":"In vs. On vs. At","q":"I usually study ___ the evening.","options":["at","on","in","by"],"answer":2,"explanation":"Use in with parts of the day: in the morning, in the afternoon, in the evening."},{"topic":"In vs. On vs. At","q":"The company was founded ___ 2012.","options":["at","on","in","from"],"answer":2,"explanation":"Use in with years."},{"topic":"In vs. On vs. At","q":"I'll see you ___ Friday.","options":["in","on","at","to"],"answer":1,"explanation":"Use on with days of the week."},{"topic":"In vs. On vs. At","q":"He arrived ___ the airport at 6:30.","options":["in","on","at","to"],"answer":2,"explanation":"Use at for a specific point such as an airport when focusing on the location."},{"topic":"To vs. For","q":"I sent the report ___ my manager.","options":["for","to","at","on"],"answer":1,"explanation":"Use to for the recipient or destination of something sent or given."},{"topic":"To vs. For","q":"This tool is useful ___ analysing large datasets.","options":["to","for","at","on"],"answer":1,"explanation":"Use for + -ing to express purpose or function."},{"topic":"To vs. For","q":"I went ___ London last weekend.","options":["for","to","at","in"],"answer":1,"explanation":"Use to with movement toward a destination."},{"topic":"To vs. For","q":"This gift is ___ you.","options":["to","for","at","with"],"answer":1,"explanation":"Use for to indicate the intended recipient or beneficiary of a gift."},{"topic":"To vs. For","q":"She explained the problem ___ me.","options":["for","to","at","on"],"answer":1,"explanation":"Explain takes to for the person who receives the explanation."},{"topic":"To vs. For","q":"I bought a notebook ___ taking notes.","options":["to","for","at","on"],"answer":1,"explanation":"For + -ing can express purpose or intended use."},{"topic":"To vs. For","q":"We need ___ improve the process.","options":["for","to","at","on"],"answer":1,"explanation":"Use to + base verb to express purpose after need in this structure."},{"topic":"To vs. For","q":"This room is ___ meetings.","options":["to","for","at","on"],"answer":1,"explanation":"For can indicate intended use: a room for meetings."},{"topic":"To vs. For","q":"She gave the documents ___ the client.","options":["for","to","at","on"],"answer":1,"explanation":"Use to for the recipient of something given."},{"topic":"To vs. For","q":"I did it ___ my team.","options":["to","for","at","on"],"answer":1,"explanation":"Use for when someone benefits from an action or when you act on their behalf."}];
+const exercises=practiceQuestions;
+const PRACTICE_KEY='englishStudiesPractice';
+const practiceTopicNames=[...new Set(practiceQuestions.map(q=>q.topic))];
+const emptyPracticeStats=()=>({answered:0,correct:0,byTopic:{},errors:[]});
+function cleanPracticeStats(o){
+ o=o&&typeof o==='object'?o:{};
+ const stats=emptyPracticeStats();
+ stats.answered=Math.max(0,Math.floor(Number(o.answered))||0);
+ stats.correct=Math.max(0,Math.min(stats.answered,Math.floor(Number(o.correct))||0));
+ if(o.byTopic&&typeof o.byTopic==='object') for(const t of practiceTopicNames){
+  const x=o.byTopic[t];
+  if(x&&typeof x==='object') stats.byTopic[t]={answered:Math.max(0,Math.floor(Number(x.answered))||0),correct:Math.max(0,Math.min(Math.floor(Number(x.answered))||0,Math.floor(Number(x.correct))||0))};
+ }
+ if(Array.isArray(o.errors)) stats.errors=o.errors.filter(e=>e&&practiceQuestions.some(q=>q.id===e.id)).slice(-50).map(e=>({
+  id:String(e.id),topic:String(e.topic||''),q:String(e.q||'').slice(0,500),chosen:String(e.chosen||'').slice(0,300),correct:String(e.correct||'').slice(0,300),explanation:String(e.explanation||'').slice(0,700),at:Number(e.at)||Date.now()
+ }));
+ return stats;
 }
+let practiceStats=cleanPracticeStats(store.get(PRACTICE_KEY,null));
+let practiceSession=[];
+let practiceIndex=0;
+let practiceAnsweredCurrent=false;
+
+function shuffle(arr){
+ const a=[...arr];
+ for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}
+ return a;
+}
+function renderPracticeProgress(){
+ const answered=practiceStats.answered, accuracy=answered?Math.round(practiceStats.correct/answered*100):0;
+ const topicsDone=practiceTopicNames.filter(t=>practiceStats.byTopic[t]?.answered>0).length;
+ document.getElementById('practiceAnswered').textContent=answered;
+ document.getElementById('practiceAccuracy').textContent=accuracy+'%';
+ document.getElementById('practiceTopicsDone').textContent=topicsDone+'/'+practiceTopicNames.length;
+ document.getElementById('practiceErrors').textContent=practiceStats.errors.length;
+ const tp=document.getElementById('practiceTopicProgress');
+ tp.innerHTML=practiceTopicNames.map(t=>{
+  const s=practiceStats.byTopic[t]||{answered:0,correct:0};
+  const pct=s.answered?Math.round(s.correct/s.answered*100):0;
+  return `<span class="pill">${esc(t)} · ${s.answered?`${pct}% (${s.answered})`:'not practised'}</span>`;
+ }).join('');
+ const list=document.getElementById('practiceErrorList');
+ if(!practiceStats.errors.length){list.innerHTML='No mistakes saved yet.';return}
+ list.innerHTML=practiceStats.errors.slice().reverse().map((e,i)=>`
+ <div class="error-item">
+   <strong>${esc(e.topic)}</strong>
+   <div>${esc(e.q)}</div>
+   <small>Your answer: ${esc(e.chosen)} · Correct answer: ${esc(e.correct)}</small>
+   <div class="note">${esc(e.explanation)}</div>
+ </div>`).join('');
+}
+function renderPracticeSetup(){
+ renderPracticeProgress();
+ const review=document.getElementById('practiceMode');
+ review.disabled=practiceStats.errors.length===0;
+ if(review.disabled)review.value='normal';
+}
+function showPracticeTab(which){
+ const lessons=which==='lessons';
+ document.getElementById('practiceLessons').hidden=!lessons;
+ document.getElementById('practiceExercises').hidden=lessons;
+ document.getElementById('practiceTabLessons').setAttribute('aria-selected',String(lessons));
+ document.getElementById('practiceTabExercises').setAttribute('aria-selected',String(!lessons));
+}
+function startPractice(){
+ const topic=document.getElementById('practiceTopic').value;
+ const amount=Math.max(1,Number(document.getElementById('practiceAmount').value)||10);
+ const mode=document.getElementById('practiceMode').value;
+ let pool=practiceQuestions.filter(q=>topic==='mixed'||q.topic===topic);
+ if(mode==='review'){
+  const ids=new Set(practiceStats.errors.map(e=>e.id));
+  pool=pool.filter(q=>ids.has(q.id));
+ }
+ if(!pool.length){
+  alert('There are no questions available for this selection yet.');
+  return;
+ }
+ practiceSession=shuffle(pool).slice(0,Math.min(amount,pool.length));
+ practiceIndex=0;
+ practiceAnsweredCurrent=false;
+ document.getElementById('practiceSetup').hidden=true;
+ document.getElementById('practiceSession').hidden=false;
+ renderQuestion();
+}
+function renderQuestion(){
+ const q=practiceSession[practiceIndex];
+ if(!q){finishPractice();return}
+ practiceAnsweredCurrent=false;
+ document.getElementById('practiceCounter').textContent=`Question ${practiceIndex+1} of ${practiceSession.length}`;
+ document.getElementById('practiceTopicLabel').textContent=q.topic;
+ document.getElementById('practiceSessionFill').style.width=(practiceIndex/practiceSession.length*100)+'%';
+ const card=document.getElementById('questionCard');
+ card.innerHTML=`
+ <article class="qcard">
+   <div class="qtext">${esc(q.q)}</div>
+   <div class="qoptions">${q.options.map((o,i)=>`<button class="qoption" type="button" data-option="${i}">${esc(o)}</button>`).join('')}</div>
+   <div id="questionFeedback"></div>
+ </article>`;
+}
+function answerPractice(i){
+ if(practiceAnsweredCurrent)return;
+ const q=practiceSession[practiceIndex];
+ if(!q)return;
+ practiceAnsweredCurrent=true;
+ const buttons=[...document.querySelectorAll('.qoption')];
+ buttons.forEach((b,n)=>{b.disabled=true;if(n===q.answer)b.classList.add('correct')});
+ const correct=i===q.answer;
+ if(!correct)buttons[i].classList.add('wrong');
+ practiceStats.answered++;
+ if(correct)practiceStats.correct++;
+ if(!practiceStats.byTopic[q.topic])practiceStats.byTopic[q.topic]={answered:0,correct:0};
+ practiceStats.byTopic[q.topic].answered++;
+ if(correct)practiceStats.byTopic[q.topic].correct++;
+ if(correct)practiceStats.errors=practiceStats.errors.filter(e=>e.id!==q.id);
+ if(!correct){
+  practiceStats.errors=practiceStats.errors.filter(e=>e.id!==q.id);
+  practiceStats.errors.push({id:q.id,topic:q.topic,q:q.q,chosen:q.options[i],correct:q.options[q.answer],explanation:q.explanation,at:Date.now()});
+  practiceStats.errors=practiceStats.errors.slice(-50);
+ }
+ store.set(PRACTICE_KEY,practiceStats);
+ renderPracticeProgress();
+ document.getElementById('practiceSessionFill').style.width=((practiceIndex+1)/practiceSession.length*100)+'%';
+ const feedback=document.getElementById('questionFeedback');
+ feedback.className='feedback '+(correct?'ok':'bad');
+ feedback.innerHTML=`<strong>${correct?'✓ Correct!':'✗ Not quite.'}</strong><div>${esc(q.explanation)}</div><div class="practice-actions"><button class="btn ${correct?'ok':''}" type="button" id="nextPractice">${practiceIndex+1<practiceSession.length?'Next question':'Finish session'}</button></div>`;
+}
+function finishPractice(){
+ document.getElementById('practiceSession').hidden=true;
+ document.getElementById('practiceSetup').hidden=false;
+ renderPracticeSetup();
+ const box=document.getElementById('questionCard');
+ box.innerHTML='';
+ alert(`Practice session completed: ${practiceSession.length} question${practiceSession.length===1?'':'s'}.`);
+ practiceSession=[]; practiceIndex=0;
+}
+function resetPracticeProgress(){
+ if(!confirm('Reset all saved Practice Exercises progress and mistakes on this device?'))return;
+ practiceStats=emptyPracticeStats();
+ store.set(PRACTICE_KEY,practiceStats);
+ renderPracticeSetup();
+}
+document.getElementById('practiceTabLessons').addEventListener('click',()=>showPracticeTab('lessons'));
+document.getElementById('practiceTabExercises').addEventListener('click',()=>showPracticeTab('exercises'));
+document.getElementById('startPractice').addEventListener('click',startPractice);
+document.getElementById('clearPracticeProgress').addEventListener('click',resetPracticeProgress);
+document.getElementById('questionCard').addEventListener('click',e=>{
+ const opt=e.target.closest('.qoption');
+ if(opt){answerPractice(Number(opt.dataset.option));return}
+ const next=e.target.closest('#nextPractice');
+ if(next){practiceIndex++;renderQuestion()}
+});
+renderPracticeSetup();
+
+function renderPractice(){renderPracticeSetup();}
 
 /* ---------- Sequência diária ---------- */
 const DAYRE=/^\d{4}-\d{2}-\d{2}$/;
@@ -741,11 +1081,11 @@ function sanitizeBackup(o){
   if(watch)it.kind=i.kind==='series'?'series':'movie';
   return it;
  });
- return {done:doneArr,notes:notesObj,cards:cardsArr,playlist:{music:cleanList(pl.music,false),watch:cleanList(pl.watch,true)},streak:cleanStreak(d.streak)};
+ return {done:doneArr,notes:notesObj,cards:cardsArr,playlist:{music:cleanList(pl.music,false),watch:cleanList(pl.watch,true)},streak:cleanStreak(d.streak),practice:cleanPracticeStats(d.practice)};
 }
 function applyState(st){
- done=new Set(st.done); notes=st.notes; cards=st.cards; playlist=st.playlist; streak=st.streak;
- store.set(KEYS.done,[...done]); store.set(KEYS.notes,notes); store.set(KEYS.cards,cards); store.set(PL_KEY,playlist); store.set(KEYS.streak,streak);
+ done=new Set(st.done); notes=st.notes; cards=st.cards; playlist=st.playlist; streak=st.streak; practiceStats=st.practice;
+ store.set(KEYS.done,[...done]); store.set(KEYS.notes,notes); store.set(KEYS.cards,cards); store.set(PL_KEY,playlist); store.set(KEYS.streak,streak); store.set(PRACTICE_KEY,practiceStats);
  registerVisit(); route();
 }
 function renderSettings(){
@@ -758,7 +1098,7 @@ function renderSettings(){
  }else el.textContent='Você ainda não fez backup neste aparelho.';
 }
 document.getElementById('exportBtn').addEventListener('click',()=>{
- const payload={app:'english-advanced-studies',version:4,exportedAt:new Date().toISOString(),data:{done:[...done],notes,cards,playlist,streak}};
+ const payload={app:'english-advanced-studies',version:5,exportedAt:new Date().toISOString(),data:{done:[...done],notes,cards,playlist,streak,practice:practiceStats}};
  const url=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}));
  const a=document.createElement('a'); a.href=url; a.download=`english-studies-backup-${dayStr(new Date())}.json`;
  document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),3000);
@@ -773,7 +1113,7 @@ document.getElementById('importFile').addEventListener('change',async e=>{
  try{
   const text=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=()=>rej(r.error);r.readAsText(file)});
   const st=sanitizeBackup(JSON.parse(text));
-  const resumo=`${st.done.length} temas estudados, ${Object.keys(st.notes).length} anotações, ${st.cards.length} flashcards, ${st.playlist.music.length} músicas e ${st.playlist.watch.length} filmes/séries`;
+  const resumo=`${st.done.length} temas estudados, ${Object.keys(st.notes).length} anotações, ${st.cards.length} flashcards, ${st.playlist.music.length} músicas, ${st.playlist.watch.length} filmes/séries e ${st.practice.answered} exercícios respondidos`;
   if(!confirm(`Este backup tem: ${resumo}.\n\nIsso vai SUBSTITUIR os dados atuais deste aparelho. Continuar?`)){msg.textContent='Importação cancelada. Nada foi alterado.';return}
   applyState(st);
   msg.textContent=`Backup importado: ${resumo}.`;

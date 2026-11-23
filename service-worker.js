@@ -1,5 +1,8 @@
-const CACHE = 'english-advanced-studies-v5';
-const FILES = ['./', './index.html', './manifest.webmanifest', './icon.svg'];
+const CACHE = 'english-advanced-studies-v6';
+const FILES = ['./', './index.html', './manifest.webmanifest', './icon.svg',
+  './fonts/unbounded-latin-700-normal.woff2', './fonts/unbounded-latin-800-normal.woff2',
+  './fonts/figtree-latin-500-normal.woff2', './fonts/figtree-latin-600-normal.woff2',
+  './fonts/figtree-latin-700-normal.woff2', './fonts/figtree-latin-800-normal.woff2'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(FILES)));
   self.skipWaiting();

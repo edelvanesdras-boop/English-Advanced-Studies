@@ -1,12 +1,12 @@
 {
   "name": "English Advanced Studies",
-  "short_name": "English C1",
+  "short_name": "English Advanced Studies",
   "description": "Biblioteca de estudos de inglês B2+ a C1",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f5f7fb",
-  "theme_color": "#172b4d",
+  "background_color": "#EDF0FF",
+  "theme_color": "#EDF0FF",
   "icons": [
     {"src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}
   ]

@@ -54,3 +54,22 @@ NOVIDADES (v4):
     ou do Spotify antes de adicionar (ou use o botão ✎ depois) para trocar.
   * Links de vídeo do YouTube mostram a miniatura do próprio vídeo.
   * Músicas têm atalho "Buscar no Spotify".
+
+NOVIDADES (v6):
+- Nome do app: "English Advanced Studies".
+- Nova aparência "Adesivo" (contornos grossos, sombras duras, cores vivas, fontes
+  Unbounded e Figtree). As fontes ficam na pasta fonts/ e funcionam offline.
+  Os modos Claro, Escuro e Automático continuam disponíveis em Settings.
+- Practice Exercises:
+  * 30 questões por tópico (180 no total): 10 Easy, 10 Medium e 10 Hard em cada um.
+  * Escolha a dificuldade (Easy, Medium, Hard ou Mixed) e o tipo de resposta:
+    Multiple choice (alternativa) ou Written (você digita a resposta).
+  * No modo Written, o app aceita variações válidas (ex.: "wouldn't" = "would not").
+    Se sua resposta estiver correta mas não for reconhecida, use
+    "My answer is also correct".
+  * Durante a sessão: "Save & exit" (guarda o ponto onde parou para continuar depois),
+    "Restart" (recomeça com as mesmas configurações) e "Exit" (sai da sessão).
+    A sessão salva aparece em "Saved session" na tela inicial dos exercícios.
+  * A sessão salva também entra no backup (Exportar / Importar backup).
+  * Correção: o modo "Review mistakes only" e a lista de erros agora funcionam
+    (as questões não tinham identificador). Erros salvos antes da v6 foram descartados.

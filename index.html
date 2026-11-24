@@ -9,7 +9,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="relevant-topics/relevant-topics.css">
 <script>(function(){try{var p=JSON.parse(localStorage.getItem('englishStudiesTheme'))||'auto';var d=p==='dark'||(p==='auto'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.dataset.theme=d?'dark':'light'}catch(e){}try{document.documentElement.dataset.style=JSON.parse(localStorage.getItem('englishStudiesStyle'))||'adesivo'}catch(e){document.documentElement.dataset.style='adesivo'}})()</script>
 <style>
 :root{--bg:#EDF0FF;--card:#fff;--ink:#0F1235;--muted:#4B5180;--line:#D3D8F5;--edge:#0F1235;--shadow:#0F1235;--accent:#3140FF;--accent2:#E3E7FF;--green:#5FE3B0;--field:#fff;--btn:#3140FF;--ok:#16835d;--link:#2431D6;--danger:#B42318;--danger-bg:#FFE9E6;--done-bg:#D9F7EA;--done-line:#0F1235;--hdr1:#EDF0FF;--hdr2:#EDF0FF;color-scheme:light}
@@ -114,7 +113,6 @@ dialog#review::backdrop{background:#172033b0}
 .formerr{flex:1 0 100%;margin:0;color:var(--danger);font-size:.82rem;min-height:0}
 .soon{border:2px dashed var(--line);border-radius:15px;padding:34px 20px;text-align:center;color:var(--muted);background:var(--card)}
 .soon strong{display:block;color:var(--ink);font-size:1.1rem;margin-bottom:4px}
-@media(max-width:760px){.topic-meter{margin-left:auto}}
 @media(max-width:760px){.menu,.plgrid,.setgrid{grid-template-columns:1fr}.week{margin-left:0}}
 
 .hdrtop{display:flex;justify-content:space-between;align-items:center;gap:10px}
@@ -149,33 +147,6 @@ dialog#review::backdrop{background:#172033b0}
 .sugg .st strong{display:block;overflow-wrap:anywhere}
 .sugg small{display:block;color:var(--muted)}
 @media(prefers-reduced-motion:reduce){.bar span{transition:none}}
-/* Relevant Topics v8 */
-.topic-intro{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:8px 0 18px}
-.topic-total{font-size:.9rem;color:var(--muted)}
-.topic-card{position:relative;overflow:hidden}
-.topic-card-top{display:flex;gap:12px;align-items:flex-start}
-.topic-card-title{flex:1;min-width:0}.topic-card-title h2{margin:1px 0 5px}
-.topic-meter{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.78rem;white-space:nowrap}
-.topic-meter strong{color:var(--accent)}
-.topic-mini-bar{height:6px;background:var(--accent2);border-radius:99px;overflow:hidden;margin:12px 0 4px}
-.topic-mini-bar span{display:block;height:100%;background:var(--green);transition:width .2s}
-.resource-list{display:grid;gap:9px;margin-top:12px}
-.resource{border:1px solid var(--line);border-radius:11px;padding:10px 11px;background:var(--field)}
-.resource-head{display:flex;gap:10px;align-items:flex-start}
-.resource-main{flex:1;min-width:0}.resource-kind{display:block;font-size:.69rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:2px}
-.resource-title{font-size:.9rem;line-height:1.35;font-weight:650;overflow-wrap:anywhere}
-.resource-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:7px}
-.resource-actions a,.resource-actions button{font:inherit;font-size:.78rem;font-weight:700}
-.resource-check{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--muted);white-space:nowrap}
-.resource-check input{min-width:0;flex:0 0 auto;accent-color:var(--ok);width:17px;height:17px}
-.resource-view{margin-top:10px;aspect-ratio:16/9;background:#090d20;border-radius:9px;overflow:hidden}
-.resource-view iframe{width:100%;height:100%;border:0;display:block}
-.resource-view.reader{aspect-ratio:auto;height:min(65vh,680px);background:var(--card);border:1px solid var(--line)}
-.resource-view.reader iframe{background:white}
-.resource-hint{font-size:.74rem;color:var(--muted);margin:7px 0 0}
-.topic-card.is-complete{border-color:var(--ok)}
-.topic-card.is-complete .num{background:var(--done-bg);color:var(--ok)}
-@media(max-width:760px){.topic-meter{margin-left:auto}}
 @media(max-width:760px){.grid{grid-template-columns:1fr}.summary{width:100%;margin-left:0}}
 @media print{:root[data-theme="dark"]{--bg:#fff;--card:#fff;--ink:#172033;--muted:#667085;--line:#e5e9f0;--accent:#3659a8;--accent2:#eaf0ff;--field:#fff;--link:#2454a6;--done-bg:#fbfffd;--done-line:#a7d9c5}body{background:#fff}.toolbar,.check,.progress,.addfc,.addpl,.fcactions,.del,.back,.streak,.sugg,.pact,.chip{display:none}.grid{grid-template-columns:1fr 1fr}.card{break-inside:avoid;box-shadow:none}}
 
@@ -223,33 +194,6 @@ dialog#review::backdrop{background:#172033b0}
 .error-item strong{display:block}
 .error-item small{color:var(--muted)}
 .practice-empty{border:2px dashed var(--line);border-radius:15px;padding:28px 20px;text-align:center;color:var(--muted);background:var(--card)}
-/* Relevant Topics v8 */
-.topic-intro{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:8px 0 18px}
-.topic-total{font-size:.9rem;color:var(--muted)}
-.topic-card{position:relative;overflow:hidden}
-.topic-card-top{display:flex;gap:12px;align-items:flex-start}
-.topic-card-title{flex:1;min-width:0}.topic-card-title h2{margin:1px 0 5px}
-.topic-meter{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.78rem;white-space:nowrap}
-.topic-meter strong{color:var(--accent)}
-.topic-mini-bar{height:6px;background:var(--accent2);border-radius:99px;overflow:hidden;margin:12px 0 4px}
-.topic-mini-bar span{display:block;height:100%;background:var(--green);transition:width .2s}
-.resource-list{display:grid;gap:9px;margin-top:12px}
-.resource{border:1px solid var(--line);border-radius:11px;padding:10px 11px;background:var(--field)}
-.resource-head{display:flex;gap:10px;align-items:flex-start}
-.resource-main{flex:1;min-width:0}.resource-kind{display:block;font-size:.69rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:2px}
-.resource-title{font-size:.9rem;line-height:1.35;font-weight:650;overflow-wrap:anywhere}
-.resource-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:7px}
-.resource-actions a,.resource-actions button{font:inherit;font-size:.78rem;font-weight:700}
-.resource-check{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--muted);white-space:nowrap}
-.resource-check input{min-width:0;flex:0 0 auto;accent-color:var(--ok);width:17px;height:17px}
-.resource-view{margin-top:10px;aspect-ratio:16/9;background:#090d20;border-radius:9px;overflow:hidden}
-.resource-view iframe{width:100%;height:100%;border:0;display:block}
-.resource-view.reader{aspect-ratio:auto;height:min(65vh,680px);background:var(--card);border:1px solid var(--line)}
-.resource-view.reader iframe{background:white}
-.resource-hint{font-size:.74rem;color:var(--muted);margin:7px 0 0}
-.topic-card.is-complete{border-color:var(--ok)}
-.topic-card.is-complete .num{background:var(--done-bg);color:var(--ok)}
-@media(max-width:760px){.topic-meter{margin-left:auto}}
 @media(max-width:760px){.lesson-grid,.practice-setup{grid-template-columns:1fr}.practice-statgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 
@@ -442,33 +386,6 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 .planlist li{display:flex;gap:12px;justify-content:space-between;align-items:flex-start;border:var(--bw2) solid var(--edge);border-radius:var(--rad-m);padding:10px 12px;background:var(--card)}
 .planlist small{display:block;color:var(--muted);font-weight:500;margin-top:2px}
 
-/* Relevant Topics v8 */
-.topic-intro{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:8px 0 18px}
-.topic-total{font-size:.9rem;color:var(--muted)}
-.topic-card{position:relative;overflow:hidden}
-.topic-card-top{display:flex;gap:12px;align-items:flex-start}
-.topic-card-title{flex:1;min-width:0}.topic-card-title h2{margin:1px 0 5px}
-.topic-meter{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.78rem;white-space:nowrap}
-.topic-meter strong{color:var(--accent)}
-.topic-mini-bar{height:6px;background:var(--accent2);border-radius:99px;overflow:hidden;margin:12px 0 4px}
-.topic-mini-bar span{display:block;height:100%;background:var(--green);transition:width .2s}
-.resource-list{display:grid;gap:9px;margin-top:12px}
-.resource{border:1px solid var(--line);border-radius:11px;padding:10px 11px;background:var(--field)}
-.resource-head{display:flex;gap:10px;align-items:flex-start}
-.resource-main{flex:1;min-width:0}.resource-kind{display:block;font-size:.69rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:2px}
-.resource-title{font-size:.9rem;line-height:1.35;font-weight:650;overflow-wrap:anywhere}
-.resource-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:7px}
-.resource-actions a,.resource-actions button{font:inherit;font-size:.78rem;font-weight:700}
-.resource-check{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--muted);white-space:nowrap}
-.resource-check input{min-width:0;flex:0 0 auto;accent-color:var(--ok);width:17px;height:17px}
-.resource-view{margin-top:10px;aspect-ratio:16/9;background:#090d20;border-radius:9px;overflow:hidden}
-.resource-view iframe{width:100%;height:100%;border:0;display:block}
-.resource-view.reader{aspect-ratio:auto;height:min(65vh,680px);background:var(--card);border:1px solid var(--line)}
-.resource-view.reader iframe{background:white}
-.resource-hint{font-size:.74rem;color:var(--muted);margin:7px 0 0}
-.topic-card.is-complete{border-color:var(--ok)}
-.topic-card.is-complete .num{background:var(--done-bg);color:var(--ok)}
-@media(max-width:760px){.topic-meter{margin-left:auto}}
 @media(max-width:760px){
  .menu,.plgrid,.setgrid,.lvlgrid{grid-template-columns:1fr}
  header{padding:26px 18px 2px}
@@ -639,9 +556,9 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 <section id="view-topics" class="view" hidden>
 <a class="back" href="#home">← Menu principal</a>
 <h2 class="vtitle">📚 Relevant Topics</h2>
-<p class="vsub">Explore os conteúdos de cada tema sem perder seu progresso. Assista, leia e marque cada recurso conforme concluir.</p>
+<p class="vsub">Uma biblioteca de 15 temas para desenvolver compreensão, vocabulário e argumentação em inglês. Cada tema reúne um TED/TED-Ed, uma leitura e uma notícia ou podcast em vídeo.</p>
 <section class="progress" aria-label="Seu progresso">
-<div class="ptop"><strong id="ptext">0 de 15 temas concluídos</strong><button class="btn ghost" id="reviewBtn" type="button">🗂️ Revisar flashcards</button></div>
+<div class="ptop"><strong id="ptext">0 de 15 temas estudados</strong><button class="btn ghost" id="reviewBtn" type="button">🗂️ Revisar flashcards</button></div>
 <div class="bar" id="pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Temas estudados"><span id="pfill"></span></div>
 </section>
 <div class="toolbar">
@@ -649,12 +566,12 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 <select id="filter"><option value="all">Todos os temas</option><option value="work">Trabalho e economia</option><option value="society">Sociedade e política</option><option value="science">Ciência e tecnologia</option></select>
 <div class="summary" id="count">15 temas</div>
 </div>
-<div class="legend"><span class="pill">TED / TED-Ed</span><span class="pill">Texto / artigo</span><span class="pill">Notícia / podcast em vídeo</span><span class="pill">Marque cada conteúdo ao concluir</span></div>
+<div class="legend"><span class="pill">TED / TED-Ed</span><span class="pill">Texto / artigo</span><span class="pill">Notícia / podcast em vídeo</span><span class="pill">Marque os temas estudados</span></div>
 <section class="grid" id="cards">
 <!-- cards injected below -->
 </section>
 <footer>
-<strong>Dica:</strong> cada tema tem três recursos independentes. Os vídeos compatíveis podem ser reproduzidos aqui mesmo; artigos e outros sites podem bloquear a visualização incorporada. Nesses casos, use “Abrir externamente”.
+<strong>Como usar:</strong> assista ao vídeo explicativo, leia o artigo e depois acompanhe a notícia ou podcast. Anote expressões e argumentos — não apenas palavras isoladas. Ao terminar, marque o tema como estudado. Os links de YouTube com pesquisa direcionada ajudam a encontrar episódios adequados quando não há um único vídeo específico indicado.
 </footer>
 </section>
 
@@ -958,9 +875,24 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 </main>
 <dialog id="review" aria-label="Revisão de flashcards"><div class="rv" id="rvBody"></div></dialog>
 <script src="questions.js"></script>
-<script src="relevant-topics/topics-data.js"></script>
 <script>
-const topics = window.RELEVANT_TOPICS;
+const topics = [
+{n:1,icon:"🌍",title:"Climate Change & Global Warming",cat:"science",ted:["TED – Climate change and global warming","https://www.ted.com/search?q=climate%20change%20global%20warming"],read:["Our World in Data – CO₂ and greenhouse gas emissions","https://ourworldindata.org/co2-and-greenhouse-gas-emissions"],news:["BBC – Climate change and global warming","https://www.youtube.com/results?search_query=BBC+The+Climate+Question+climate+change+global+warming"]},
+{n:2,icon:"🤖",title:"AI & Future of Work",cat:"work",ted:["TED – AI and the future of work","https://www.ted.com/search?q=AI%20future%20of%20work"],read:["World Economic Forum – Future of Jobs Report 2025","https://www.weforum.org/reports/the-future-of-jobs-report-2025/"],news:["BBC – AI and the job market","https://www.youtube.com/results?search_query=BBC+AI+future+of+work+jobs+podcast"]},
+{n:3,icon:"💰",title:"Income Inequality & Social Mobility",cat:"society",ted:["TED – Inequality and social mobility","https://www.ted.com/search?q=income%20inequality%20social%20mobility"],read:["Our World in Data – Economic inequality","https://ourworldindata.org/economic-inequality"],news:["DW News – Income inequality and social mobility","https://www.youtube.com/results?search_query=DW+News+income+inequality+social+mobility"]},
+{n:4,icon:"🏠",title:"Future of Remote Work",cat:"work",ted:["TED – Remote work and the future of work","https://www.ted.com/search?q=remote%20work%20future%20of%20work"],read:["OECD – Teleworking","https://www.oecd.org/en/topics/sub-issues/teleworking.html"],news:["BBC News – Remote and hybrid work","https://www.youtube.com/results?search_query=BBC+News+future+of+remote+work+hybrid+work"]},
+{n:5,icon:"🧑‍💼",title:"Leadership & Organisational Culture",cat:"work",ted:["TED – Leadership and organisational culture","https://www.ted.com/search?q=leadership%20organisational%20culture"],read:["Harvard Business Review – Organisational culture","https://hbr.org/topic/organizational-culture"],news:["Financial Times – Leadership and workplace culture","https://www.youtube.com/results?search_query=Financial+Times+leadership+workplace+culture+podcast"]},
+{n:6,icon:"📉",title:"Economic Crises & Employment",cat:"work",ted:["TED – Economic crises and recessions","https://www.ted.com/search?q=economic%20crisis%20recession"],read:["IMF – Finance & Development","https://www.imf.org/en/Publications/fandd"],news:["BBC News – Recession and unemployment","https://www.youtube.com/results?search_query=BBC+News+economic+crisis+recession+unemployment"]},
+{n:7,icon:"🌐",title:"Globalisation & Its Impact on Workers",cat:"work",ted:["TED – Globalisation and global trade","https://www.ted.com/search?q=globalization%20global%20trade"],read:["OECD – Globalisation","https://www.oecd.org/en/topics/globalisation.html"],news:["DW News – Globalisation, trade and workers","https://www.youtube.com/results?search_query=DW+News+globalisation+global+trade+workers"]},
+{n:8,icon:"🧳",title:"Immigration & Cultural Integration",cat:"society",ted:["TED – Immigration and cultural integration","https://www.ted.com/search?q=immigration%20cultural%20integration"],read:["UNHCR – Livelihoods and economic inclusion","https://www.unhcr.org/what-we-do/build-better-futures/livelihoods-and-economic-inclusion"],news:["BBC News – Immigration and integration debate","https://www.youtube.com/results?search_query=BBC+News+immigration+integration+debate"]},
+{n:9,icon:"🔐",title:"Technology & Privacy",cat:"science",ted:["Jen Golbeck – How surveillance tech erodes your privacy","https://www.ted.com/talks/jen_golbeck_how_surveillance_tech_erodes_your_privacy"],read:["Electronic Frontier Foundation – Privacy","https://www.eff.org/issues/privacy"],news:["BBC / technology – Privacy and surveillance","https://www.youtube.com/results?search_query=BBC+technology+privacy+surveillance+podcast"]},
+{n:10,icon:"🎓",title:"Education & Social Inequality",cat:"society",ted:["TED – Education and inequality","https://www.ted.com/search?q=education%20inequality"],read:["OECD – Education","https://www.oecd.org/en/topics/education.html"],news:["BBC News – Education inequality","https://www.youtube.com/results?search_query=BBC+News+education+inequality+schools"]},
+{n:11,icon:"🏛️",title:"Government Regulation & Companies",cat:"society",ted:["TED – Government regulation and business","https://www.ted.com/search?q=government%20regulation%20business"],read:["The Economist – Finance and economics","https://www.economist.com/finance-and-economics/"],news:["Financial Times – Regulation and business","https://www.youtube.com/results?search_query=Financial+Times+government+regulation+business+podcast"]},
+{n:12,icon:"⚖️",title:"Work-Life Balance",cat:"work",ted:["TED – Work-life balance","https://www.ted.com/search?q=work%20life%20balance"],read:["WHO – Mental health at work","https://www.who.int/news-room/fact-sheets/detail/mental-health-at-work"],news:["BBC – Work, wellbeing and burnout","https://www.youtube.com/results?search_query=BBC+worklife+balance+burnout+podcast"]},
+{n:13,icon:"📅",title:"The Four-Day Workweek",cat:"work",ted:["Juliet Schor – The case for a 4-day work week","https://www.ted.com/talks/juliet_schor_the_case_for_a_4_day_work_week"],read:["4 Day Week Global – Research","https://www.4dayweek.com/research"],news:["BBC News – Four-day working week","https://www.youtube.com/results?search_query=BBC+News+four+day+working+week+trial"]},
+{n:14,icon:"🏆",title:"Meritocracy vs. Inequality",cat:"society",ted:["TED – Meritocracy and inequality","https://www.ted.com/search?q=meritocracy%20inequality"],read:["Our World in Data – Social mobility","https://ourworldindata.org/social-mobility"],news:["BBC Ideas – Meritocracy and social mobility","https://www.youtube.com/results?search_query=BBC+Ideas+meritocracy+social+mobility+debate"]},
+{n:15,icon:"⚙️",title:"Automation & Unemployment",cat:"science",ted:["TED – Automation and jobs","https://www.ted.com/search?q=automation%20jobs"],read:["World Economic Forum – Future of Jobs Report 2025","https://www.weforum.org/reports/the-future-of-jobs-report-2025/"],news:["DW News – Automation and employment","https://www.youtube.com/results?search_query=DW+News+automation+robots+unemployment+jobs"]}
+];
 const labels=[["TED / TED-Ed","ted"],["TEXT / ARTICLE","read"],["NEWS / VIDEO PODCAST","news"]];
 const KEYS={done:'englishStudiesDone',notes:'englishStudiesNotes',cards:'englishStudiesCards',streak:'englishStudiesStreak',theme:'englishStudiesTheme',backup:'englishStudiesLastBackup'};
 const DAY=864e5, INTERVALS=[0,1,2,4,8,16];
@@ -970,15 +902,6 @@ const store={
 };
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let done=new Set(store.get(KEYS.done,[]).map(Number));
-const TOPIC_ITEMS_KEY='englishStudiesTopicItems';
-let topicItems=store.get(TOPIC_ITEMS_KEY,{});
-if(!topicItems||typeof topicItems!=='object')topicItems={};
-// Migração: temas que já estavam marcados como estudados passam a ter os três itens concluídos.
-topics.forEach(t=>{if(done.has(t.n)&&!topicItems[t.n])topicItems[t.n]={ted:true,read:true,news:true};});
-topics.forEach(t=>{if(topicItems[t.n]&&['ted','read','news'].every(k=>topicItems[t.n][k]))done.add(t.n);else done.delete(t.n);});
-store.set(TOPIC_ITEMS_KEY,topicItems);store.set(KEYS.done,[...done]);
-function itemCount(id){const x=topicItems[id]||{};return ['ted','read','news'].filter(k=>!!x[k]).length;}
-function topicComplete(id){return itemCount(id)===3;}
 let notes=store.get(KEYS.notes,{});
 let cards=store.get(KEYS.cards,[]);
 const openPanels=new Set();
@@ -988,9 +911,8 @@ const cardsOf=id=>cards.filter(c=>c.topic===Number(id));
 const dueCards=()=>cards.filter(c=>c.due<=Date.now());
 
 function updateProgress(){
- const total=topics.length, n=topics.filter(t=>topicComplete(t.n)).length, pct=Math.round(n/total*100);
- const completedItems=topics.reduce((sum,t)=>sum+itemCount(t.n),0), totalItems=total*3;
- document.getElementById('ptext').textContent=`${n} de ${total} temas concluídos · ${completedItems}/${totalItems} conteúdos (${pct}% dos temas)`;
+ const total=topics.length, n=topics.filter(t=>done.has(t.n)).length, pct=Math.round(n/total*100);
+ document.getElementById('ptext').textContent=`${n} de ${total} temas estudados (${pct}%)`;
  document.getElementById('pfill').style.width=pct+'%';
  document.getElementById('pbar').setAttribute('aria-valuenow',pct);
  const b=document.getElementById('reviewBtn'), due=dueCards().length;
@@ -998,38 +920,28 @@ function updateProgress(){
  b.textContent=cards.length?`🗂️ Revisar flashcards (${due} para hoje · ${cards.length} no total)`:'🗂️ Revisar flashcards (nenhum ainda)';
 }
 
-function resourceHTML(t,key,label,icon){
- const item=t[key], checked=!!(topicItems[t.n]&&topicItems[t.n][key]);
- const link=item[1], videoId=key!=='read'?ytId(link):null;
- let embedUrl=videoId?`https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}`:'';
- if(!embedUrl&&key!=='read'){try{const u=new URL(link);const m=u.pathname.match(/^\/talks\/([a-z0-9_]+)\/?$/i);if((u.hostname==='www.ted.com'||u.hostname==='ted.com')&&m)embedUrl=`https://embed.ted.com/talks/${m[1]}`;}catch(err){}}
- const isYTSearch=/youtube\.com\/results/.test(link);
- const canEmbed=!!embedUrl;
- const openId=`resource-${t.n}-${key}`;
- return `<section class="resource" data-resource="${key}" data-topic="${t.n}">
-  <div class="resource-head"><div class="resource-main"><span class="resource-kind">${icon} ${label}</span><div class="resource-title">${esc(item[0])}</div>
-   <div class="resource-actions">${canEmbed?`<button class="btn ghost resource-toggle" type="button" data-open="${openId}" data-src="${esc(embedUrl)}" data-kind="video">▶ Assistir aqui</button>`:key==='read'?`<button class="btn ghost resource-toggle" type="button" data-open="${openId}" data-src="${esc(link)}" data-kind="reader">📖 Ler aqui</button>`:''}<a href="${esc(link)}" target="_blank" rel="noopener noreferrer">${key==='read'?'Abrir artigo':'Abrir fonte'} ↗</a></div>
-   ${isYTSearch?'<p class="resource-hint">Este link é uma pesquisa do YouTube; abra a fonte para escolher um vídeo.</p>':''}
-  </div><label class="resource-check"><input type="checkbox" class="item-done" data-id="${t.n}" data-key="${key}" ${checked?'checked':''}> Concluído</label></div>
-  <div class="resource-view-slot" id="${openId}"></div>
- </section>`;
-}
 function cardHTML(t){
- const mine=cardsOf(t.n), nOpen=openPanels.has('notes-'+t.n), cOpen=openPanels.has('cards-'+t.n), count=itemCount(t.n), complete=count===3;
- return `<article class="card topic-card ${complete?'is-complete':''}" data-id="${t.n}">
- <div class="topic-card-top"><div class="num">${t.n}</div><div class="topic-card-title"><h2>${t.icon} ${t.title}</h2><div class="topic-meter"><strong>${count}/3</strong><span>${complete?'Concluído':count?'Em andamento':'Não iniciado'}</span></div></div></div>
- <div class="topic-mini-bar"><span style="width:${count/3*100}%"></span></div>
- <div class="resource-list">${resourceHTML(t,'ted','TED / TED-Ed','🎥')}${resourceHTML(t,'read','Reading / Article','📖')}${resourceHTML(t,'news','News / Video','📰')}</div>
+ const mine=cardsOf(t.n), nOpen=openPanels.has('notes-'+t.n), cOpen=openPanels.has('cards-'+t.n);
+ return `<article class="card ${done.has(t.n)?'done':''}" data-id="${t.n}">
+ <div class="cardhead"><div class="num">${t.n}</div><div style="flex:1"><h2>${t.icon} ${t.title}</h2></div>
+ <label class="check"><input type="checkbox" class="donebox" data-id="${t.n}" ${done.has(t.n)?'checked':''}> Estudado</label></div>
+ <div class="links">${labels.map(([label,key])=>`<div class="linkrow"><span class="label">${label}</span><a href="${t[key][1]}" target="_blank" rel="noopener noreferrer">${t[key][0]} ↗</a></div>`).join('')}</div>
  <details class="panel" data-panel="notes-${t.n}" ${nOpen?'open':''}>
   <summary>📝 Anotações${notes[t.n]?' ✓':''}</summary>
-  <textarea class="notes" data-id="${t.n}" placeholder="Expressões, argumentos, ideias principais…" aria-label="Anotações do tema ${t.n}">${esc(notes[t.n]||'')}</textarea><p class="note saved"></p>
+  <textarea class="notes" data-id="${t.n}" placeholder="Expressões, argumentos, ideias principais…" aria-label="Anotações do tema ${t.n}">${esc(notes[t.n]||'')}</textarea>
+  <p class="note saved"></p>
  </details>
  <details class="panel" data-panel="cards-${t.n}" ${cOpen?'open':''}>
   <summary>🗂️ Flashcards (${mine.length})</summary>
   ${mine.map(c=>`<div class="fc"><span><strong>${esc(c.front)}</strong><small>${esc(c.back)}</small></span><button class="del" type="button" data-del="${c.id}" aria-label="Remover flashcard ${esc(c.front)}">✕</button></div>`).join('')}
-  <div class="addfc"><input class="fcfront" placeholder="Palavra ou expressão" aria-label="Frente do flashcard"><input class="fcback" placeholder="Significado ou exemplo" aria-label="Verso do flashcard"><button class="btn addbtn" type="button">Adicionar</button></div>
+  <div class="addfc">
+   <input class="fcfront" placeholder="Palavra ou expressão" aria-label="Frente do flashcard">
+   <input class="fcback" placeholder="Significado ou exemplo" aria-label="Verso do flashcard">
+   <button class="btn addbtn" type="button">Adicionar</button>
+  </div>
   ${mine.length?`<div class="fcactions"><button class="btn ghost reviewtopic" type="button" data-id="${t.n}">Revisar este tema</button></div>`:''}
- </details></article>`;
+ </details>
+ </article>`;
 }
 
 function render(){
@@ -1044,24 +956,12 @@ function render(){
 
 let savedTimer;
 root.addEventListener('change',e=>{
- if(!e.target.classList.contains('item-done'))return;
- const id=Number(e.target.dataset.id), key=e.target.dataset.key;
- if(!topicItems[id])topicItems[id]={};
- topicItems[id][key]=e.target.checked;
- store.set(TOPIC_ITEMS_KEY,topicItems);
- if(topicComplete(id))done.add(id);else done.delete(id);
+ if(!e.target.classList.contains('donebox'))return;
+ const id=Number(e.target.dataset.id);
+ e.target.checked?done.add(id):done.delete(id);
+ e.target.closest('.card').classList.toggle('done',e.target.checked);
  store.set(KEYS.done,[...done]);
- const card=e.target.closest('.topic-card');
- if(card){const n=itemCount(id), complete=n===3;card.classList.toggle('is-complete',complete);card.querySelector('.topic-meter strong').textContent=n+'/3';card.querySelector('.topic-meter span').textContent=complete?'Concluído':n?'Em andamento':'Não iniciado';card.querySelector('.topic-mini-bar span').style.width=(n/3*100)+'%';}
  updateProgress();
-});
-root.addEventListener('click',e=>{
- const btn=e.target.closest('.resource-toggle');if(!btn)return;
- const slot=document.getElementById(btn.dataset.open);if(!slot)return;
- if(slot.innerHTML){slot.innerHTML='';btn.textContent=btn.dataset.kind==='video'?'▶ Assistir aqui':'📖 Ler aqui';return;}
- const kind=btn.dataset.kind,src=btn.dataset.src;
- slot.innerHTML=kind==='video'?`<div class="resource-view"><iframe src="${esc(src)}?autoplay=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>`:`<div class="resource-view reader"><iframe src="${esc(src)}" title="Artigo incorporado" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div><p class="resource-hint">Se o site bloquear a visualização incorporada, use “Abrir fonte”.</p>`;
- btn.textContent='Fechar conteúdo';
 });
 root.addEventListener('input',e=>{
  if(!e.target.classList.contains('notes'))return;
@@ -1911,13 +1811,10 @@ function sanitizeBackup(o){
   if(watch)it.kind=i.kind==='series'?'series':'movie';
   return it;
  });
- const itemObj={};
- if(d.topicItems&&typeof d.topicItems==='object')for(const [k,v] of Object.entries(d.topicItems)){if(ids.has(Number(k))&&v&&typeof v==='object')itemObj[k]={ted:!!v.ted,read:!!v.read,news:!!v.news};}
- doneArr.forEach(n=>{if(!itemObj[n])itemObj[n]={ted:true,read:true,news:true};});
- return {done:doneArr,topicItems:itemObj,notes:notesObj,cards:cardsArr,playlist:{music:cleanList(pl.music,false),watch:cleanList(pl.watch,true)},streak:cleanStreak(d.streak),practice:cleanPracticeStats(d.practice),practiceSession:cleanSavedSession(d.practiceSession),studyTime:cleanStudy(d.studyTime)};
+ return {done:doneArr,notes:notesObj,cards:cardsArr,playlist:{music:cleanList(pl.music,false),watch:cleanList(pl.watch,true)},streak:cleanStreak(d.streak),practice:cleanPracticeStats(d.practice),practiceSession:cleanSavedSession(d.practiceSession),studyTime:cleanStudy(d.studyTime)};
 }
 function applyState(st){
- done=new Set(st.done); topicItems=st.topicItems||{}; store.set(TOPIC_ITEMS_KEY,topicItems); notes=st.notes; cards=st.cards; playlist=st.playlist; streak=st.streak; practiceStats=st.practice; practiceSaved=st.practiceSession; endPracticeSession(); studyTime=st.studyTime; store.set(STUDY_KEY,studyTime);
+ done=new Set(st.done); notes=st.notes; cards=st.cards; playlist=st.playlist; streak=st.streak; practiceStats=st.practice; practiceSaved=st.practiceSession; endPracticeSession(); studyTime=st.studyTime; store.set(STUDY_KEY,studyTime);
  if(practiceSaved)store.set(PRACTICE_SESSION_KEY,practiceSaved);else{try{localStorage.removeItem(PRACTICE_SESSION_KEY)}catch(e){}}
  store.set(KEYS.done,[...done]); store.set(KEYS.notes,notes); store.set(KEYS.cards,cards); store.set(PL_KEY,playlist); store.set(KEYS.streak,streak); store.set(PRACTICE_KEY,practiceStats);
  registerVisit(); route();
@@ -1932,7 +1829,7 @@ function renderSettings(){
  }else el.textContent='Você ainda não fez backup neste aparelho.';
 }
 document.getElementById('exportBtn').addEventListener('click',()=>{
- const payload={app:'english-advanced-studies',version:8,exportedAt:new Date().toISOString(),data:{done:[...done],topicItems,notes,cards,playlist,streak,practice:practiceStats,practiceSession:practiceSaved,studyTime}};
+ const payload={app:'english-advanced-studies',version:7,exportedAt:new Date().toISOString(),data:{done:[...done],notes,cards,playlist,streak,practice:practiceStats,practiceSession:practiceSaved,studyTime}};
  const url=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}));
  const a=document.createElement('a'); a.href=url; a.download=`english-studies-backup-${dayStr(new Date())}.json`;
  document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),3000);

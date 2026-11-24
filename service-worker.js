@@ -1,5 +1,5 @@
-const CACHE = 'english-advanced-studies-v8';
-const FILES = ['./', './index.html', './questions.js', './manifest.webmanifest', './icon.svg', './relevant-topics/topics-data.js', './relevant-topics/relevant-topics.css',
+const CACHE = 'english-advanced-studies-v7';
+const FILES = ['./', './index.html', './questions.js', './manifest.webmanifest', './icon.svg',
   './fonts/unbounded-latin-700-normal.woff2', './fonts/unbounded-latin-800-normal.woff2',
   './fonts/figtree-latin-500-normal.woff2', './fonts/figtree-latin-600-normal.woff2',
   './fonts/figtree-latin-700-normal.woff2', './fonts/figtree-latin-800-normal.woff2'];

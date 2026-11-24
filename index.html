@@ -250,7 +250,7 @@ dialog#review::backdrop{background:#172033b0}
 
 /* ---- base dos componentes ---- */
 body{font-family:var(--ff-body);font-weight:500}
-h1,h2,h3,.vtitle,.homeh,.menucard strong,.sinfo strong,.lvlcode,.stinfo strong{font-family:var(--ff-head)}
+h1,h2,h3,.vtitle,.homeh,.menucard strong,.sinfo strong,.stinfo strong{font-family:var(--ff-head)}
 header{background:none;color:var(--ink);padding:34px 22px 4px}
 .wrap{position:relative;display:flex;flex-direction:column;align-items:flex-start}
 h1{order:1;font-weight:var(--fw-head);font-size:clamp(1.35rem,5.6vw,2.3rem);line-height:1.15;margin:0;padding-right:86px}
@@ -370,24 +370,8 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 .focus-list li{display:flex;gap:12px;align-items:center;justify-content:space-between;border:var(--bw2) solid var(--edge);border-radius:var(--rad-m);padding:10px 12px;background:var(--card)}
 .focus-list small{display:block;color:var(--muted);font-size:.82rem;margin-top:2px;font-weight:500}
 
-/* Level Test */
-.lvlgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
-.lvlrow{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-.lvlcode{font-size:clamp(2.2rem,9vw,3.4rem);line-height:1;font-weight:var(--fw-head);padding:8px 16px;border:var(--bw) solid var(--edge);border-radius:var(--rad);background:var(--num-bg);color:var(--num-fg)}
-.lvlcode.none{background:var(--card);color:var(--muted)}
-.lvlbars{display:grid;gap:12px;margin-top:14px}
-.lvlbar{font-size:.88rem}
-.lvlbar b{display:flex;justify-content:space-between;gap:10px;margin-bottom:4px}
-.cefr{width:100%;border-collapse:collapse;font-size:.9rem}
-.cefr td{padding:9px 8px;text-align:left;border-top:1px solid var(--line);vertical-align:top}
-.cefr .code{font-family:var(--ff-head);font-weight:var(--fw-head2);white-space:nowrap}
-.cefr tr.now td{background:var(--accent2)}
-.planlist{list-style:none;padding:0;margin:0;display:grid;gap:10px}
-.planlist li{display:flex;gap:12px;justify-content:space-between;align-items:flex-start;border:var(--bw2) solid var(--edge);border-radius:var(--rad-m);padding:10px 12px;background:var(--card)}
-.planlist small{display:block;color:var(--muted);font-weight:500;margin-top:2px}
-
 @media(max-width:760px){
- .menu,.plgrid,.setgrid,.lvlgrid{grid-template-columns:1fr}
+ .menu,.plgrid,.setgrid{grid-template-columns:1fr}
  header{padding:26px 18px 2px}
  .streak{margin-bottom:22px}
  .week{gap:6px}
@@ -548,7 +532,7 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 <a class="menucard" href="#topics"><span class="micon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V5a2 2 0 0 1 2-2h12v15H7a2 2 0 0 0-2 2zm0 0a2 2 0 0 0 2 2h12"/></svg></span><span><strong>Relevant Topics</strong><small>15 temas com TED, leitura e notícia, além de anotações e flashcards.</small><em class="mstat" id="homeTopics"></em></span></a>
 <a class="menucard" href="#playlist"><span class="micon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4" height="7" rx="1.5"/><rect x="17" y="14" width="4" height="7" rx="1.5"/></svg></span><span><strong>My English Playlist</strong><small>Suas músicas, filmes e séries em inglês para ouvir e assistir.</small><em class="mstat" id="homePlaylist"></em></span></a>
 <a class="menucard" href="#practice"><span class="micon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/></svg></span><span><strong>Practice Exercises</strong><small>Exercícios para praticar o que você estuda.</small><em class="mstat" id="homePractice"></em></span></a>
-<a class="menucard" href="#level"><span class="micon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".8"/></svg></span><span><strong>Level Test</strong><small>Descubra seu nível no padrão internacional (A1 a C2). A prova completa está em preparação.</small><em class="mstat" id="homeLevel"></em></span></a>
+<a class="menucard" href="#level"><span class="micon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".8"/></svg></span><span><strong>Level Test</strong><small>Descubra seu nível no padrão internacional (A1 a C2) com uma prova de gramática, vocabulário, leitura e escuta.</small><em class="mstat" id="homeLevel"></em></span></a>
 <a class="menucard" href="#settings"><span class="micon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></span><span><strong>Settings &amp; Backup</strong><small>Tema claro, escuro ou automático e cópia de segurança dos seus dados.</small><em class="mstat" id="homeSettings"></em></span></a>
 </nav>
 </section>
@@ -838,15 +822,8 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 <section id="view-level" class="view" hidden>
 <a class="back" href="#home">← Menu principal</a>
 <h2 class="vtitle">🎯 Level Test</h2>
-<p class="vsub">Descubra seu nível no padrão internacional CEFR (de A1 a C2). A prova completa está em preparação. Por enquanto, veja uma estimativa baseada nos seus exercícios.</p>
-<div class="lvlgrid">
-<section class="box" aria-label="Estimativa atual"><h3>📈 Estimativa atual</h3><div id="levelEstimate"></div></section>
-<section class="box" aria-label="Níveis CEFR"><h3>🌍 Níveis CEFR</h3><table class="cefr"><tbody id="levelCefr"></tbody></table></section>
-<section class="box" aria-label="Prova de nível" style="grid-column:1/-1"><h3>📝 Prova de nível (em preparação)</h3>
-<p class="note" style="margin-top:0">Estas serão as seções da futura prova completa:</p>
-<ul class="planlist" id="levelPlan"></ul>
-<div class="practice-actions" style="margin-top:14px"><button class="btn" type="button" disabled>Iniciar prova (em breve)</button></div></section>
-</div>
+<p class="vsub">Descubra seu nível no padrão internacional CEFR (de A1 a C2). Faça a prova e veja sua estimativa, que também considera os resultados dos seus exercícios.</p>
+<div id="levelTestRoot"></div>
 </section>
 
 <section id="view-settings" class="view" hidden>
@@ -875,6 +852,8 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 </main>
 <dialog id="review" aria-label="Revisão de flashcards"><div class="rv" id="rvBody"></div></dialog>
 <script src="questions.js"></script>
+<script src="level-test-items.js"></script>
+<script src="level-test.js"></script>
 <script>
 const topics = [
 {n:1,icon:"🌍",title:"Climate Change & Global Warming",cat:"science",ted:["TED – Climate change and global warming","https://www.ted.com/search?q=climate%20change%20global%20warming"],read:["Our World in Data – CO₂ and greenhouse gas emissions","https://ourworldindata.org/co2-and-greenhouse-gas-emissions"],news:["BBC – Climate change and global warming","https://www.youtube.com/results?search_query=BBC+The+Climate+Question+climate+change+global+warming"]},
@@ -1428,21 +1407,6 @@ function focusList(){
   return {t,...a,level:targetLevel(t),priority:a.n>=3?1-a.acc:0.35};
  }).sort((x,y)=>y.priority-x.priority);
 }
-const CEFR_NOTE={A2:'A2 ou abaixo',B1:'B1',B2:'B2',C1:'C1'};
-function estimateLevel(){
- const t={}; LEVELS.forEach(l=>t[l]=levelStats(null,l));
- const MIN=10, THR=.6;
- let code=null, partial=false;
- if(t.easy.n>=MIN){
-  if(t.easy.acc<THR)code='A2';
-  else if(t.medium.n<MIN){code='B1';partial=true}
-  else if(t.medium.acc<THR)code='B1';
-  else if(t.hard.n<MIN){code='B2';partial=true}
-  else if(t.hard.acc<THR)code='B2';
-  else code='C1';
- }
- return {code,partial,t};
-}
 
 function readPracticeSettings(){
  return cleanPracticeSettings({topic:$p('practiceTopic').value,level:$p('practiceLevel').value,format:$p('practiceFormat').value,amount:$p('practiceAmount').value,mode:$p('practiceMode').value});
@@ -1811,10 +1775,10 @@ function sanitizeBackup(o){
   if(watch)it.kind=i.kind==='series'?'series':'movie';
   return it;
  });
- return {done:doneArr,notes:notesObj,cards:cardsArr,playlist:{music:cleanList(pl.music,false),watch:cleanList(pl.watch,true)},streak:cleanStreak(d.streak),practice:cleanPracticeStats(d.practice),practiceSession:cleanSavedSession(d.practiceSession),studyTime:cleanStudy(d.studyTime)};
+ return {done:doneArr,notes:notesObj,cards:cardsArr,playlist:{music:cleanList(pl.music,false),watch:cleanList(pl.watch,true)},streak:cleanStreak(d.streak),practice:cleanPracticeStats(d.practice),practiceSession:cleanSavedSession(d.practiceSession),studyTime:cleanStudy(d.studyTime),levelTest:LevelTest.clean(d.levelTest)};
 }
 function applyState(st){
- done=new Set(st.done); notes=st.notes; cards=st.cards; playlist=st.playlist; streak=st.streak; practiceStats=st.practice; practiceSaved=st.practiceSession; endPracticeSession(); studyTime=st.studyTime; store.set(STUDY_KEY,studyTime);
+ done=new Set(st.done); notes=st.notes; cards=st.cards; playlist=st.playlist; streak=st.streak; practiceStats=st.practice; practiceSaved=st.practiceSession; endPracticeSession(); studyTime=st.studyTime; store.set(STUDY_KEY,studyTime); LevelTest.setState(st.levelTest);
  if(practiceSaved)store.set(PRACTICE_SESSION_KEY,practiceSaved);else{try{localStorage.removeItem(PRACTICE_SESSION_KEY)}catch(e){}}
  store.set(KEYS.done,[...done]); store.set(KEYS.notes,notes); store.set(KEYS.cards,cards); store.set(PL_KEY,playlist); store.set(KEYS.streak,streak); store.set(PRACTICE_KEY,practiceStats);
  registerVisit(); route();
@@ -1829,7 +1793,7 @@ function renderSettings(){
  }else el.textContent='Você ainda não fez backup neste aparelho.';
 }
 document.getElementById('exportBtn').addEventListener('click',()=>{
- const payload={app:'english-advanced-studies',version:7,exportedAt:new Date().toISOString(),data:{done:[...done],notes,cards,playlist,streak,practice:practiceStats,practiceSession:practiceSaved,studyTime}};
+ const payload={app:'english-advanced-studies',version:8,exportedAt:new Date().toISOString(),data:{done:[...done],notes,cards,playlist,streak,practice:practiceStats,practiceSession:practiceSaved,studyTime,levelTest:LevelTest.exportState()}};
  const url=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}));
  const a=document.createElement('a'); a.href=url; a.download=`english-studies-backup-${dayStr(new Date())}.json`;
  document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),3000);
@@ -1926,41 +1890,6 @@ document.getElementById('styleSeg').addEventListener('click',e=>{
  stylePref=b.dataset.style; store.set(STYLE_KEY,stylePref); applyStyle();
 });
 
-/* ---------- Level Test (aba preparada) ---------- */
-const CEFR=[
- ['A1','Iniciante','Entende e usa expressões simples do dia a dia.'],
- ['A2','Básico','Comunica-se em situações rotineiras e fala de assuntos imediatos.'],
- ['B1','Intermediário','Lida com a maioria das situações de viagem e descreve experiências e planos.'],
- ['B2','Intermediário avançado','Entende textos complexos e conversa com fluência e espontaneidade.'],
- ['C1','Avançado','Usa o idioma de forma flexível em contextos profissionais e acadêmicos.'],
- ['C2','Proficiente','Entende praticamente tudo e se expressa com precisão e naturalidade.']
-];
-// Estrutura da futura prova completa. Quando houver questões calibradas, cada seção ganha "items".
-const levelTestPlan=[
- {id:'grammar',title:'Grammar',desc:'Questões de gramática em vários níveis (A2 a C1), no formato dos exercícios.'},
- {id:'vocabulary',title:'Vocabulary',desc:'Vocabulário em contexto, de palavras comuns a expressões avançadas.'},
- {id:'reading',title:'Reading',desc:'Textos curtos e longos com perguntas de compreensão.'},
- {id:'listening',title:'Listening',desc:'Áudios com perguntas de compreensão (depende de arquivos de áudio).'},
- {id:'writing',title:'Writing',desc:'Produção escrita avaliada por critérios de nível.'}
-];
-function renderLevel(){
- const est=estimateLevel(), code=est.code;
- const names={easy:'Easy (≈ B1)',medium:'Medium (≈ B2)',hard:'Hard (≈ C1)'};
- let head;
- if(code){
-  head=`<div class="lvlrow"><div class="lvlcode">${code==='A2'?'A2':code}</div><div><strong>${code==='A2'?'Nível A2 ou abaixo':'Nível estimado: '+code}</strong><p class="note" style="margin:4px 0 0">${est.partial?'Estimativa parcial. Responda mais questões Medium e Hard em Practice Exercises para refinar.':'Baseada nas suas respostas de gramática.'}</p></div></div>`;
- }else{
-  head=`<div class="lvlrow"><div class="lvlcode none">?</div><div><strong>Ainda sem estimativa</strong><p class="note" style="margin:4px 0 0">Responda pelo menos 10 questões Easy em Practice Exercises para ver uma estimativa.</p></div></div>`;
- }
- const bars=LEVELS.map(l=>{
-  const t=est.t[l], pct=t.n?Math.round(t.acc*100):0;
-  return `<div class="lvlbar"><b><span>${names[l]}</span><span>${t.n?pct+'% · '+t.n+' respostas':'sem respostas'}</span></b><div class="bar" role="img" aria-label="${names[l]}: ${pct}%"><span style="width:${pct}%"></span></div></div>`;
- }).join('');
- document.getElementById('levelEstimate').innerHTML=head+`<div class="lvlbars">${bars}</div><p class="note">Indicativo: vem só de exercícios de gramática e não substitui um teste oficial. Uma avaliação CEFR completa também mede vocabulário, leitura, escuta e escrita.</p><p><a href="#practice">Ir para Practice Exercises →</a></p>`;
- document.getElementById('levelCefr').innerHTML=CEFR.map(([c,n,d])=>`<tr class="${c===code?'now':''}"><td class="code">${c}</td><td><strong>${n}</strong><br><span class="note">${d}</span></td></tr>`).join('');
- document.getElementById('levelPlan').innerHTML=levelTestPlan.map(s=>`<li><span><strong>${s.title}</strong><small>${s.desc}</small></span><span class="pill">Planejado</span></li>`).join('');
-}
-
 /* ---------- Menu principal e navegação ---------- */
 const VIEWS={home:'English Advanced Studies',topics:'Relevant Topics',playlist:'My English Playlist',practice:'Practice Exercises',level:'Level Test',settings:'Settings & Backup'};
 function updateHome(){
@@ -1968,8 +1897,7 @@ function updateHome(){
  document.getElementById('homeTopics').textContent=`${n} de ${topics.length} temas estudados · ${cards.length} ${cards.length===1?'flashcard':'flashcards'}`;
  document.getElementById('homePlaylist').textContent=`${m} ${m===1?'música':'músicas'} · ${w} ${w===1?'filme/série':'filmes e séries'}`;
  document.getElementById('homePractice').textContent=`${exercises.length} exercícios${due?` · ${due} para revisar`:''}`;
- const est=estimateLevel();
- document.getElementById('homeLevel').textContent=est.code?`Estimativa: ${est.code}${est.partial?' (parcial)':''}`:'Em preparação';
+ document.getElementById('homeLevel').textContent=LevelTest.summary();
  const lb=store.get(KEYS.backup,'');
  document.getElementById('homeSettings').textContent=`Tema: ${THEME_LABEL[themePref]} · Estilo: ${STYLES[stylePref]} · ${lb&&!isNaN(new Date(lb))?'backup em '+new Date(lb).toLocaleDateString('pt-BR'):'sem backup ainda'}`;
  renderStreak();
@@ -1984,7 +1912,7 @@ function route(){
  else if(v==='topics')render();
  else if(v==='playlist')renderPlaylist();
  else if(v==='settings')renderSettings();
- else if(v==='level')renderLevel();
+ else if(v==='level')LevelTest.render();
  else renderPractice();
  window.scrollTo(0,0);
 }

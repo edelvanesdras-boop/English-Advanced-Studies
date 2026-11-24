@@ -97,3 +97,19 @@ NOVIDADES (v7):
 - Level Test (nova aba, em preparação): estimativa indicativa de nível (A2 a C1) baseada nos
   exercícios, tabela dos níveis CEFR e as seções planejadas da prova completa.
 - Backup inclui o tempo de estudo e o histórico por questão. Backups antigos (v5 e v6) ainda importam.
+
+NOVIDADES (v8):
+- Level Test completo (aba Level Test):
+  * Prova Rápida (Grammar + Vocabulary, cerca de 30 perguntas) e Prova Completa
+    (+ Reading e Listening, até 60 perguntas; Writing opcional como autoavaliação).
+  * Perguntas de A2 a C2. Se um nível fica claramente fraco (< 50%), os níveis acima são pulados.
+  * Listening usa a voz em inglês do aparelho (até 2 audições por áudio). Sem voz, essa parte é ignorada.
+  * Resultado: nível geral, nível por habilidade, revisão de todas as respostas com explicação
+    e botões "Practise" para os tópicos de gramática em que você errou.
+  * Salvar e continuar depois (Save & exit), histórico das últimas 20 provas.
+- A estimativa atual agora combina a última prova (peso 70%) com os resultados dos exercícios (30%),
+  mostrando as fontes e um nível de confiança (Alta, Média ou Baixa).
+- Tudo da aba Level Test ficou em 2 arquivos, para editar só ela:
+  level-test.js (lógica, tela e estilos) e level-test-items.js (perguntas).
+  O index.html só tem o contêiner <div id="levelTestRoot"> e 4 pontos de ligação (veja o topo de level-test.js).
+- O resultado é indicativo: as perguntas e a classificação de nível são deste app, não de um teste oficial.

@@ -4,6 +4,16 @@ Registro das mudanças do **English Advanced Studies**. Os arquivos principais s
 (telas, estilos e lógica), `questions.js` (banco de questões), `service-worker.js` (uso offline),
 `manifest.webmanifest`, `icon.svg` e a pasta `fonts/`.
 
+## v8
+- **Level Test completo:** prova Rápida (Grammar + Vocabulary) e Completa (+ Reading e Listening, Writing opcional
+  como autoavaliação), com 60 perguntas de A2 a C2, parada antecipada por habilidade, Save & exit, histórico,
+  revisão com explicações e botões *Practise* ligados aos tópicos do Practice Exercises.
+- **Estimativa atual combinada:** última prova (70%) + exercícios (30%), com fontes e confiança.
+- **Módulo separado:** `level-test.js` (lógica, tela e estilos próprios) e `level-test-items.js` (perguntas).
+  Em `index.html` ficaram só o contêiner `#levelTestRoot` e os pontos de ligação (rota, menu, backup).
+- **Backup (versão 8):** inclui o histórico e a prova salva; importa backups das versões 5, 6 e 7.
+- `service-worker.js`: cache `v8`, novos arquivos no pré-cache.
+
 ## v7
 - **Estilos do app:** seletor em *Settings & Backup* com 6 aparências (Adesivo, Caderno anotado, Estúdio,
   Linha de metrô, Calma, Foco), cada uma em claro e escuro. Base do CSS com variáveis ("tokens");

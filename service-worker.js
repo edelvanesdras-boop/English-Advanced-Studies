@@ -1,5 +1,5 @@
-const CACHE = 'english-advanced-studies-v6';
-const FILES = ['./', './index.html', './manifest.webmanifest', './icon.svg',
+const CACHE = 'english-advanced-studies-v7';
+const FILES = ['./', './index.html', './questions.js', './manifest.webmanifest', './icon.svg',
   './fonts/unbounded-latin-700-normal.woff2', './fonts/unbounded-latin-800-normal.woff2',
   './fonts/figtree-latin-500-normal.woff2', './fonts/figtree-latin-600-normal.woff2',
   './fonts/figtree-latin-700-normal.woff2', './fonts/figtree-latin-800-normal.woff2'];
@@ -22,3 +22,5 @@ self.addEventListener('fetch', event => {
     return response;
   }).catch(() => caches.match('./index.html'))));
 });
+// Fontes dos outros estilos (Caderno, Estúdio, Metrô, Calma, Foco) não entram no pré-cache:
+// são baixadas e guardadas na primeira vez que o estilo é usado (cache dinâmico acima).

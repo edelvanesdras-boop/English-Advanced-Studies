@@ -73,3 +73,27 @@ NOVIDADES (v6):
   * A sessão salva também entra no backup (Exportar / Importar backup).
   * Correção: o modo "Review mistakes only" e a lista de erros agora funcionam
     (as questões não tinham identificador). Erros salvos antes da v6 foram descartados.
+
+NOVIDADES (v7):
+- Estilo do app (Settings & Backup): Adesivo (padrão), Caderno anotado, Estúdio,
+  Linha de metrô, Calma e Foco. Cada um funciona em Claro, Escuro e Automático.
+  Muda só a aparência: dados e progresso ficam iguais.
+- Novos tópicos de gramática: Modal Verbs, Reported Speech, Phrasal Verbs e Linking Words
+  (30 questões cada, 10 Easy / 10 Medium / 10 Hard) e as lições em "Explanations & Examples".
+  Agora são 10 tópicos e 300 questões.
+- As questões ficaram em um arquivo próprio: questions.js (uma questão por linha).
+  Para adicionar questões, edite só esse arquivo.
+- Cronômetro na sessão de exercícios (pausa ao trocar de aba ou esconder o app;
+  Save & exit guarda o tempo e Restart zera).
+- Menu principal: tempo de estudo dos últimos 7 dias, junto da sequência.
+  Conta o tempo em que o app está aberto e em uso (sem toque ou teclado por 60 s = parado).
+- Aprendizado adaptativo:
+  * "Smart practice" (modo padrão): escolhe questões a partir dos seus resultados
+    (tópicos mais fracos, questões vencidas para revisão e o nível adequado agora).
+  * Painel "Where to focus": mostra os tópicos que mais precisam de atenção
+    e um botão "Practise" para treinar já.
+  * Cada questão tem revisão espaçada própria (acertou: volta em 1, 2, 4, 8, 16 dias;
+    errou: volta logo).
+- Level Test (nova aba, em preparação): estimativa indicativa de nível (A2 a C1) baseada nos
+  exercícios, tabela dos níveis CEFR e as seções planejadas da prova completa.
+- Backup inclui o tempo de estudo e o histórico por questão. Backups antigos (v5 e v6) ainda importam.

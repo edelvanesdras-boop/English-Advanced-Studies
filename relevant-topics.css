@@ -1,0 +1,27 @@
+/* Estilos isolados da aba Relevant Topics v8 */
+/* Relevant Topics v8 */
+.topic-intro{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:8px 0 18px}
+.topic-total{font-size:.9rem;color:var(--muted)}
+.topic-card{position:relative;overflow:hidden}
+.topic-card-top{display:flex;gap:12px;align-items:flex-start}
+.topic-card-title{flex:1;min-width:0}.topic-card-title h2{margin:1px 0 5px}
+.topic-meter{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.78rem;white-space:nowrap}
+.topic-meter strong{color:var(--accent)}
+.topic-mini-bar{height:6px;background:var(--accent2);border-radius:99px;overflow:hidden;margin:12px 0 4px}
+.topic-mini-bar span{display:block;height:100%;background:var(--green);transition:width .2s}
+.resource-list{display:grid;gap:9px;margin-top:12px}
+.resource{border:1px solid var(--line);border-radius:11px;padding:10px 11px;background:var(--field)}
+.resource-head{display:flex;gap:10px;align-items:flex-start}
+.resource-main{flex:1;min-width:0}.resource-kind{display:block;font-size:.69rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:2px}
+.resource-title{font-size:.9rem;line-height:1.35;font-weight:650;overflow-wrap:anywhere}
+.resource-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:7px}
+.resource-actions a,.resource-actions button{font:inherit;font-size:.78rem;font-weight:700}
+.resource-check{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--muted);white-space:nowrap}
+.resource-check input{min-width:0;flex:0 0 auto;accent-color:var(--ok);width:17px;height:17px}
+.resource-view{margin-top:10px;aspect-ratio:16/9;background:#090d20;border-radius:9px;overflow:hidden}
+.resource-view iframe{width:100%;height:100%;border:0;display:block}
+.resource-view.reader{aspect-ratio:auto;height:min(65vh,680px);background:var(--card);border:1px solid var(--line)}
+.resource-view.reader iframe{background:white}
+.resource-hint{font-size:.74rem;color:var(--muted);margin:7px 0 0}
+.topic-card.is-complete{border-color:var(--ok)}
+.topic-card.is-complete .num{background:var(--done-bg);color:var(--ok)}

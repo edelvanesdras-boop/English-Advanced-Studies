@@ -81,3 +81,10 @@ Registro das mudanças do **English Advanced Studies**. Os arquivos principais s
 - Metrô usa cartões neutros com cor concentrada nos ícones.
 - Calma usa tons suaves integrados ao tema.
 - Dark mode recebe contrastes próprios para os quatro novos cartões.
+
+
+## V11.3 — Menu style consistency
+- Rebuilt the home-menu styling on top of the app's existing design-token system instead of layering a second global palette.
+- Added the four new menu cards to each style without changing the established visual language of Caderno, Foco, Metrô, Calma or Estúdio.
+- Removed the black icon/border treatment and avoided cross-style color leakage.
+- Preserved the V11.1 menu order and the V9–V11 functionality.

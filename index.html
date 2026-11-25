@@ -547,6 +547,7 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 #view-topics .rt-hero-progress-label{display:block;font-size:.76rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}
 #view-topics .rt-hero-progress strong{display:block;font-size:.92rem;margin-bottom:9px}
 #view-topics .rt-hero-progress .bar{height:7px;margin:0;border:0;background:var(--track);box-shadow:none}
+#view-topics .rt-review{margin-top:10px;width:100%;font-size:.78rem;padding:8px 10px}
 #view-topics .rt-toolbar{margin-bottom:18px}
 #view-topics .rt-search-row{margin:0;grid-template-columns:minmax(0,1fr) 210px auto;align-items:center}
 #view-topics .rt-search-row input,#view-topics .rt-search-row select{border-radius:14px}
@@ -667,6 +668,7 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
     <span class="rt-hero-progress-label">Seu progresso</span>
     <strong id="ptext">0 de 15 temas estudados</strong>
     <div class="bar" id="pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Temas estudados"><span id="pfill"></span></div>
+    <button class="btn ghost rt-review" id="reviewBtn" type="button">🗂️ Revisar flashcards</button>
   </div>
 </div>
 <div class="rt-toolbar">

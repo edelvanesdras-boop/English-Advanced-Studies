@@ -1,3 +1,6 @@
+## Relevant Topics — visual fix
+- Restored the existing Revisar flashcards control in the redesigned header so the original initialization remains compatible.
+
 
 ## V8.1 — Relevant Topics visual refresh
 - Relevant Topics now uses a lighter, more inviting accordion layout: topics start collapsed and expand only when opened.

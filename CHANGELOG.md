@@ -1,3 +1,11 @@
+
+## V8.1 — Relevant Topics visual refresh
+- Relevant Topics now uses a lighter, more inviting accordion layout: topics start collapsed and expand only when opened.
+- Topic progress remains visible as 0/3–3/3 without repeating the three resource headings in the collapsed state.
+- Resources are presented as compact rows with clear actions for watching/reading, opening externally, and marking completion.
+- The existing Relevant Topics data, notes, flashcards, resource progress and embedding behavior remain intact.
+- The rest of the app structure and functionality are unchanged.
+- Service-worker cache version bumped so the visual update is picked up after deployment.
 # Changelog
 
 Registro das mudanças do **English Advanced Studies**. Os arquivos principais são `index.html`

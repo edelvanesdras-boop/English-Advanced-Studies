@@ -1,4 +1,4 @@
-const CACHE = 'english-advanced-studies-v8-topics-direct-1';
+const CACHE = 'english-advanced-studies-v8-topics-design-2';
 const FILES = ['./', './index.html', './questions.js', './level-test-items.js', './level-test.js', './manifest.webmanifest', './icon.svg',
   './fonts/unbounded-latin-700-normal.woff2', './fonts/unbounded-latin-800-normal.woff2',
   './fonts/figtree-latin-500-normal.woff2', './fonts/figtree-latin-600-normal.woff2',

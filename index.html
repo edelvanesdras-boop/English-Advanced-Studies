@@ -536,6 +536,96 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 .rt-open-external a{color:var(--link);font-weight:800}
 .card.rt-complete{border-color:var(--accent)}
 @media (min-width:760px){.rt-resource{grid-template-columns:minmax(0,1fr) auto;align-items:center}.rt-check{justify-content:flex-end}}
+
+/* ===== Relevant Topics visual refresh ===== */
+#view-topics{max-width:1180px}
+#view-topics .rt-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,330px);align-items:end;gap:28px;margin:8px 0 24px}
+#view-topics .rt-kicker{display:inline-flex;align-items:center;gap:7px;color:var(--accent);font-weight:800;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+#view-topics .rt-hero .vtitle{margin:0 0 5px;font-size:clamp(2rem,4vw,3rem);letter-spacing:-.04em}
+#view-topics .rt-hero .vsub{margin:0;max-width:720px;font-size:1rem;line-height:1.65}
+#view-topics .rt-hero-progress{padding:15px 17px;border:1px solid var(--line);border-radius:18px;background:color-mix(in srgb,var(--card) 88%,var(--accent) 12%);box-shadow:0 8px 24px rgba(15,18,53,.06)}
+#view-topics .rt-hero-progress-label{display:block;font-size:.76rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}
+#view-topics .rt-hero-progress strong{display:block;font-size:.92rem;margin-bottom:9px}
+#view-topics .rt-hero-progress .bar{height:7px;margin:0;border:0;background:var(--track);box-shadow:none}
+#view-topics .rt-toolbar{margin-bottom:18px}
+#view-topics .rt-search-row{margin:0;grid-template-columns:minmax(0,1fr) 210px auto;align-items:center}
+#view-topics .rt-search-row input,#view-topics .rt-search-row select{border-radius:14px}
+#view-topics .rt-hint{display:flex;align-items:center;gap:8px;margin:10px 2px 0;color:var(--muted);font-size:.82rem}
+#view-topics .rt-hint span{font-size:1rem}
+#view-topics .grid{display:grid;grid-template-columns:1fr;gap:10px}
+#view-topics .rt-topic-card{padding:0;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:var(--card);box-shadow:0 5px 18px rgba(15,18,53,.045);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+#view-topics .rt-topic-card:hover{border-color:color-mix(in srgb,var(--accent) 42%,var(--line));box-shadow:0 9px 25px rgba(15,18,53,.075);transform:translateY(-1px)}
+#view-topics .rt-topic-card.is-open{border-color:color-mix(in srgb,var(--accent) 52%,var(--line));box-shadow:0 12px 30px rgba(15,18,53,.09)}
+#view-topics .rt-topic-toggle{width:100%;display:grid;grid-template-columns:42px 38px minmax(0,1fr) minmax(150px,230px) 24px;align-items:center;gap:12px;padding:16px 18px;background:transparent;border:0;color:var(--ink);text-align:left;cursor:pointer;font:inherit}
+#view-topics .rt-topic-toggle:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 55%,transparent);outline-offset:-3px}
+#view-topics .rt-topic-number{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:var(--accent2);color:var(--accent);font-weight:900}
+#view-topics .rt-topic-icon{font-size:1.35rem;text-align:center}
+#view-topics .rt-topic-title{min-width:0;display:flex;flex-direction:column;gap:3px}
+#view-topics .rt-topic-title strong{font-size:1.02rem;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#view-topics .rt-topic-title small{font-size:.76rem;color:var(--muted);font-weight:600}
+#view-topics .rt-topic-progress{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:9px;color:var(--muted);font-size:.82rem}
+#view-topics .rt-topic-progress b{color:var(--ink);font-size:.84rem;white-space:nowrap}
+#view-topics .rt-mini-bar{height:6px;border-radius:999px;background:var(--track);overflow:hidden;min-width:70px}
+#view-topics .rt-mini-bar i{display:block;height:100%;border-radius:inherit;background:var(--accent);transition:width .25s ease}
+#view-topics .rt-topic-card.rt-complete .rt-mini-bar i{background:var(--green)}
+#view-topics .rt-topic-card.rt-complete .rt-topic-progress b{color:var(--green)}
+#view-topics .rt-chevron{font-size:1.4rem;color:var(--muted);transition:transform .2s ease;text-align:center;line-height:1}
+#view-topics .rt-topic-card.is-open .rt-chevron{transform:rotate(180deg);color:var(--accent)}
+#view-topics .rt-topic-body{padding:0 18px 18px;border-top:1px solid var(--line);animation:rtReveal .2s ease}
+@keyframes rtReveal{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}
+#view-topics .rt-resource-intro{padding:14px 2px 7px;color:var(--muted);font-size:.82rem}
+#view-topics .rt-resources{display:grid;gap:8px}
+#view-topics .rt-resource{display:grid;grid-template-columns:38px minmax(0,1fr) auto auto;align-items:center;gap:12px;padding:12px 13px;border:1px solid var(--line);border-radius:14px;background:color-mix(in srgb,var(--field) 72%,var(--accent) 28%)}
+#view-topics .rt-resource-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:var(--accent2);font-size:1rem}
+#view-topics .rt-resource-main{display:grid;gap:3px;min-width:0}
+#view-topics .rt-resource-label{font-size:.7rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+#view-topics .rt-resource-name{font-size:.88rem;font-weight:800;line-height:1.35;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#view-topics .rt-actions{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+#view-topics .rt-actions .btn{font-size:.72rem;padding:7px 9px;border-radius:10px;white-space:nowrap}
+#view-topics .rt-check{display:flex;align-items:center;gap:7px;font-size:.78rem;font-weight:800;white-space:nowrap;cursor:pointer;color:var(--muted)}
+#view-topics .rt-check input{width:17px;height:17px;accent-color:var(--accent);margin:0}
+#view-topics .rt-check input:checked + span{color:var(--accent)}
+#view-topics .rt-resource.rt-complete{background:var(--done-bg);border-color:var(--done-line)}
+#view-topics .rt-resource.rt-complete .rt-resource-name{opacity:.72}
+#view-topics .rt-topic-tools{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:12px;padding:10px 2px 0}
+#view-topics .rt-topic-tools-progress{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.78rem;font-weight:700}
+#view-topics .rt-topic-tools-progress strong{color:var(--ink);font-size:.88rem}
+#view-topics .rt-topic-tool-buttons{display:flex;gap:8px;align-items:center}
+#view-topics .rt-topic-tool-buttons .panel{margin:0;border:1px solid var(--line);border-radius:11px;background:transparent;min-width:0}
+#view-topics .rt-topic-tool-buttons .panel summary{padding:7px 10px;font-size:.76rem}
+#view-topics .rt-topic-tool-buttons .panel[open]{background:var(--field);padding-bottom:9px}
+#view-topics .rt-topic-tool-buttons .panel[open] summary{margin-bottom:7px}
+#view-topics .rt-topic-tool-buttons .panel .notes{min-height:90px;margin:0 9px;width:calc(100% - 18px)}
+#view-topics .rt-topic-tool-buttons .panel .fc,.rt-topic-tool-buttons .panel .addfc,.rt-topic-tool-buttons .panel .fcactions{margin-left:9px;margin-right:9px}
+#view-topics .rt-embed{margin-top:10px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--field)}
+#view-topics .rt-embed iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
+#view-topics .rt-embed-note{padding:9px 12px;font-size:.76rem;color:var(--muted)}
+#view-topics .rt-open-external{padding:8px 12px;border-top:1px solid var(--line);font-size:.78rem}
+#view-topics .rt-footer{margin-top:20px;padding:13px 2px;color:var(--muted);font-size:.78rem;line-height:1.55}
+@media (max-width:800px){
+ #view-topics .rt-hero{grid-template-columns:1fr;gap:16px}
+ #view-topics .rt-search-row{grid-template-columns:1fr 1fr}
+ #view-topics .rt-search-row .summary{grid-column:1/-1}
+ #view-topics .rt-topic-toggle{grid-template-columns:36px 30px minmax(0,1fr) 54px 22px;gap:9px;padding:13px 12px}
+ #view-topics .rt-topic-title small{display:none}
+ #view-topics .rt-topic-progress{grid-template-columns:auto;justify-items:end;gap:4px}
+ #view-topics .rt-mini-bar{min-width:48px;width:54px}
+ #view-topics .rt-resource{grid-template-columns:34px minmax(0,1fr) auto;gap:9px}
+ #view-topics .rt-actions{grid-column:2/-1;justify-content:flex-start}
+ #view-topics .rt-check{grid-column:2/-1}
+ #view-topics .rt-topic-tools{align-items:flex-start;flex-direction:column}
+ #view-topics .rt-topic-tool-buttons{width:100%;flex-wrap:wrap}
+}
+@media (max-width:520px){
+ #view-topics .rt-search-row{grid-template-columns:1fr}
+ #view-topics .rt-search-row .summary{grid-column:auto}
+ #view-topics .rt-topic-toggle{grid-template-columns:32px 26px minmax(0,1fr) 24px;gap:8px}
+ #view-topics .rt-topic-progress{grid-column:3;justify-self:start;display:flex;gap:6px;margin-top:2px}
+ #view-topics .rt-topic-title{grid-column:3}
+ #view-topics .rt-chevron{grid-column:4;grid-row:1 / span 2}
+ #view-topics .rt-topic-toggle{grid-template-rows:auto auto}
+ #view-topics .rt-resource-name{white-space:normal}
+}
 </style>
 </head>
 <body>
@@ -567,23 +657,31 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 
 <section id="view-topics" class="view" hidden>
 <a class="back" href="#home">← Menu principal</a>
-<h2 class="vtitle">📚 Relevant Topics</h2>
-<p class="vsub">Uma biblioteca de 15 temas para desenvolver compreensão, vocabulário e argumentação em inglês. Cada tema reúne um TED/TED-Ed, uma leitura e uma notícia ou podcast em vídeo.</p>
-<section class="progress" aria-label="Seu progresso">
-<div class="ptop"><strong id="ptext">0 de 15 temas estudados</strong><button class="btn ghost" id="reviewBtn" type="button">🗂️ Revisar flashcards</button></div>
-<div class="bar" id="pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Temas estudados"><span id="pfill"></span></div>
-</section>
-<div class="toolbar">
-<input id="search" type="search" placeholder="Buscar tema, palavra ou assunto…">
-<select id="filter"><option value="all">Todos os temas</option><option value="work">Trabalho e economia</option><option value="society">Sociedade e política</option><option value="science">Ciência e tecnologia</option></select>
-<div class="summary" id="count">15 temas</div>
+<div class="rt-hero">
+  <div>
+    <div class="rt-kicker">📚 Explore &amp; learn</div>
+    <h2 class="vtitle">Relevant Topics</h2>
+    <p class="vsub">Explore real-world ideas, improve your English, and build vocabulary along the way.</p>
+  </div>
+  <div class="rt-hero-progress" aria-label="Seu progresso">
+    <span class="rt-hero-progress-label">Seu progresso</span>
+    <strong id="ptext">0 de 15 temas estudados</strong>
+    <div class="bar" id="pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Temas estudados"><span id="pfill"></span></div>
+  </div>
 </div>
-<div class="legend"><span class="pill">TED / TED-Ed</span><span class="pill">Texto / artigo</span><span class="pill">Notícia / podcast em vídeo</span><span class="pill">Complete os 3 recursos de cada tema</span></div>
+<div class="rt-toolbar">
+  <div class="toolbar rt-search-row">
+    <input id="search" type="search" placeholder="Buscar um tema, palavra ou assunto…">
+    <select id="filter"><option value="all">Todos os temas</option><option value="work">Trabalho e economia</option><option value="society">Sociedade e política</option><option value="science">Ciência e tecnologia</option></select>
+    <div class="summary" id="count">15 temas</div>
+  </div>
+  <div class="rt-hint"><span>💡</span> Abra um tema para assistir, ler ou ouvir. Você pode voltar e continuar quando quiser.</div>
+</div>
 <section class="grid" id="cards">
 <!-- cards injected below -->
 </section>
-<footer>
-<strong>Como usar:</strong> assista ao vídeo explicativo, leia o artigo e depois acompanhe a notícia ou podcast. Anote expressões e argumentos — não apenas palavras isoladas. Ao concluir cada recurso, marque-o como concluído. Quando os 3 estiverem concluídos, o tema passa a 3/3 e é considerado estudado. Os links de YouTube com pesquisa direcionada ajudam a encontrar episódios adequados quando não há um único vídeo específico indicado.
+<footer class="rt-footer">
+  <strong>Uma boa rotina:</strong> explore o TED, leia o artigo e depois acompanhe a notícia ou podcast. Marque cada recurso quando concluir e guarde expressões e ideias úteis nas anotações.
 </footer>
 </section>
 
@@ -938,6 +1036,7 @@ topics.forEach(t=>{
 });
 store.set(RESOURCE_KEY,resourceDone);
 const openPanels=new Set();
+const openTopics=new Set();
 const root=document.getElementById('cards');
 const topicById=id=>topics.find(t=>t.n===Number(id));
 const cardsOf=id=>cards.filter(c=>c.topic===Number(id));
@@ -975,41 +1074,53 @@ function resourceHTML(t){
  const parts=RESOURCE_KEYS.map(key=>{
   const item=t[key], checked=resourceState(t.n)[key], src=embedUrl(key,item[1]);
   return `<div class="rt-resource ${checked?'rt-complete':''}" data-rt-resource="${key}">
+   <div class="rt-resource-icon" aria-hidden="true">${RESOURCE_ICONS[key]}</div>
    <div class="rt-resource-main">
-    <div class="rt-resource-label"><span>${RESOURCE_ICONS[key]}</span><span>${RESOURCE_LABELS[key]}</span></div>
+    <div class="rt-resource-label">${RESOURCE_LABELS[key]}</div>
     <a class="rt-resource-name" href="${esc(item[1])}" target="_blank" rel="noopener noreferrer">${esc(item[0])} ↗</a>
-    <div class="rt-actions">${src?`<button class="btn ghost rt-open" type="button" data-rt-open="${key}">Abrir aqui</button>`:''}<a class="btn ghost" href="${esc(item[1])}" target="_blank" rel="noopener noreferrer">Abrir externamente ↗</a></div>
    </div>
-   <label class="rt-check"><input type="checkbox" data-rt-check="${key}" ${checked?'checked':''}><span>${checked?'✓ Concluído':'Marcar como concluído'}</span></label>
+   <div class="rt-actions">${src?`<button class="btn ghost rt-open" type="button" data-rt-open="${key}">▶ Assistir aqui</button>`:''}<a class="btn ghost" href="${esc(item[1])}" target="_blank" rel="noopener noreferrer">↗ Externo</a></div>
+   <label class="rt-check"><input type="checkbox" data-rt-check="${key}" ${checked?'checked':''}><span>${checked?'Concluído':'Concluir'}</span></label>
   </div>`;
  }).join('');
- const n=resourceCount(t.n);
- return `<div class="rt-progress"><div class="rt-progress-head"><strong>Progresso do tema</strong><span class="rt-count">${n}/3</span></div><div class="rt-bar" role="progressbar" aria-valuemin="0" aria-valuemax="3" aria-valuenow="${n}"><span style="width:${n/3*100}%"></span></div></div><div class="rt-resources">${parts}</div><div class="rt-embed" hidden></div>`;
+ return `<div class="rt-resources">${parts}</div><div class="rt-embed" hidden></div>`;
 }
 function cardHTML(t){
- const mine=cardsOf(t.n), nOpen=openPanels.has('notes-'+t.n), cOpen=openPanels.has('cards-'+t.n), complete=resourceComplete(t.n);
- return `<article class="card ${complete?'rt-complete':''}" data-id="${t.n}">
- <div class="cardhead"><div class="num">${t.n}</div><div style="flex:1"><h2>${t.icon} ${t.title}</h2></div>
- <strong class="rt-count">${resourceCount(t.n)}/3 ${complete?'✓':''}</strong></div>
- <div class="links">${resourceHTML(t)}</div>
- <details class="panel" data-panel="notes-${t.n}" ${nOpen?'open':''}>
-  <summary>📝 Anotações${notes[t.n]?' ✓':''}</summary>
-  <textarea class="notes" data-id="${t.n}" placeholder="Expressões, argumentos, ideias principais…" aria-label="Anotações do tema ${t.n}">${esc(notes[t.n]||'')}</textarea>
-  <p class="note saved"></p>
- </details>
- <details class="panel" data-panel="cards-${t.n}" ${cOpen?'open':''}>
-  <summary>🗂️ Flashcards (${mine.length})</summary>
-  ${mine.map(c=>`<div class="fc"><span><strong>${esc(c.front)}</strong><small>${esc(c.back)}</small></span><button class="del" type="button" data-del="${c.id}" aria-label="Remover flashcard ${esc(c.front)}">✕</button></div>`).join('')}
-  <div class="addfc">
-   <input class="fcfront" placeholder="Palavra ou expressão" aria-label="Frente do flashcard">
-   <input class="fcback" placeholder="Significado ou exemplo" aria-label="Verso do flashcard">
-   <button class="btn addbtn" type="button">Adicionar</button>
+ const mine=cardsOf(t.n), nOpen=openPanels.has('notes-'+t.n), cOpen=openPanels.has('cards-'+t.n), complete=resourceComplete(t.n), open=openTopics.has(t.n), n=resourceCount(t.n);
+ return `<article class="card rt-topic-card ${complete?'rt-complete':''} ${open?'is-open':''}" data-id="${t.n}">
+  <button class="rt-topic-toggle" type="button" aria-expanded="${open?'true':'false'}" aria-controls="rt-body-${t.n}">
+   <span class="rt-topic-number">${t.n}</span>
+   <span class="rt-topic-icon" aria-hidden="true">${t.icon}</span>
+   <span class="rt-topic-title"><strong>${esc(t.title)}</strong><small>${complete?'Topic completed · nice work':'Explore this topic in English'}</small></span>
+   <span class="rt-topic-progress"><b>${n}/3</b><span class="rt-mini-bar"><i style="width:${n/3*100}%"></i></span></span>
+   <span class="rt-chevron" aria-hidden="true">⌄</span>
+  </button>
+  <div class="rt-topic-body" id="rt-body-${t.n}" ${open?'':'hidden'}>
+   <div class="rt-resource-intro">Choose how you want to explore it — <strong>watch, read or listen</strong>.</div>
+   ${resourceHTML(t)}
+   <div class="rt-topic-tools">
+    <div class="rt-topic-tools-progress"><span>Progress</span><strong>${n}/3</strong></div>
+    <div class="rt-topic-tool-buttons">
+      <details class="panel" data-panel="notes-${t.n}" ${nOpen?'open':''}>
+       <summary>📝 Anotações${notes[t.n]?' ✓':''}</summary>
+       <textarea class="notes" data-id="${t.n}" placeholder="Expressões, argumentos, ideias principais…" aria-label="Anotações do tema ${t.n}">${esc(notes[t.n]||'')}</textarea>
+       <p class="note saved"></p>
+      </details>
+      <details class="panel" data-panel="cards-${t.n}" ${cOpen?'open':''}>
+       <summary>🗂️ Flashcards (${mine.length})</summary>
+       ${mine.map(c=>`<div class="fc"><span><strong>${esc(c.front)}</strong><small>${esc(c.back)}</small></span><button class="del" type="button" data-del="${c.id}" aria-label="Remover flashcard ${esc(c.front)}">✕</button></div>`).join('')}
+       <div class="addfc">
+        <input class="fcfront" placeholder="Palavra ou expressão" aria-label="Frente do flashcard">
+        <input class="fcback" placeholder="Significado ou exemplo" aria-label="Verso do flashcard">
+        <button class="btn addbtn" type="button">Adicionar</button>
+       </div>
+       ${mine.length?`<div class="fcactions"><button class="btn ghost reviewtopic" type="button" data-id="${t.n}">Revisar este tema</button></div>`:''}
+      </details>
+    </div>
+   </div>
   </div>
-  ${mine.length?`<div class="fcactions"><button class="btn ghost reviewtopic" type="button" data-id="${t.n}">Revisar este tema</button></div>`:''}
- </details>
  </article>`;
 }
-
 function render(){
  const q=document.getElementById('search').value.toLowerCase();
  const f=document.getElementById('filter').value;
@@ -1059,6 +1170,12 @@ function addCard(article){
 }
 root.addEventListener('click',e=>{
  const article=e.target.closest('.card');
+ if(e.target.closest('.rt-topic-toggle')){
+  const id=Number(article.dataset.id);
+  openTopics.has(id)?openTopics.delete(id):openTopics.add(id);
+  render();
+  return;
+ }
  if(e.target.classList.contains('rt-open')){
   const key=e.target.dataset.rtOpen, id=Number(article.dataset.id), item=topicById(id)[key], area=article.querySelector('.rt-embed'), src=embedUrl(key,item[1]);
   if(area){area.hidden=false;area.innerHTML=src?`<div class=\"rt-embed-note\">Conteúdo incorporado. Se o site bloquear a visualização, use o link externo.</div><iframe src=\"${esc(src)}\" title=\"${esc(RESOURCE_LABELS[key])}\" loading=\"lazy\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe><div class=\"rt-open-external\"><a href=\"${esc(item[1])}\" target=\"_blank\" rel=\"noopener noreferrer\">Abrir externamente ↗</a></div>`:'<div class=\"rt-embed-note\">Este conteúdo não pode ser incorporado automaticamente. Use “Abrir externamente”.</div>'; }

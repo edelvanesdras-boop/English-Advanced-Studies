@@ -1,4 +1,4 @@
-const CACHE = 'english-advanced-studies-v11-visual-refresh-2';
+const CACHE = 'english-advanced-studies-v11-visual-refresh-3';
 const FILES = ['./', './index.html', './questions.js', './level-test-items.js', './level-test.js', './manifest.webmanifest', './icon.svg',
   './fonts/unbounded-latin-700-normal.woff2', './fonts/unbounded-latin-800-normal.woff2',
   './fonts/figtree-latin-500-normal.woff2', './fonts/figtree-latin-600-normal.woff2',

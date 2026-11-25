@@ -73,3 +73,11 @@ Registro das mudanças do **English Advanced Studies**. Os arquivos principais s
 - Redesigned Writing Lab as a prompt gallery + writing canvas with compact version history.
 - Redesigned Learning Statistics as a visual dashboard with a dedicated Error Notebook review area.
 - Preserved existing data keys, interactions, navigation, Relevant Topics, Playlist, Practice, Level Test and Settings behavior.
+
+## V11.2 — Menu visual correction
+- Corrigidas as quatro novas áreas no menu principal para manter identidade visual em todos os estilos.
+- Removidas bordas/ícones pretos indesejados dos novos cartões.
+- Caderno e Foco voltam a ter cartões visíveis, sem perder o caráter editorial/minimalista.
+- Metrô usa cartões neutros com cor concentrada nos ícones.
+- Calma usa tons suaves integrados ao tema.
+- Dark mode recebe contrastes próprios para os quatro novos cartões.

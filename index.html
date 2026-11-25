@@ -662,104 +662,82 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 </style>
 
 <style>
-/* ===== V11.1 visual refresh: home + new learning areas ===== */
+/* ===== V11.3 — unified menu design ===== */
+/* The menu keeps one visual system per style. The four new modules inherit
+   the same geometry, interaction and icon treatment as the original cards. */
+.menu .menucard{min-height:106px}
+.menu .menucard .micon{width:46px;height:46px;display:grid;place-items:center;flex:0 0 46px;border-radius:15px;background:rgba(255,255,255,.18);font-size:1.45rem}
+.menu .menucard .micon svg{width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.menu .menucard:nth-child(1) .micon,
+.menu .menucard:nth-child(2) .micon,
+.menu .menucard:nth-child(3) .micon,
+.menu .menucard:nth-child(4) .micon{background:rgba(255,255,255,.18)}
+
+/* Adesivo — all eight cards use the same bright, playful language. */
 .menu .menucard:nth-child(5){background:#FF8AAE;color:#0F1235}
-.menu .menucard:nth-child(6){background:#A98BFF;color:#fff}
+.menu .menucard:nth-child(6){background:#A98BFF;color:#0F1235}
 .menu .menucard:nth-child(7){background:#55C7F5;color:#0F1235}
 .menu .menucard:nth-child(8){background:#FFCF5A;color:#0F1235}
-.menu .menucard:nth-child(5) .mstat,.menu .menucard:nth-child(6) .mstat,.menu .menucard:nth-child(7) .mstat,.menu .menucard:nth-child(8) .mstat{color:inherit;opacity:.82}
-.menu .menucard:nth-child(5) .micon,.menu .menucard:nth-child(6) .micon,.menu .menucard:nth-child(7) .micon,.menu .menucard:nth-child(8) .micon{color:inherit}
-.menu .menucard .micon{width:46px;height:46px;display:grid;place-items:center;flex:0 0 46px;border-radius:15px;background:rgba(255,255,255,.24);font-size:1.45rem}
-.menu .menucard .micon svg{width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.menu .menucard:nth-child(1) .micon,.menu .menucard:nth-child(2) .micon,.menu .menucard:nth-child(3) .micon,.menu .menucard:nth-child(4) .micon{background:rgba(255,255,255,.18)}
-.menu .menucard{min-height:106px}
-@media(max-width:620px){.menu .menucard{min-height:0}.menu .menucard .micon{width:40px;height:40px;flex-basis:40px}.menu .menucard .micon svg{width:23px;height:23px}}
-
-/* V11.2 — visual correction for the four new menu cards */
-.menu .menucard:nth-child(5),
-.menu .menucard:nth-child(6),
-.menu .menucard:nth-child(7),
-.menu .menucard:nth-child(8){
-  border:1px solid transparent;
-  box-shadow:var(--sh);
-  background:var(--new-card-bg);
-  color:var(--new-card-fg);
-}
-.menu .menucard:nth-child(5){--new-card-bg:#FF8AAE;--new-card-fg:#44203A;--new-icon:#B52E68;}
-.menu .menucard:nth-child(6){--new-card-bg:#A98BFF;--new-card-fg:#30215D;--new-icon:#6543C2;}
-.menu .menucard:nth-child(7){--new-card-bg:#55C7F5;--new-card-fg:#123C4C;--new-icon:#147EAA;}
-.menu .menucard:nth-child(8){--new-card-bg:#FFCF5A;--new-card-fg:#5B4307;--new-icon:#A87500;}
 .menu .menucard:nth-child(5) .micon,
 .menu .menucard:nth-child(6) .micon,
 .menu .menucard:nth-child(7) .micon,
-.menu .menucard:nth-child(8) .micon{
-  background:rgba(255,255,255,.42);
-  color:var(--new-icon);
-  border:0;
+.menu .menucard:nth-child(8) .micon{background:rgba(255,255,255,.22);color:inherit;border:0}
+
+/* Caderno — editorial and quiet, just like the existing cards. */
+:root[data-style="caderno"] .menu .menucard:nth-child(5),
+:root[data-style="caderno"] .menu .menucard:nth-child(6),
+:root[data-style="caderno"] .menu .menucard:nth-child(7),
+:root[data-style="caderno"] .menu .menucard:nth-child(8),
+:root[data-style="foco"] .menu .menucard:nth-child(5),
+:root[data-style="foco"] .menu .menucard:nth-child(6),
+:root[data-style="foco"] .menu .menucard:nth-child(7),
+:root[data-style="foco"] .menu .menucard:nth-child(8){
+  background:transparent;color:var(--ink);border:0;border-bottom:1px solid var(--line);border-radius:0;box-shadow:none
 }
-.menu .menucard:nth-child(5) .micon svg,
-.menu .menucard:nth-child(6) .micon svg,
-.menu .menucard:nth-child(7) .micon svg,
-.menu .menucard:nth-child(8) .micon svg{stroke:currentColor}
-.menu .menucard:nth-child(5) .mstat,
-.menu .menucard:nth-child(6) .mstat,
-.menu .menucard:nth-child(7) .mstat,
-.menu .menucard:nth-child(8) .mstat{color:inherit;opacity:.82}
+:root[data-style="caderno"] .menu .menucard:nth-child(5) .micon,
+:root[data-style="caderno"] .menu .menucard:nth-child(6) .micon,
+:root[data-style="caderno"] .menu .menucard:nth-child(7) .micon,
+:root[data-style="caderno"] .menu .menucard:nth-child(8) .micon,
+:root[data-style="foco"] .menu .menucard:nth-child(5) .micon,
+:root[data-style="foco"] .menu .menucard:nth-child(6) .micon,
+:root[data-style="foco"] .menu .menucard:nth-child(7) .micon,
+:root[data-style="foco"] .menu .menucard:nth-child(8) .micon{background:transparent;color:var(--ink);border:0}
 
-/* Caderno / Foco: keep the clean editorial language, but don't erase the new cards. */
-:root[data-style="caderno"] .menu .menucard:nth-child(5){--new-card-bg:#FCE7EE;--new-card-fg:#4A2435;--new-icon:#B33C6D}
-:root[data-style="caderno"] .menu .menucard:nth-child(6){--new-card-bg:#EEE8FF;--new-card-fg:#3D315C;--new-icon:#7454C7}
-:root[data-style="caderno"] .menu .menucard:nth-child(7){--new-card-bg:#E0F4FA;--new-card-fg:#214756;--new-icon:#2C86A5}
-:root[data-style="caderno"] .menu .menucard:nth-child(8){--new-card-bg:#FFF2C9;--new-card-fg:#59470F;--new-icon:#A77A12}
-:root[data-style="foco"] .menu .menucard:nth-child(5){--new-card-bg:#FFF0F5;--new-card-fg:#3A1F2C;--new-icon:#D34D82}
-:root[data-style="foco"] .menu .menucard:nth-child(6){--new-card-bg:#F1EDFF;--new-card-fg:#30265A;--new-icon:#7657E2}
-:root[data-style="foco"] .menu .menucard:nth-child(7){--new-card-bg:#E8F8FC;--new-card-fg:#193F4A;--new-icon:#2293B7}
-:root[data-style="foco"] .menu .menucard:nth-child(8){--new-card-bg:#FFF7DF;--new-card-fg:#4E3D0C;--new-icon:#B78312}
+/* Estúdio — all eight cards share the pastel studio palette. */
+:root[data-style="estudio"] .menu .menucard:nth-child(5){background:#FFB7C9;color:#1A1640}
+:root[data-style="estudio"] .menu .menucard:nth-child(6){background:#CDB8FF;color:#1A1640}
+:root[data-style="estudio"] .menu .menucard:nth-child(7){background:#9FE3F5;color:#1A1640}
+:root[data-style="estudio"] .menu .menucard:nth-child(8){background:#FFE08A;color:#1A1640}
+:root[data-style="estudio"] .menu .menucard:nth-child(5) .micon,
+:root[data-style="estudio"] .menu .menucard:nth-child(6) .micon,
+:root[data-style="estudio"] .menu .menucard:nth-child(7) .micon,
+:root[data-style="estudio"] .menu .menucard:nth-child(8) .micon{background:rgba(255,255,255,.42);color:inherit;border:0}
 
-/* Metro: cards stay neutral; color belongs to the icon, not a black outline. */
+/* Metro — neutral cards, with route colors reserved for the icons. */
 :root[data-style="metro"] .menu .menucard:nth-child(5),
 :root[data-style="metro"] .menu .menucard:nth-child(6),
 :root[data-style="metro"] .menu .menucard:nth-child(7),
-:root[data-style="metro"] .menu .menucard:nth-child(8){background:var(--card);color:var(--ink);border:1px solid var(--line)}
-:root[data-style="metro"] .menu .menucard:nth-child(5){--new-icon:#D6246E}
-:root[data-style="metro"] .menu .menucard:nth-child(6){--new-icon:#7050D8}
-:root[data-style="metro"] .menu .menucard:nth-child(7){--new-icon:#00857C}
-:root[data-style="metro"] .menu .menucard:nth-child(8){--new-icon:#C08300}
-:root[data-style="metro"] .menu .menucard:nth-child(5) .micon,
-:root[data-style="metro"] .menu .menucard:nth-child(6) .micon,
-:root[data-style="metro"] .menu .menucard:nth-child(7) .micon,
-:root[data-style="metro"] .menu .menucard:nth-child(8) .micon{background:color-mix(in srgb,var(--new-icon) 15%,var(--card));color:var(--new-icon)}
+:root[data-style="metro"] .menu .menucard:nth-child(8){background:var(--card);color:var(--ink);border:1px solid var(--line);box-shadow:none}
+:root[data-style="metro"] .menu .menucard:nth-child(5) .micon{background:#D6246E;color:#fff}
+:root[data-style="metro"] .menu .menucard:nth-child(6) .micon{background:#7050D8;color:#fff}
+:root[data-style="metro"] .menu .menucard:nth-child(7) .micon{background:#00857C;color:#fff}
+:root[data-style="metro"] .menu .menucard:nth-child(8) .micon{background:#F2A900;color:#111318}
 
-/* Calma: subdued cards so the new modules belong to the same calm palette. */
+/* Calma — calm cards, with no competing accent blocks. */
 :root[data-style="calma"] .menu .menucard:nth-child(5),
 :root[data-style="calma"] .menu .menucard:nth-child(6),
 :root[data-style="calma"] .menu .menucard:nth-child(7),
-:root[data-style="calma"] .menu .menucard:nth-child(8){
-  --new-card-bg:var(--card);--new-card-fg:var(--ink);border:1px solid var(--line);box-shadow:var(--sh);
+:root[data-style="calma"] .menu .menucard:nth-child(8){background:var(--card);color:var(--ink);border:0;box-shadow:none}
+:root[data-style="calma"] .menu .menucard:nth-child(5) .micon{background:#F3D8E2;color:#9A4268}
+:root[data-style="calma"] .menu .menucard:nth-child(6) .micon{background:#E6DEFA;color:#6E54B2}
+:root[data-style="calma"] .menu .menucard:nth-child(7) .micon{background:#D8EEF2;color:#2D8193}
+:root[data-style="calma"] .menu .menucard:nth-child(8) .micon{background:#F5E9C9;color:#98731B}
+
+@media(max-width:620px){
+ .menu .menucard{min-height:0}
+ .menu .menucard .micon{width:40px;height:40px;flex-basis:40px}
+ .menu .menucard .micon svg{width:23px;height:23px}
 }
-:root[data-style="calma"] .menu .menucard:nth-child(5){--new-icon:#D26A91}
-:root[data-style="calma"] .menu .menucard:nth-child(6){--new-icon:#9A78E6}
-:root[data-style="calma"] .menu .menucard:nth-child(7){--new-icon:#4DAEC7}
-:root[data-style="calma"] .menu .menucard:nth-child(8){--new-icon:#D39B2E}
-:root[data-style="calma"] .menu .menucard:nth-child(5) .micon,
-:root[data-style="calma"] .menu .menucard:nth-child(6) .micon,
-:root[data-style="calma"] .menu .menucard:nth-child(7) .micon,
-:root[data-style="calma"] .menu .menucard:nth-child(8) .micon{background:color-mix(in srgb,var(--new-icon) 18%,var(--card));color:var(--new-icon)}
-
-:root[data-style="estudio"] .menu .menucard:nth-child(5){--new-card-bg:#FFB7C9;--new-card-fg:#3A1830;--new-icon:#B83E68}
-:root[data-style="estudio"] .menu .menucard:nth-child(6){--new-card-bg:#CDB8FF;--new-card-fg:#2E2451;--new-icon:#6845C4}
-:root[data-style="estudio"] .menu .menucard:nth-child(7){--new-card-bg:#9FE3F5;--new-card-fg:#143D4A;--new-icon:#1785A8}
-:root[data-style="estudio"] .menu .menucard:nth-child(8){--new-card-bg:#FFE08A;--new-card-fg:#4F3D0A;--new-icon:#A97600}
-:root[data-style="estudio"][data-theme="dark"] .menu .menucard:nth-child(5){--new-card-bg:#63334A;--new-card-fg:#FFEAF2;--new-icon:#FF9FC1}
-:root[data-style="estudio"][data-theme="dark"] .menu .menucard:nth-child(6){--new-card-bg:#493A7A;--new-card-fg:#F3EFFF;--new-icon:#CDB8FF}
-:root[data-style="estudio"][data-theme="dark"] .menu .menucard:nth-child(7){--new-card-bg:#285D70;--new-card-fg:#E9FAFF;--new-icon:#83DDF5}
-:root[data-style="estudio"][data-theme="dark"] .menu .menucard:nth-child(8){--new-card-bg:#69561E;--new-card-fg:#FFF4C8;--new-icon:#FFE08A}
-
-/* Dark mode: keep the four cards legible without black borders/icons. */
-:root[data-theme="dark"]:not([data-style="estudio"]):not([data-style="calma"]):not([data-style="metro"]):not([data-style="foco"]) .menu .menucard:nth-child(5){--new-card-bg:#6B3049;--new-card-fg:#FFEAF2;--new-icon:#FF9FC1}
-:root[data-theme="dark"]:not([data-style="estudio"]):not([data-style="calma"]):not([data-style="metro"]):not([data-style="foco"]) .menu .menucard:nth-child(6){--new-card-bg:#4A3A78;--new-card-fg:#F3EFFF;--new-icon:#CDB8FF}
-:root[data-theme="dark"]:not([data-style="estudio"]):not([data-style="calma"]):not([data-style="metro"]):not([data-style="foco"]) .menu .menucard:nth-child(7){--new-card-bg:#275F73;--new-card-fg:#E9FAFF;--new-icon:#83DDF5}
-:root[data-theme="dark"]:not([data-style="estudio"]):not([data-style="calma"]):not([data-style="metro"]):not([data-style="foco"]) .menu .menucard:nth-child(8){--new-card-bg:#6A571E;--new-card-fg:#FFF4C8;--new-icon:#FFE08A}
 
 /* Shared visual language for the three new areas */
 #view-vocabulary,#view-writing,#view-stats{max-width:1180px}

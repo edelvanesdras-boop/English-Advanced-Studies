@@ -1,3 +1,10 @@
+## V11.4 — unified menu design
+- Reworked the main menu styling so the eight modules follow the same visual language within each selected app style.
+- Removed the previous per-module overrides that caused the four new cards to become darker or visually inconsistent in some themes.
+- Preserved the six existing style identities: Adesivo, Caderno anotado, Estúdio, Linha de metrô, Calma and Foco.
+- Kept the existing module order and functionality unchanged.
+- Updated the service-worker cache version.
+
 
 ## V11 — Vocabulary Bank, Writing Lab & Learning Statistics
 - Added Vocabulary Bank with CEFR level, meaning, example, category, related topic, search/filter and flashcard integration.

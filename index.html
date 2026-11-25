@@ -541,22 +541,22 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 <section id="view-topics" class="view" hidden>
 <a class="back" href="#home">← Menu principal</a>
 <h2 class="vtitle">📚 Relevant Topics</h2>
-<p class="vsub">Uma biblioteca de 15 temas para desenvolver compreensão, vocabulário e argumentação em inglês. Cada tema tem três etapas independentes: vídeo, leitura e notícia/podcast.</p>
+<p class="vsub">Uma biblioteca de 15 temas para desenvolver compreensão, vocabulário e argumentação em inglês. Cada tema reúne um TED/TED-Ed, uma leitura e uma notícia ou podcast em vídeo.</p>
 <section class="progress" aria-label="Seu progresso">
-<div class="ptop"><strong id="ptext">0 de 15 temas concluídos · 0/45 atividades</strong><button class="btn ghost" id="reviewBtn" type="button">🗂️ Revisar flashcards</button></div>
-<div class="bar" id="pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Temas concluídos"><span id="pfill"></span></div>
+<div class="ptop"><strong id="ptext">0 de 15 temas estudados</strong><button class="btn ghost" id="reviewBtn" type="button">🗂️ Revisar flashcards</button></div>
+<div class="bar" id="pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Temas estudados"><span id="pfill"></span></div>
 </section>
 <div class="toolbar">
 <input id="search" type="search" placeholder="Buscar tema, palavra ou assunto…">
 <select id="filter"><option value="all">Todos os temas</option><option value="work">Trabalho e economia</option><option value="society">Sociedade e política</option><option value="science">Ciência e tecnologia</option></select>
 <div class="summary" id="count">15 temas</div>
 </div>
-<div class="legend"><span class="pill">🎥 Vídeo</span><span class="pill">📖 Leitura</span><span class="pill">📰 Notícia / podcast</span><span class="pill">✓ 3 etapas independentes</span></div>
+<div class="legend"><span class="pill">TED / TED-Ed</span><span class="pill">Texto / artigo</span><span class="pill">Notícia / podcast em vídeo</span><span class="pill">Marque os temas estudados</span></div>
 <section class="grid" id="cards">
 <!-- cards injected below -->
 </section>
 <footer>
-<strong>Como usar:</strong> escolha uma etapa e abra o conteúdo quando quiser. Vídeos do YouTube/TED com endereço direto podem aparecer dentro do próprio tema; leituras e sites que não permitem incorporação continuam disponíveis pelo botão externo. Marque cada etapa quando realmente terminar. Ao completar as três, o tema passa automaticamente para <b>3/3 — Concluído</b>.
+<strong>Como usar:</strong> assista ao vídeo explicativo, leia o artigo e depois acompanhe a notícia ou podcast. Anote expressões e argumentos — não apenas palavras isoladas. Ao terminar, marque o tema como estudado. Os links de YouTube com pesquisa direcionada ajudam a encontrar episódios adequados quando não há um único vídeo específico indicado.
 </footer>
 </section>
 
@@ -856,7 +856,188 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 <script src="level-test-items.js"></script>
 <script src="level-test.js"></script>
 <script>
-<script src="relevant-topics/relevant-topics.js"></script>
+const topics = [
+{n:1,icon:"🌍",title:"Climate Change & Global Warming",cat:"science",ted:["TED – Climate change and global warming","https://www.ted.com/search?q=climate%20change%20global%20warming"],read:["Our World in Data – CO₂ and greenhouse gas emissions","https://ourworldindata.org/co2-and-greenhouse-gas-emissions"],news:["BBC – Climate change and global warming","https://www.youtube.com/results?search_query=BBC+The+Climate+Question+climate+change+global+warming"]},
+{n:2,icon:"🤖",title:"AI & Future of Work",cat:"work",ted:["TED – AI and the future of work","https://www.ted.com/search?q=AI%20future%20of%20work"],read:["World Economic Forum – Future of Jobs Report 2025","https://www.weforum.org/reports/the-future-of-jobs-report-2025/"],news:["BBC – AI and the job market","https://www.youtube.com/results?search_query=BBC+AI+future+of+work+jobs+podcast"]},
+{n:3,icon:"💰",title:"Income Inequality & Social Mobility",cat:"society",ted:["TED – Inequality and social mobility","https://www.ted.com/search?q=income%20inequality%20social%20mobility"],read:["Our World in Data – Economic inequality","https://ourworldindata.org/economic-inequality"],news:["DW News – Income inequality and social mobility","https://www.youtube.com/results?search_query=DW+News+income+inequality+social+mobility"]},
+{n:4,icon:"🏠",title:"Future of Remote Work",cat:"work",ted:["TED – Remote work and the future of work","https://www.ted.com/search?q=remote%20work%20future%20of%20work"],read:["OECD – Teleworking","https://www.oecd.org/en/topics/sub-issues/teleworking.html"],news:["BBC News – Remote and hybrid work","https://www.youtube.com/results?search_query=BBC+News+future+of+remote+work+hybrid+work"]},
+{n:5,icon:"🧑‍💼",title:"Leadership & Organisational Culture",cat:"work",ted:["TED – Leadership and organisational culture","https://www.ted.com/search?q=leadership%20organisational%20culture"],read:["Harvard Business Review – Organisational culture","https://hbr.org/topic/organizational-culture"],news:["Financial Times – Leadership and workplace culture","https://www.youtube.com/results?search_query=Financial+Times+leadership+workplace+culture+podcast"]},
+{n:6,icon:"📉",title:"Economic Crises & Employment",cat:"work",ted:["TED – Economic crises and recessions","https://www.ted.com/search?q=economic%20crisis%20recession"],read:["IMF – Finance & Development","https://www.imf.org/en/Publications/fandd"],news:["BBC News – Recession and unemployment","https://www.youtube.com/results?search_query=BBC+News+economic+crisis+recession+unemployment"]},
+{n:7,icon:"🌐",title:"Globalisation & Its Impact on Workers",cat:"work",ted:["TED – Globalisation and global trade","https://www.ted.com/search?q=globalization%20global%20trade"],read:["OECD – Globalisation","https://www.oecd.org/en/topics/globalisation.html"],news:["DW News – Globalisation, trade and workers","https://www.youtube.com/results?search_query=DW+News+globalisation+global+trade+workers"]},
+{n:8,icon:"🧳",title:"Immigration & Cultural Integration",cat:"society",ted:["TED – Immigration and cultural integration","https://www.ted.com/search?q=immigration%20cultural%20integration"],read:["UNHCR – Livelihoods and economic inclusion","https://www.unhcr.org/what-we-do/build-better-futures/livelihoods-and-economic-inclusion"],news:["BBC News – Immigration and integration debate","https://www.youtube.com/results?search_query=BBC+News+immigration+integration+debate"]},
+{n:9,icon:"🔐",title:"Technology & Privacy",cat:"science",ted:["Jen Golbeck – How surveillance tech erodes your privacy","https://www.ted.com/talks/jen_golbeck_how_surveillance_tech_erodes_your_privacy"],read:["Electronic Frontier Foundation – Privacy","https://www.eff.org/issues/privacy"],news:["BBC / technology – Privacy and surveillance","https://www.youtube.com/results?search_query=BBC+technology+privacy+surveillance+podcast"]},
+{n:10,icon:"🎓",title:"Education & Social Inequality",cat:"society",ted:["TED – Education and inequality","https://www.ted.com/search?q=education%20inequality"],read:["OECD – Education","https://www.oecd.org/en/topics/education.html"],news:["BBC News – Education inequality","https://www.youtube.com/results?search_query=BBC+News+education+inequality+schools"]},
+{n:11,icon:"🏛️",title:"Government Regulation & Companies",cat:"society",ted:["TED – Government regulation and business","https://www.ted.com/search?q=government%20regulation%20business"],read:["The Economist – Finance and economics","https://www.economist.com/finance-and-economics/"],news:["Financial Times – Regulation and business","https://www.youtube.com/results?search_query=Financial+Times+government+regulation+business+podcast"]},
+{n:12,icon:"⚖️",title:"Work-Life Balance",cat:"work",ted:["TED – Work-life balance","https://www.ted.com/search?q=work%20life%20balance"],read:["WHO – Mental health at work","https://www.who.int/news-room/fact-sheets/detail/mental-health-at-work"],news:["BBC – Work, wellbeing and burnout","https://www.youtube.com/results?search_query=BBC+worklife+balance+burnout+podcast"]},
+{n:13,icon:"📅",title:"The Four-Day Workweek",cat:"work",ted:["Juliet Schor – The case for a 4-day work week","https://www.ted.com/talks/juliet_schor_the_case_for_a_4_day_work_week"],read:["4 Day Week Global – Research","https://www.4dayweek.com/research"],news:["BBC News – Four-day working week","https://www.youtube.com/results?search_query=BBC+News+four+day+working+week+trial"]},
+{n:14,icon:"🏆",title:"Meritocracy vs. Inequality",cat:"society",ted:["TED – Meritocracy and inequality","https://www.ted.com/search?q=meritocracy%20inequality"],read:["Our World in Data – Social mobility","https://ourworldindata.org/social-mobility"],news:["BBC Ideas – Meritocracy and social mobility","https://www.youtube.com/results?search_query=BBC+Ideas+meritocracy+social+mobility+debate"]},
+{n:15,icon:"⚙️",title:"Automation & Unemployment",cat:"science",ted:["TED – Automation and jobs","https://www.ted.com/search?q=automation%20jobs"],read:["World Economic Forum – Future of Jobs Report 2025","https://www.weforum.org/reports/the-future-of-jobs-report-2025/"],news:["DW News – Automation and employment","https://www.youtube.com/results?search_query=DW+News+automation+robots+unemployment+jobs"]}
+];
+const labels=[["TED / TED-Ed","ted"],["TEXT / ARTICLE","read"],["NEWS / VIDEO PODCAST","news"]];
+const KEYS={done:'englishStudiesDone',notes:'englishStudiesNotes',cards:'englishStudiesCards',streak:'englishStudiesStreak',theme:'englishStudiesTheme',backup:'englishStudiesLastBackup'};
+const DAY=864e5, INTERVALS=[0,1,2,4,8,16];
+const store={
+ get(k,fb){try{const v=JSON.parse(localStorage.getItem(k));return v==null?fb:v}catch(e){return fb}},
+ set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let done=new Set(store.get(KEYS.done,[]).map(Number));
+let notes=store.get(KEYS.notes,{});
+let cards=store.get(KEYS.cards,[]);
+const openPanels=new Set();
+const root=document.getElementById('cards');
+const topicById=id=>topics.find(t=>t.n===Number(id));
+const cardsOf=id=>cards.filter(c=>c.topic===Number(id));
+const dueCards=()=>cards.filter(c=>c.due<=Date.now());
+
+function updateProgress(){
+ const total=topics.length, n=topics.filter(t=>done.has(t.n)).length, pct=Math.round(n/total*100);
+ document.getElementById('ptext').textContent=`${n} de ${total} temas estudados (${pct}%)`;
+ document.getElementById('pfill').style.width=pct+'%';
+ document.getElementById('pbar').setAttribute('aria-valuenow',pct);
+ const b=document.getElementById('reviewBtn'), due=dueCards().length;
+ b.disabled=cards.length===0;
+ b.textContent=cards.length?`🗂️ Revisar flashcards (${due} para hoje · ${cards.length} no total)`:'🗂️ Revisar flashcards (nenhum ainda)';
+}
+
+function cardHTML(t){
+ const mine=cardsOf(t.n), nOpen=openPanels.has('notes-'+t.n), cOpen=openPanels.has('cards-'+t.n);
+ return `<article class="card ${done.has(t.n)?'done':''}" data-id="${t.n}">
+ <div class="cardhead"><div class="num">${t.n}</div><div style="flex:1"><h2>${t.icon} ${t.title}</h2></div>
+ <label class="check"><input type="checkbox" class="donebox" data-id="${t.n}" ${done.has(t.n)?'checked':''}> Estudado</label></div>
+ <div class="links">${labels.map(([label,key])=>`<div class="linkrow"><span class="label">${label}</span><a href="${t[key][1]}" target="_blank" rel="noopener noreferrer">${t[key][0]} ↗</a></div>`).join('')}</div>
+ <details class="panel" data-panel="notes-${t.n}" ${nOpen?'open':''}>
+  <summary>📝 Anotações${notes[t.n]?' ✓':''}</summary>
+  <textarea class="notes" data-id="${t.n}" placeholder="Expressões, argumentos, ideias principais…" aria-label="Anotações do tema ${t.n}">${esc(notes[t.n]||'')}</textarea>
+  <p class="note saved"></p>
+ </details>
+ <details class="panel" data-panel="cards-${t.n}" ${cOpen?'open':''}>
+  <summary>🗂️ Flashcards (${mine.length})</summary>
+  ${mine.map(c=>`<div class="fc"><span><strong>${esc(c.front)}</strong><small>${esc(c.back)}</small></span><button class="del" type="button" data-del="${c.id}" aria-label="Remover flashcard ${esc(c.front)}">✕</button></div>`).join('')}
+  <div class="addfc">
+   <input class="fcfront" placeholder="Palavra ou expressão" aria-label="Frente do flashcard">
+   <input class="fcback" placeholder="Significado ou exemplo" aria-label="Verso do flashcard">
+   <button class="btn addbtn" type="button">Adicionar</button>
+  </div>
+  ${mine.length?`<div class="fcactions"><button class="btn ghost reviewtopic" type="button" data-id="${t.n}">Revisar este tema</button></div>`:''}
+ </details>
+ </article>`;
+}
+
+function render(){
+ const q=document.getElementById('search').value.toLowerCase();
+ const f=document.getElementById('filter').value;
+ const hay=t=>[t.title,t.ted[0],t.read[0],t.news[0],notes[t.n]||'',...cardsOf(t.n).map(c=>c.front+' '+c.back)].join(' ').toLowerCase();
+ const list=topics.filter(t=>(f==='all'||t.cat===f)&&hay(t).includes(q));
+ root.innerHTML=list.length?list.map(cardHTML).join(''):'<p class="note">Nenhum tema encontrado.</p>';
+ document.getElementById('count').textContent=`${list.length} de ${topics.length} temas`;
+ updateProgress();
+}
+
+let savedTimer;
+root.addEventListener('change',e=>{
+ if(!e.target.classList.contains('donebox'))return;
+ const id=Number(e.target.dataset.id);
+ e.target.checked?done.add(id):done.delete(id);
+ e.target.closest('.card').classList.toggle('done',e.target.checked);
+ store.set(KEYS.done,[...done]);
+ updateProgress();
+});
+root.addEventListener('input',e=>{
+ if(!e.target.classList.contains('notes'))return;
+ const id=e.target.dataset.id, v=e.target.value;
+ v.trim()?notes[id]=v:delete notes[id];
+ store.set(KEYS.notes,notes);
+ const msg=e.target.parentElement.querySelector('.saved');
+ msg.textContent='Salvo neste dispositivo';
+ clearTimeout(savedTimer); savedTimer=setTimeout(()=>msg.textContent='',1500);
+});
+root.addEventListener('toggle',e=>{
+ const k=e.target.dataset&&e.target.dataset.panel;
+ if(!k)return;
+ e.target.open?openPanels.add(k):openPanels.delete(k);
+},true);
+function addCard(article){
+ const id=Number(article.dataset.id);
+ const fi=article.querySelector('.fcfront'), bi=article.querySelector('.fcback');
+ const front=fi.value.trim(), back=bi.value.trim();
+ if(!front){fi.focus();return}
+ if(!back){bi.focus();return}
+ cards.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),topic:id,front,back,box:0,due:0});
+ store.set(KEYS.cards,cards);
+ openPanels.add('cards-'+id);
+ render();
+ const again=root.querySelector(`.card[data-id="${id}"] .fcfront`);
+ if(again)again.focus();
+}
+root.addEventListener('click',e=>{
+ const article=e.target.closest('.card');
+ if(e.target.classList.contains('addbtn'))addCard(article);
+ else if(e.target.dataset.del){
+  cards=cards.filter(c=>c.id!==e.target.dataset.del);
+  store.set(KEYS.cards,cards); render();
+ }
+ else if(e.target.classList.contains('reviewtopic'))startReview(Number(e.target.dataset.id));
+});
+root.addEventListener('keydown',e=>{
+ if(e.key==='Enter'&&(e.target.classList.contains('fcfront')||e.target.classList.contains('fcback')))addCard(e.target.closest('.card'));
+});
+
+/* ---------- Revisão de flashcards ---------- */
+const dlg=document.getElementById('review'), rvBody=document.getElementById('rvBody');
+let session=null;
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function startReview(topic){
+ const pool=cards.filter(c=>!topic||c.topic===topic);
+ if(!pool.length)return;
+ const due=pool.filter(c=>c.due<=Date.now());
+ const useAll=!due.length;
+ const queue=shuffle((useAll?pool:due).map(c=>c.id));
+ session={queue,total:queue.length,firstTry:new Set(),wrong:new Set(),revealed:false,note:useAll?'Nenhum cartão vence hoje, então você está revisando todos.':''};
+ renderReview();
+ if(!dlg.open)dlg.showModal();
+}
+function renderReview(){
+ const closeBtn='<button class="btn ghost" type="button" data-rv="close">Fechar</button>';
+ if(!session.queue.length){
+  const ok=session.total-session.wrong.size;
+  rvBody.innerHTML=`<div class="rvsum"><h2>Sessão concluída 🎉</h2><p>Você acertou ${ok} de ${session.total} de primeira.</p></div><div class="rvbtns">${closeBtn}</div>`;
+  updateProgress(); render(); rvBody.querySelector('button').focus(); return;
+ }
+ const c=cards.find(x=>x.id===session.queue[0]);
+ const t=topicById(c.topic);
+ rvBody.innerHTML=`<div class="rvhead"><span>${session.queue.length} na fila · ${session.total} no total</span><button class="btn ghost" type="button" data-rv="close">Fechar</button></div>
+ ${session.note?`<p class="note">${esc(session.note)}</p>`:''}
+ <p class="rvtopic">${t?esc(t.icon+' '+t.title):''}</p>
+ <div class="fcard" aria-live="polite">${esc(c.front)}</div>
+ ${session.revealed?`<div class="fcard back">${esc(c.back)}</div>
+ <div class="rvbtns"><button class="btn bad" type="button" data-rv="wrong">Errei</button><button class="btn ok" type="button" data-rv="right">Acertei</button></div>`
+ :`<div class="rvbtns"><button class="btn" type="button" data-rv="show">Mostrar resposta</button></div>`}`;
+ rvBody.querySelector('[data-rv="show"],[data-rv="right"]').focus();
+}
+function answer(right){
+ const id=session.queue.shift();
+ const c=cards.find(x=>x.id===id);
+ if(c){
+  if(right){c.box=Math.min((c.box||0)+1,INTERVALS.length-1);c.due=Date.now()+INTERVALS[c.box]*DAY}
+  else{c.box=0;c.due=0;session.wrong.add(id);session.queue.push(id)}
+  store.set(KEYS.cards,cards);
+ }
+ session.revealed=false;
+ renderReview();
+}
+rvBody.addEventListener('click',e=>{
+ const a=e.target.dataset.rv;
+ if(!a)return;
+ if(a==='close'){dlg.close();return}
+ if(a==='show'){session.revealed=true;renderReview()}
+ else answer(a==='right');
+});
+dlg.addEventListener('close',()=>{session=null;updateProgress();render()});
+document.getElementById('reviewBtn').addEventListener('click',()=>startReview());
+
+document.getElementById('search').addEventListener('input',render);
+document.getElementById('filter').addEventListener('change',render);
 /* ---------- My English Playlist ---------- */
 const PL_KEY='englishStudiesPlaylist';
 let playlist=store.get(PL_KEY,{});
@@ -1743,6 +1924,7 @@ applyStyle();
 renderStreak();
 route();
 </script>
+<script src="relevant-topics/relevant-topics.js"></script>
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));

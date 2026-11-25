@@ -1,9 +1,8 @@
-const CACHE = 'english-advanced-studies-v8-rt1';
-const FILES = ['./', './index.html', './questions.js', './level-test-items.js', './level-test.js', './manifest.webmanifest', './icon.svg',
+const CACHE = 'english-advanced-studies-v8-rt2';
+const FILES = ['./', './index.html', './questions.js', './level-test-items.js', './level-test.js', './manifest.webmanifest', './icon.svg', './relevant-topics/relevant-topics.css', './relevant-topics/relevant-topics.js',
   './fonts/unbounded-latin-700-normal.woff2', './fonts/unbounded-latin-800-normal.woff2',
   './fonts/figtree-latin-500-normal.woff2', './fonts/figtree-latin-600-normal.woff2',
-  './fonts/figtree-latin-700-normal.woff2', './fonts/figtree-latin-800-normal.woff2',
-  './relevant-topics/relevant-topics.css', './relevant-topics/relevant-topics.js', './relevant-topics/README.md'];
+  './fonts/figtree-latin-700-normal.woff2', './fonts/figtree-latin-800-normal.woff2'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(FILES)));
   self.skipWaiting();

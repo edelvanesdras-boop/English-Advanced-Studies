@@ -551,7 +551,7 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 <select id="filter"><option value="all">Todos os temas</option><option value="work">Trabalho e economia</option><option value="society">Sociedade e política</option><option value="science">Ciência e tecnologia</option></select>
 <div class="summary" id="count">15 temas</div>
 </div>
-<div class="legend"><span class="pill">TED / TED-Ed</span><span class="pill">Texto / artigo</span><span class="pill">Notícia / podcast em vídeo</span><span class="pill">Marque os temas estudados</span></div>
+<div class="legend"><span class="pill">TED / TED-Ed</span><span class="pill">Texto / artigo</span><span class="pill">Notícia / podcast em vídeo</span><span class="pill">Complete os 3 recursos de cada tema</span></div>
 <section class="grid" id="cards">
 <!-- cards injected below -->
 </section>
@@ -855,6 +855,7 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 <script src="questions.js"></script>
 <script src="level-test-items.js"></script>
 <script src="level-test.js"></script>
+<script src="relevant-topics/relevant-topics.js"></script>
 <script>
 const topics = [
 {n:1,icon:"🌍",title:"Climate Change & Global Warming",cat:"science",ted:["TED – Climate change and global warming","https://www.ted.com/search?q=climate%20change%20global%20warming"],read:["Our World in Data – CO₂ and greenhouse gas emissions","https://ourworldindata.org/co2-and-greenhouse-gas-emissions"],news:["BBC – Climate change and global warming","https://www.youtube.com/results?search_query=BBC+The+Climate+Question+climate+change+global+warming"]},
@@ -902,10 +903,12 @@ function updateProgress(){
 
 function cardHTML(t){
  const mine=cardsOf(t.n), nOpen=openPanels.has('notes-'+t.n), cOpen=openPanels.has('cards-'+t.n);
- return `<article class="card ${done.has(t.n)?'done':''}" data-id="${t.n}">
- <div class="cardhead"><div class="num">${t.n}</div><div style="flex:1"><h2>${t.icon} ${t.title}</h2></div>
- <label class="check"><input type="checkbox" class="donebox" data-id="${t.n}" ${done.has(t.n)?'checked':''}> Estudado</label></div>
- <div class="links">${labels.map(([label,key])=>`<div class="linkrow"><span class="label">${label}</span><a href="${t[key][1]}" target="_blank" rel="noopener noreferrer">${t[key][0]} ↗</a></div>`).join('')}</div>
+ const rt=EASRelevantTopics;
+ const progress=rt.migrate(topics,done);
+ const complete=rt.complete(progress,t.n);
+ return `<article class="card ${complete?'done rt-complete':''}" data-id="${t.n}">
+ <div class="cardhead"><div class="num">${t.n}</div><div style="flex:1"><h2>${t.icon} ${t.title}</h2></div></div>
+ ${rt.render(t,progress)}
  <details class="panel" data-panel="notes-${t.n}" ${nOpen?'open':''}>
   <summary>📝 Anotações${notes[t.n]?' ✓':''}</summary>
   <textarea class="notes" data-id="${t.n}" placeholder="Expressões, argumentos, ideias principais…" aria-label="Anotações do tema ${t.n}">${esc(notes[t.n]||'')}</textarea>
@@ -923,7 +926,6 @@ function cardHTML(t){
  </details>
  </article>`;
 }
-
 function render(){
  const q=document.getElementById('search').value.toLowerCase();
  const f=document.getElementById('filter').value;
@@ -936,6 +938,18 @@ function render(){
 
 let savedTimer;
 root.addEventListener('change',e=>{
+ const rtCheck=e.target.closest&&e.target.closest('[data-rt-check]');
+ if(rtCheck){
+  const card=rtCheck.closest('.card'), id=Number(card.dataset.id), key=rtCheck.dataset.rtCheck;
+  const progress=EASRelevantTopics.set(topics,done,store,KEYS.done,id,key,rtCheck.checked);
+  const n=EASRelevantTopics.count(progress,id), complete=EASRelevantTopics.complete(progress,id);
+  card.classList.toggle('done',complete); card.classList.toggle('rt-complete',complete);
+  const count=card.querySelector('.rt-count'); if(count)count.textContent=n+'/3';
+  const bar=card.querySelector('.rt-bar span'); if(bar)bar.style.width=(n/3*100)+'%';
+  const barBox=card.querySelector('.rt-bar'); if(barBox)barBox.setAttribute('aria-valuenow',String(n));
+  const label=rtCheck.querySelector('span'); if(label)label.textContent=rtCheck.checked?'✓ Concluído':'Marcar como concluído';
+  return;
+ }
  if(!e.target.classList.contains('donebox'))return;
  const id=Number(e.target.dataset.id);
  e.target.checked?done.add(id):done.delete(id);
@@ -971,6 +985,8 @@ function addCard(article){
  if(again)again.focus();
 }
 root.addEventListener('click',e=>{
+ const rtOpen=e.target.closest&&e.target.closest('[data-rt-open]');
+ if(rtOpen){ const card=rtOpen.closest('.card'), id=Number(card.dataset.id), key=rtOpen.dataset.rtOpen, topic=topicById(id); if(topic)EASRelevantTopics.openEmbed(card,key,topic[key][1]); return; }
  const article=e.target.closest('.card');
  if(e.target.classList.contains('addbtn'))addCard(article);
  else if(e.target.dataset.del){
@@ -1929,18 +1945,5 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
 }
 </script>
-
-<script>
-/* Relevant Topics bridge: exposes only the existing app state needed by the isolated module. */
-window.__EAS_RELEVANT_TOPICS__ = {
-  get topics(){ return topics; },
-  get done(){ return done; },
-  get store(){ return store; },
-  get KEYS(){ return KEYS; },
-  get root(){ return root; },
-  updateProgress
-};
-</script>
-<script src="relevant-topics/relevant-topics.js"></script>
 </body>
 </html>

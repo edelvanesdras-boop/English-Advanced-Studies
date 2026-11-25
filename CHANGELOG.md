@@ -1,7 +1,9 @@
-## V8.1 — Relevant Topics
-- Added isolated Relevant Topics enhancement layer without moving the original app files.
-- Added 0/3–3/3 resource progress, independent checks, and optional in-place embeds with external fallback.
-- Kept original topic data, playlist, practice, level test, settings and other app functionality intact.
+## V8.2 — Relevant Topics
+- Reworked Relevant Topics directly in the original rendering flow so the changes are visible and stable.
+- Added independent TED, reading and news checks with 0/3–3/3 progress.
+- Preserved existing topic completion by migrating completed topics to 3/3.
+- Added optional in-app embeds only for direct TED/YouTube URLs, with external fallback.
+- Kept the rest of the application structure and functionality unchanged.
 
 # Changelog
 

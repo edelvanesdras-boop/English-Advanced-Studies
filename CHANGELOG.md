@@ -65,3 +65,11 @@ Registro das mudanças do **English Advanced Studies**. Os arquivos principais s
 - Direct TED/YouTube resources can be opened inside the topic card when an embeddable URL exists; external links remain available.
 - The implementation is integrated directly into `index.html` to preserve the existing app architecture and avoid a separate-module dependency.
 - Service-worker cache version bumped.
+
+## V11.1 — Visual refresh for new learning areas
+- Reordered the main menu: Practice Exercises, Relevant Topics, Level Test, My English Playlist, Writing Lab, Vocabulary Bank, Learning Statistics, Settings & Backup.
+- Added distinct icons and colors to all eight menu cards.
+- Redesigned Vocabulary Bank as a quick-capture + collection experience.
+- Redesigned Writing Lab as a prompt gallery + writing canvas with compact version history.
+- Redesigned Learning Statistics as a visual dashboard with a dedicated Error Notebook review area.
+- Preserved existing data keys, interactions, navigation, Relevant Topics, Playlist, Practice, Level Test and Settings behavior.

@@ -660,6 +660,138 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 @media(max-width:900px){.eas-layout,.writing-layout{grid-template-columns:1fr}.stats-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){.eas-form-grid,.eas-form-grid.two,.eas-toolbar{grid-template-columns:1fr}.stats-grid{grid-template-columns:1fr 1fr}.stats-topic{grid-template-columns:1fr 60px}.stats-topic .barline{grid-column:1/-1}.writing-text{min-height:300px}}
 </style>
+
+<style>
+/* ===== V11.1 visual refresh: home + new learning areas ===== */
+.menu .menucard:nth-child(5){background:#FF8AAE;color:#0F1235}
+.menu .menucard:nth-child(6){background:#A98BFF;color:#fff}
+.menu .menucard:nth-child(7){background:#55C7F5;color:#0F1235}
+.menu .menucard:nth-child(8){background:#FFCF5A;color:#0F1235}
+.menu .menucard:nth-child(5) .mstat,.menu .menucard:nth-child(6) .mstat,.menu .menucard:nth-child(7) .mstat,.menu .menucard:nth-child(8) .mstat{color:inherit;opacity:.82}
+.menu .menucard:nth-child(5) .micon,.menu .menucard:nth-child(6) .micon,.menu .menucard:nth-child(7) .micon,.menu .menucard:nth-child(8) .micon{color:inherit}
+.menu .menucard .micon{width:46px;height:46px;display:grid;place-items:center;flex:0 0 46px;border-radius:15px;background:rgba(255,255,255,.24);font-size:1.45rem}
+.menu .menucard .micon svg{width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.menu .menucard:nth-child(1) .micon,.menu .menucard:nth-child(2) .micon,.menu .menucard:nth-child(3) .micon,.menu .menucard:nth-child(4) .micon{background:rgba(255,255,255,.18)}
+.menu .menucard{min-height:106px}
+@media(max-width:620px){.menu .menucard{min-height:0}.menu .menucard .micon{width:40px;height:40px;flex-basis:40px}.menu .menucard .micon svg{width:23px;height:23px}}
+
+/* Shared visual language for the three new areas */
+#view-vocabulary,#view-writing,#view-stats{max-width:1180px}
+.eas-kicker{display:inline-flex;align-items:center;gap:7px;color:var(--accent);font-size:.76rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-bottom:7px}
+.vocab-hero,.writing-hero,.stats-hero{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin:8px 0 22px}
+.vocab-hero-copy,.writing-hero>div:first-child,.stats-hero>div:first-child{min-width:0}
+.vocab-hero .vtitle,.writing-hero .vtitle,.stats-hero .vtitle{margin:0 0 5px}
+.vocab-hero .vsub,.writing-hero .vsub,.stats-hero .vsub{margin:0;max-width:760px}
+.vocab-hero-count,.writing-hero-stat{min-width:170px;padding:14px 18px;border-radius:20px;background:var(--accent2);border:1px solid color-mix(in srgb,var(--accent) 25%,var(--line));text-align:right}
+.vocab-hero-count strong,.writing-hero-stat strong{display:block;font-family:var(--ff-head);font-size:1.7rem;line-height:1}
+.vocab-hero-count span,.writing-hero-stat span{display:block;font-size:.72rem;color:var(--muted);font-weight:800;margin-top:4px}
+.vocab-hero-count small{display:block;color:var(--muted);font-size:.7rem;margin-top:9px}
+.vocab-hero-count small b{color:var(--accent)}
+.vocab-capture,.vocab-explore,.writing-prompt-panel,.writing-canvas,.stats-panel,.error-notebook-panel{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--sh)}
+.vocab-capture{padding:18px 20px;margin-bottom:18px}
+.vocab-capture-head,.vocab-explore-head,.panel-head,.error-notebook-head{display:flex;align-items:center;justify-content:space-between;gap:15px}
+.vocab-capture-head h3,.vocab-explore-head h3,.panel-head h3,.error-notebook-head h3{margin:2px 0 0;font-size:1rem}
+.capture-label{font-size:.67rem;font-weight:900;letter-spacing:.09em;color:var(--muted)}
+.capture-tip,.vocab-work-stat,.panel-note{font-size:.74rem;color:var(--muted);font-weight:700}
+.vocab-capture-form{display:grid;grid-template-columns:minmax(180px,1fr) minmax(220px,1.25fr) auto;gap:9px;align-items:center;margin-top:14px}
+.vocab-capture-form>input{min-width:0}
+.vocab-capture-form input,.vocab-capture-form select,.vocab-toolbar input,.vocab-toolbar select{border-radius:13px}
+.vocab-capture-form .vocab-details{grid-column:1/-1;border-top:1px dashed var(--line);padding-top:10px;margin-top:2px}
+.vocab-details summary{cursor:pointer;color:var(--accent);font-weight:800;font-size:.75rem;list-style:none}
+.vocab-details summary::-webkit-details-marker{display:none}
+.vocab-details summary:before{content:'＋ ';font-weight:900}
+.vocab-details[open] summary:before{content:'− '}
+.vocab-detail-grid{display:grid;grid-template-columns:140px 180px minmax(180px,1fr);gap:10px;margin-top:11px}
+.vocab-detail-grid label{display:grid;gap:5px;font-size:.72rem;font-weight:800;color:var(--muted)}
+.vocab-detail-grid .wide{grid-column:1/-1}
+.vocab-detail-grid input,.vocab-detail-grid select{width:100%;box-sizing:border-box}
+.vocab-capture-form #vocabCancel{grid-column:auto}
+.vocab-capture-form #vocabSavedMsg{font-size:.72rem}
+.vocab-explore{padding:18px 20px}
+.vocab-toolbar{display:grid;grid-template-columns:minmax(0,1fr) 130px 165px;gap:9px;margin:13px 0}
+.vocab-collection{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.vocab-item{position:relative;padding:15px 16px;border:1px solid var(--line);border-radius:17px;background:var(--field);display:grid;gap:8px;transition:transform .12s ease,border-color .12s ease,box-shadow .12s ease}
+.vocab-item:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:0 7px 18px rgba(15,18,53,.06)}
+.vocab-top{display:flex;justify-content:space-between;gap:10px}
+.vocab-word{font-family:var(--ff-head);font-size:1rem}
+.vocab-meta{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.eas-chip{font-size:.63rem;padding:4px 7px}
+.vocab-meaning{font-size:.88rem;font-weight:700;line-height:1.4}
+.vocab-example{font-size:.79rem;color:var(--muted);line-height:1.5}
+.vocab-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:2px}
+.vocab-actions .btn{font-size:.68rem;padding:6px 8px}
+.vocab-actions .btn[data-vocab-delete]{color:var(--danger)}
+.vocab-explore .eas-empty{grid-column:1/-1;padding:35px 12px}
+
+.writing-hero-stat{min-width:145px}
+.writing-layout-v2{display:grid;grid-template-columns:310px minmax(0,1fr);gap:16px;align-items:start}
+.writing-prompt-panel{padding:17px}
+.writing-prompt-panel .panel-head{margin-bottom:11px}
+.panel-count{font-size:.65rem;font-weight:900;color:var(--accent);background:var(--accent2);border-radius:999px;padding:4px 8px}
+.writing-prompts{display:grid;gap:7px;max-height:570px;overflow:auto;padding-right:3px}
+.writing-prompt{position:relative;padding:12px 13px;border:1px solid var(--line);border-radius:15px;background:var(--field);cursor:pointer;text-align:left;color:var(--ink);transition:transform .12s ease,border-color .12s ease,background .12s ease}
+.writing-prompt:hover{transform:translateX(2px);border-color:var(--accent)}
+.writing-prompt.is-selected{background:var(--accent2);border-color:var(--accent);box-shadow:inset 4px 0 0 var(--accent)}
+.writing-prompt strong{display:block;font-size:.78rem}
+.writing-prompt small{display:block;margin-top:4px;color:var(--muted);line-height:1.45;font-size:.72rem}
+.writing-custom{width:100%;margin-top:9px}
+.writing-canvas{padding:0;overflow:hidden}
+.writing-canvas-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.writing-title{border:0!important;background:transparent!important;padding:2px 0!important;font-family:var(--ff-head)!important;font-size:1.1rem!important;box-shadow:none!important}
+.writing-live{font-size:.68rem;color:var(--green);font-weight:800;white-space:nowrap}
+.writing-prompt-hidden{display:none}
+.writing-text{display:block;width:100%;box-sizing:border-box;min-height:455px;border:0!important;border-radius:0!important;background:transparent!important;padding:22px!important;line-height:1.8;resize:vertical;box-shadow:none!important;font-size:.98rem}
+.writing-text:focus{outline:0}
+.writing-footer{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:12px 18px;border-top:1px solid var(--line);background:color-mix(in srgb,var(--field) 65%,transparent)}
+.writing-stats{display:flex;gap:6px;flex-wrap:wrap}
+.writing-stats span{border:0;background:transparent;padding:0;font-size:.69rem}
+.writing-stats span:not(:last-child):after{content:' ·';margin-left:5px;color:var(--line)}
+.writing-actions{display:flex;gap:7px;flex-wrap:wrap}
+.writing-actions .btn{font-size:.72rem}
+.writing-history-panel{border-top:1px solid var(--line);padding:0 18px 15px}
+.writing-history-panel summary{cursor:pointer;padding:12px 0;font-size:.78rem;font-weight:850;display:flex;justify-content:space-between}
+.writing-history-panel summary span{color:var(--muted);font-weight:700}
+.writing-history{display:grid;gap:7px}
+.writing-version{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 11px;border:1px solid var(--line);border-radius:12px;background:var(--field)}
+.writing-version strong{font-size:.75rem}
+.writing-version small{display:block;color:var(--muted);font-size:.66rem;margin-top:2px}
+.writing-version-actions{display:flex;gap:5px}
+.writing-version-actions .btn{font-size:.65rem;padding:5px 7px}
+
+.stats-hero-note{max-width:250px;padding:12px 15px;border-radius:17px;background:linear-gradient(135deg,var(--accent2),color-mix(in srgb,var(--green) 18%,var(--card)));font-size:.78rem;font-weight:800;line-height:1.4}
+.stats-grid-v2{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.stats-grid-v2 .stat-card{position:relative;padding:16px 17px;overflow:hidden;border-radius:18px;box-shadow:none}
+.stats-grid-v2 .stat-card:after{content:'';position:absolute;width:55px;height:55px;border-radius:50%;right:-18px;bottom:-20px;background:var(--accent2);opacity:.8}
+.stats-grid-v2 .stat-card:nth-child(1){background:color-mix(in srgb,var(--accent) 13%,var(--card))}
+.stats-grid-v2 .stat-card:nth-child(2){background:color-mix(in srgb,var(--green) 13%,var(--card))}
+.stats-grid-v2 .stat-card:nth-child(3){background:color-mix(in srgb,#55C7F5 14%,var(--card))}
+.stats-grid-v2 .stat-card:nth-child(4){background:color-mix(in srgb,#FF8AAE 14%,var(--card))}
+.stats-grid-v2 .stat-card:nth-child(n+5){background:var(--field)}
+.stats-grid-v2 .stat-label{font-size:.65rem}
+.stats-grid-v2 .stat-card strong{font-size:1.35rem}
+.stats-dashboard{display:grid;grid-template-columns:1.05fr .95fr;gap:16px}
+.stats-panel{padding:17px}
+.stats-panel .panel-head{margin-bottom:9px}
+.stats-panel .panel-head h3{font-size:.98rem}
+.stats-bars{height:155px;border-bottom:0;background:linear-gradient(to top,transparent 24%,var(--line) 25%,transparent 25%,transparent 49%,var(--line) 50%,transparent 51%,transparent 74%,var(--line) 75%,transparent 76%);border-radius:12px;padding:10px 7px 0}
+.stats-bars .sbar2{width:min(28px,75%);background:linear-gradient(to top,var(--accent),color-mix(in srgb,var(--accent) 50%,var(--green)));box-shadow:0 4px 10px color-mix(in srgb,var(--accent) 18%,transparent)}
+.stats-topic-list{gap:8px}
+.stats-topic{grid-template-columns:minmax(0,1fr) 100px 62px;padding:10px 12px;background:var(--field);border:0}
+.stats-topic strong{font-size:.74rem}
+.stats-topic .barline{height:7px}
+.error-notebook-panel{margin-top:16px;padding:18px}
+.error-notebook-head{align-items:flex-start}
+.error-notebook-head p{margin:3px 0 0;color:var(--muted);font-size:.76rem}
+.error-search-wrap{margin:13px 0 10px}
+.error-search-wrap input{border-radius:13px}
+.error-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.error-card{background:var(--field);border:1px solid var(--line);border-radius:15px}
+.error-card:hover{border-color:var(--accent)}
+.error-card .question{font-size:.82rem}
+@media(max-width:900px){.vocab-collection,.stats-dashboard{grid-template-columns:1fr}.writing-layout-v2{grid-template-columns:1fr}.writing-prompts{max-height:none;grid-template-columns:repeat(2,minmax(0,1fr))}.stats-grid-v2{grid-template-columns:repeat(2,minmax(0,1fr))}.stats-hero-note{display:none}}
+@media(max-width:620px){.vocab-hero,.writing-hero,.stats-hero{display:block}.vocab-hero-count,.writing-hero-stat{display:inline-block;margin-top:12px;text-align:left;min-width:0}.vocab-capture-form{grid-template-columns:1fr}.vocab-capture-form .vocab-details{grid-column:auto}.vocab-detail-grid{grid-template-columns:1fr}.vocab-detail-grid .wide{grid-column:auto}.vocab-toolbar{grid-template-columns:1fr}.writing-prompts{grid-template-columns:1fr}.writing-text{min-height:330px;padding:16px!important}.writing-footer{display:block}.writing-actions{margin-top:10px}.stats-grid-v2{grid-template-columns:1fr 1fr}.error-list{grid-template-columns:1fr}.error-notebook-head{display:block}.error-notebook-head .btn{margin-top:10px}.stats-topic{grid-template-columns:1fr 58px}.stats-topic .barline{grid-column:1/-1}}
+</style>
+
 </head>
 <body>
 <header><div class="wrap">
@@ -680,14 +812,14 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 </div>
 <h2 class="homeh">O que você quer fazer hoje?</h2>
 <nav class="menu" aria-label="Menu principal">
-<a class="menucard" href="#topics"><span class="micon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V5a2 2 0 0 1 2-2h12v15H7a2 2 0 0 0-2 2zm0 0a2 2 0 0 0 2 2h12"/></svg></span><span><strong>Relevant Topics</strong><small>15 temas com TED, leitura e notícia, além de anotações e flashcards.</small><em class="mstat" id="homeTopics"></em></span></a>
-<a class="menucard" href="#vocabulary"><span class="micon" aria-hidden="true">📚</span><span><strong>Vocabulary Bank</strong><small>Guarde palavras e expressões, exemplos, categorias e nível CEFR — e transforme-as em flashcards.</small><em class="mstat" id="homeVocabulary"></em></span></a>
-<a class="menucard" href="#writing"><span class="micon" aria-hidden="true">✍️</span><span><strong>Writing Lab</strong><small>Escreva, acompanhe palavras e salve versões dos seus textos para comparar sua evolução.</small><em class="mstat" id="homeWriting"></em></span></a>
-<a class="menucard" href="#stats"><span class="micon" aria-hidden="true">📊</span><span><strong>Learning Statistics</strong><small>Veja seu progresso, desempenho nos exercícios e o Error Notebook em um só lugar.</small><em class="mstat" id="homeStats"></em></span></a>
-<a class="menucard" href="#playlist"><span class="micon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4" height="7" rx="1.5"/><rect x="17" y="14" width="4" height="7" rx="1.5"/></svg></span><span><strong>My English Playlist</strong><small>Suas músicas, filmes e séries em inglês para ouvir e assistir.</small><em class="mstat" id="homePlaylist"></em></span></a>
-<a class="menucard" href="#practice"><span class="micon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/></svg></span><span><strong>Practice Exercises</strong><small>Exercícios para praticar o que você estuda.</small><em class="mstat" id="homePractice"></em></span></a>
-<a class="menucard" href="#level"><span class="micon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".8"/></svg></span><span><strong>Level Test</strong><small>Descubra seu nível no padrão internacional (A1 a C2) com uma prova de gramática, vocabulário, leitura e escuta.</small><em class="mstat" id="homeLevel"></em></span></a>
-<a class="menucard" href="#settings"><span class="micon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></span><span><strong>Settings &amp; Backup</strong><small>Tema claro, escuro ou automático e cópia de segurança dos seus dados.</small><em class="mstat" id="homeSettings"></em></span></a>
+<a class="menucard" href="#practice"><span class="micon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/></svg></span><span><strong>Practice Exercises</strong><small>Pratique o que você estuda com exercícios graduais e revisão dos seus erros.</small><em class="mstat" id="homePractice"></em></span></a>
+<a class="menucard" href="#topics"><span class="micon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V6a2 2 0 0 1 2-2h13v14H6a2 2 0 0 0-2 1zm0 0a2 2 0 0 0 2 2h13"/><path d="M8 8h7M8 12h7"/></svg></span><span><strong>Relevant Topics</strong><small>Explore ideias reais em inglês com TED, leitura, notícias, anotações e flashcards.</small><em class="mstat" id="homeTopics"></em></span></a>
+<a class="menucard" href="#level"><span class="micon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".8"/></svg></span><span><strong>Level Test</strong><small>Descubra seu nível no padrão internacional e acompanhe sua evolução.</small><em class="mstat" id="homeLevel"></em></span></a>
+<a class="menucard" href="#playlist"><span class="micon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><path d="M8 5v6l4-2V5a2 2 0 0 0-2-2H8"/><path d="M4 18c1.5-3 6.5-3 8 0M15 9h5M15 13h5M15 17h5"/></svg></span><span><strong>My English Playlist</strong><small>Suas músicas, filmes e séries em inglês para ouvir, assistir e revisitar.</small><em class="mstat" id="homePlaylist"></em></span></a>
+<a class="menucard" href="#writing"><span class="micon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20l1.2-4.8L16.8 3.6a2 2 0 0 1 2.8 2.8L8 18.8z"/><path d="M14.8 5.6l3.6 3.6M4 20l4.8-1.2"/></svg></span><span><strong>Writing Lab</strong><small>Escreva, experimente ideias e acompanhe a evolução dos seus textos.</small><em class="mstat" id="homeWriting"></em></span></a>
+<a class="menucard" href="#vocabulary"><span class="micon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h12a2 2 0 0 1 2 2v14H7a2 2 0 0 1-2-2z"/><path d="M7 4v14M10 8h6M10 12h6M10 16h4"/></svg></span><span><strong>Vocabulary Bank</strong><small>Guarde palavras e expressões que você realmente quer lembrar e reutilizar.</small><em class="mstat" id="homeVocabulary"></em></span></a>
+<a class="menucard" href="#stats"><span class="micon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V10M10 19V6M16 19V13M22 19V3"/><path d="M3 21h20"/></svg></span><span><strong>Learning Statistics</strong><small>Veja seu progresso, descubra seus pontos fortes e revise seus erros.</small><em class="mstat" id="homeStats"></em></span></a>
+<a class="menucard" href="#settings"><span class="micon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></span><span><strong>Settings &amp; Backup</strong><small>Personalize o app e mantenha seus dados seguros com backups.</small><em class="mstat" id="homeSettings"></em></span></a>
 </nav>
 </section>
 
@@ -725,46 +857,82 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 
 <section id="view-vocabulary" class="view" hidden>
 <a class="back" href="#home">← Menu principal</a>
-<div class="eas-section-head"><h2 class="vtitle">📚 Vocabulary Bank</h2><p class="vsub">A personal bank for words and expressions you want to keep, understand and reuse.</p></div>
-<div class="eas-layout">
- <section class="eas-box">
-  <h3 id="vocabFormTitle">Add a word or expression</h3>
-  <p class="eas-muted">Save the meaning, an example, a category and the CEFR level. You can later turn the entry into a flashcard.</p>
-  <form id="vocabForm" class="eas-form" autocomplete="off">
-   <div class="eas-form-grid"><label>Word / expression<input id="vocabWord" maxlength="120" required placeholder="e.g. to outweigh"></label><label>Meaning<input id="vocabMeaning" maxlength="240" required placeholder="Meaning in English or Portuguese"></label><label>CEFR<select id="vocabLevel"><option>A2</option><option>B1</option><option selected>B2</option><option>C1</option><option>C2</option><option>Other</option></select></label></div>
-   <div class="eas-form-grid two"><label>Example sentence<input id="vocabExample" maxlength="400" placeholder="An example you would actually use"></label><label>Category<select id="vocabCategory"><option>General</option><option>Work</option><option>Society</option><option>Science & Technology</option><option>Travel</option><option>Media</option><option>Grammar</option><option>Other</option></select></label></div>
-   <label>Related topic (optional)<select id="vocabTopic"><option value="0">General vocabulary</option></select></label>
-   <div class="eas-actions"><button class="btn" type="submit" id="vocabSave">Save word</button><button class="btn ghost" type="button" id="vocabCancel" hidden>Cancel edit</button><span class="eas-muted" id="vocabSavedMsg"></span></div>
-  </form>
- </section>
- <aside class="eas-box"><h3>Your bank</h3><p class="eas-muted">Keep building a useful, personal vocabulary.</p><div class="vocab-side-list"><div><strong id="vocabTotal">0</strong> entries</div><div><strong id="vocabC1">0</strong> C1/C2 entries</div><div><strong id="vocabWork">0</strong> work-related entries</div><div><strong id="vocabCards">0</strong> linked flashcards</div></div></aside>
+<div class="vocab-hero">
+  <div class="vocab-hero-copy">
+    <div class="eas-kicker">📚 Build your word world</div>
+    <h2 class="vtitle">Vocabulary Bank</h2>
+    <p class="vsub">Keep the words and expressions that are worth remembering — then bring them back into your English.</p>
+  </div>
+  <div class="vocab-hero-count"><strong id="vocabTotal">0</strong><span>words saved</span><small><b id="vocabC1">0</b> at C1/C2 · <b id="vocabCards">0</b> in flashcards</small></div>
 </div>
-<div class="eas-box" style="margin-top:16px"><div class="eas-toolbar"><input id="vocabSearch" class="eas-search" type="search" placeholder="Search your vocabulary…"><select id="vocabFilterLevel"><option value="all">All levels</option><option>A2</option><option>B1</option><option>B2</option><option>C1</option><option>C2</option><option>Other</option></select><select id="vocabFilterCategory"><option value="all">All categories</option><option>General</option><option>Work</option><option>Society</option><option>Science & Technology</option><option>Travel</option><option>Media</option><option>Grammar</option><option>Other</option></select></div><div id="vocabList" class="eas-list"></div></div>
+<section class="vocab-capture">
+  <div class="vocab-capture-head"><div><span class="capture-label">QUICK CAPTURE</span><h3>Add something worth keeping</h3><span id="vocabFormTitle" hidden>Add a word or expression</span></div><span class="capture-tip">💡 Save first. Add details later.</span></div>
+  <form id="vocabForm" class="vocab-capture-form" autocomplete="off">
+    <input id="vocabWord" maxlength="120" required placeholder="Word or expression…">
+    <input id="vocabMeaning" maxlength="240" required placeholder="Meaning…">
+    <button class="btn" type="submit" id="vocabSave">Save</button>
+    <details class="vocab-details"><summary>More details</summary>
+      <div class="vocab-detail-grid">
+        <label>CEFR<select id="vocabLevel"><option>A2</option><option>B1</option><option selected>B2</option><option>C1</option><option>C2</option><option>Other</option></select></label>
+        <label>Category<select id="vocabCategory"><option>General</option><option>Work</option><option>Society</option><option>Science & Technology</option><option>Travel</option><option>Media</option><option>Grammar</option><option>Other</option></select></label>
+        <label>Related topic<select id="vocabTopic"><option value="0">General vocabulary</option></select></label>
+        <label class="wide">Example you would actually use<input id="vocabExample" maxlength="400" placeholder="Write a natural sentence…"></label>
+      </div>
+    </details>
+    <button class="btn ghost" type="button" id="vocabCancel" hidden>Cancel edit</button>
+    <span class="eas-muted" id="vocabSavedMsg" aria-live="polite"></span>
+  </form>
+</section>
+<div class="vocab-explore">
+  <div class="vocab-explore-head"><div><span class="capture-label">YOUR COLLECTION</span><h3>Explore your vocabulary</h3></div><span class="vocab-work-stat">💼 <b id="vocabWork">0</b> work-related</span></div>
+  <div class="vocab-toolbar"><input id="vocabSearch" type="search" placeholder="Search a word, meaning or example…"><select id="vocabFilterLevel"><option value="all">All levels</option><option>A2</option><option>B1</option><option>B2</option><option>C1</option><option>C2</option><option>Other</option></select><select id="vocabFilterCategory"><option value="all">All categories</option><option>General</option><option>Work</option><option>Society</option><option>Science & Technology</option><option>Travel</option><option>Media</option><option>Grammar</option><option>Other</option></select></div>
+  <div id="vocabList" class="vocab-collection"></div>
+</div>
 </section>
 
 <section id="view-writing" class="view" hidden>
 <a class="back" href="#home">← Menu principal</a>
-<div class="eas-section-head"><h2 class="vtitle">✍️ Writing Lab</h2><p class="vsub">Write regularly, count your words, save versions and build a history of your progress.</p></div>
-<div class="writing-layout">
- <aside class="eas-box"><h3>Writing prompts</h3><p class="eas-muted">Choose a prompt to start, or write your own.</p><div id="writingPrompts" class="writing-prompts"></div><button class="btn ghost" type="button" id="writingCustomPrompt" style="margin-top:8px;width:100%">＋ Custom prompt</button></aside>
- <section class="eas-box writing-editor">
-  <div class="eas-form-grid two"><label>Title<input id="writingTitle" class="writing-title" maxlength="160" placeholder="Give your text a title"></label><label>Prompt / task<input id="writingPrompt" maxlength="300" placeholder="What are you writing about?"></label></div>
-  <textarea id="writingText" class="writing-text" placeholder="Start writing in English…"></textarea>
-  <div class="writing-stats"><span id="writingWords">0 words</span><span id="writingChars">0 characters</span><span id="writingParagraphs">0 paragraphs</span><span id="writingSaved">Draft saved locally</span></div>
-  <div class="eas-actions"><button class="btn" type="button" id="writingSave">Save version</button><button class="btn ghost" type="button" id="writingNew">New text</button></div>
-  <div><h3 style="margin:8px 0 4px">Version history</h3><p class="eas-muted">Saved versions stay on this device. Loading a version replaces the current editor content, but does not delete the saved version.</p><div id="writingHistory" class="writing-history"></div></div>
- </section>
+<div class="writing-hero">
+  <div><div class="eas-kicker">✍️ Find your voice</div><h2 class="vtitle">Writing Lab</h2><p class="vsub">Turn ideas into English. Pick a challenge, write freely and keep the versions you want to remember.</p></div>
+  <div class="writing-hero-stat"><strong id="writingVersionCount">0</strong><span>saved versions</span></div>
+</div>
+<div class="writing-layout-v2">
+  <aside class="writing-prompt-panel">
+    <div class="panel-head"><span class="capture-label">CHOOSE A CHALLENGE</span><span class="panel-count">B2–C1</span></div>
+    <div id="writingPrompts" class="writing-prompts"></div>
+    <button class="btn ghost writing-custom" type="button" id="writingCustomPrompt">＋ Write your own</button>
+  </aside>
+  <section class="writing-canvas">
+    <div class="writing-canvas-top"><input id="writingTitle" class="writing-title" maxlength="160" placeholder="Give your text a title…"><span class="writing-live">● Draft</span></div>
+    <input id="writingPrompt" class="writing-prompt-hidden" maxlength="300" placeholder="What are you writing about?">
+    <textarea id="writingText" class="writing-text" placeholder="Start writing in English…"></textarea>
+    <div class="writing-footer">
+      <div class="writing-stats"><span id="writingWords">0 words</span><span id="writingChars">0 characters</span><span id="writingParagraphs">0 paragraphs</span><span id="writingSaved">Draft saved locally</span></div>
+      <div class="writing-actions"><button class="btn ghost" type="button" id="writingNew">New text</button><button class="btn" type="button" id="writingSave">Save version</button></div>
+    </div>
+    <details class="writing-history-panel"><summary>Version history <span id="writingVersionSummary">0 saved</span></summary><div id="writingHistory" class="writing-history"></div></details>
+  </section>
 </div>
 </section>
 
 <section id="view-stats" class="view" hidden>
 <a class="back" href="#home">← Menu principal</a>
-<div class="eas-section-head"><h2 class="vtitle">📊 Learning Statistics</h2><p class="vsub">A simple picture of what you have studied, practised and created. Your Error Notebook lives here too.</p></div>
-<div id="statsGrid" class="stats-grid"></div>
-<div class="eas-box stats-section"><h3>Study time · last 7 days</h3><p class="eas-muted" id="statsStudySummary"></p><ol id="statsBars" class="stats-bars"></ol></div>
-<div class="eas-box stats-section"><h3>Practice by topic</h3><p class="eas-muted">Accuracy is based on your completed practice answers.</p><div id="statsTopics" class="stats-topic-list"></div></div>
-<div class="eas-box stats-section"><div class="error-toolbar"><div><h3 style="margin:0">📓 Error Notebook</h3><p class="eas-muted" style="margin:3px 0 0">Mistakes saved from Practice Exercises, kept here as a review list.</p></div><button class="btn ghost" type="button" id="statsReviewErrors">Review mistakes</button></div><input id="errorSearch" class="eas-search" type="search" placeholder="Search a question, topic or explanation…"><div id="errorList" class="error-list" style="margin-top:10px"></div></div>
+<div class="stats-hero">
+  <div><div class="eas-kicker">📊 Your learning picture</div><h2 class="vtitle">Learning Statistics</h2><p class="vsub">See what is moving forward, where your English is strongest, and what deserves another look.</p></div>
+  <div class="stats-hero-note">Small progress counts. Keep going.</div>
+</div>
+<div id="statsGrid" class="stats-grid stats-grid-v2"></div>
+<div class="stats-dashboard">
+  <section class="stats-panel study-panel"><div class="panel-head"><div><span class="capture-label">RHYTHM</span><h3>Study time</h3></div><span id="statsStudySummary" class="panel-note"></span></div><ol id="statsBars" class="stats-bars"></ol></section>
+  <section class="stats-panel topic-panel"><div class="panel-head"><div><span class="capture-label">PRACTICE</span><h3>Where you are strongest</h3></div><span class="panel-note">accuracy</span></div><div id="statsTopics" class="stats-topic-list"></div></section>
+</div>
+<section class="error-notebook-panel">
+  <div class="error-notebook-head"><div><span class="capture-label">REVIEW &amp; GROW</span><h3>📓 Error Notebook</h3><p>Turn mistakes into your next study session.</p></div><button class="btn ghost" type="button" id="statsReviewErrors">Review mistakes</button></div>
+  <div class="error-search-wrap"><input id="errorSearch" class="eas-search" type="search" placeholder="Find a question, topic or explanation…"></div>
+  <div id="errorList" class="error-list"></div>
 </section>
+</section>
+
 <section id="view-playlist" class="view" hidden>
 <a class="back" href="#home">← Menu principal</a>
 <h2 class="vtitle">🎧 My English Playlist</h2>
@@ -2254,6 +2422,7 @@ function writingStats(text){const t=text.trim(),words=t?t.split(/\s+/).length:0,
 function renderWritingPrompts(){document.getElementById('writingPrompts').innerHTML=WRITING_PROMPTS.map((p,i)=>`<button class="writing-prompt" type="button" data-writing-prompt="${i}"><strong>${esc(p[0])}</strong><small>${esc(p[1])}</small></button>`).join('')}
 function renderWriting(){
  document.getElementById('writingTitle').value=writing.draft.title;document.getElementById('writingPrompt').value=writing.draft.prompt;document.getElementById('writingText').value=writing.draft.text;updateWritingCounts();
+ const wc=document.getElementById('writingVersionCount'); if(wc)wc.textContent=writing.versions.length; const ws=document.getElementById('writingVersionSummary'); if(ws)ws.textContent=`${writing.versions.length} ${writing.versions.length===1?'saved':'saved'}`;
  document.getElementById('writingHistory').innerHTML=writing.versions.length?writing.versions.slice().reverse().map(v=>`<div class="writing-version" data-writing-version="${esc(v.id)}"><div><strong>${esc(v.title||'Untitled')}</strong><small>${v.savedAt?new Date(v.savedAt).toLocaleString('en-GB',{dateStyle:'short',timeStyle:'short'}):''} · ${writingStats(v.text).words} words</small></div><div class="writing-version-actions"><button class="btn ghost" type="button" data-writing-load="${esc(v.id)}">Load</button><button class="btn ghost" type="button" data-writing-delete="${esc(v.id)}">Delete</button></div></div>`).join(''):'<div class="eas-empty">No saved versions yet. Your current text is a local draft.</div>';
 }
 function updateWritingCounts(){const s=writingStats(document.getElementById('writingText').value);document.getElementById('writingWords').textContent=`${s.words} ${s.words===1?'word':'words'}`;document.getElementById('writingChars').textContent=`${s.chars} characters`;document.getElementById('writingParagraphs').textContent=`${s.paras} ${s.paras===1?'paragraph':'paragraphs'}`}

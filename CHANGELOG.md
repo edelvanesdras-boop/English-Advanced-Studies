@@ -1,3 +1,11 @@
+
+## V11 — Vocabulary Bank, Writing Lab & Learning Statistics
+- Added Vocabulary Bank with CEFR level, meaning, example, category, related topic, search/filter and flashcard integration.
+- Added Writing Lab with prompts, local draft, word/character/paragraph counters and saved version history.
+- Added Learning Statistics dashboard with study time, practice performance, topic accuracy and resource/vocabulary/writing/flashcard totals.
+- Integrated Error Notebook into Learning Statistics, with search, removal and direct review through Practice Exercises.
+- Extended backup/import to preserve topic-resource progress, vocabulary and writing data.
+- Existing application sections remain unchanged in structure and behavior.
 ## Relevant Topics — visual fix
 - Restored the existing Revisar flashcards control in the redesigned header so the original initialization remains compatible.
 

@@ -39,3 +39,10 @@ Registro das mudanças do **English Advanced Studies**. Os arquivos principais s
 - v5: Practice Exercises (6 tópicos de gramática). v4: backup, sequência diária, tema claro/escuro,
   miniaturas e busca na playlist. v3: menu principal, My English Playlist, Practice Exercises (base).
   v2: barra de progresso, anotações e flashcards.
+## V8 — Relevant Topics modular update
+- Mantida a estrutura original de `English-Advanced-Studies-main/`.
+- Relevant Topics passou a ter 3 etapas independentes por tema: vídeo, leitura e notícia/podcast.
+- Progresso por tema em 0/3, 1/3, 2/3 e 3/3; conclusão é automática.
+- Vídeos YouTube/TED com link direto podem ser abertos dentro do próprio cartão; leituras tentam abrir no app e mantêm fallback externo.
+- A nova lógica e os estilos da aba ficam em `relevant-topics/`, sem alterar as demais áreas.
+- Progresso antigo de temas já concluídos é migrado para 3/3.

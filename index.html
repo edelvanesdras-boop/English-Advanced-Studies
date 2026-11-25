@@ -508,8 +508,35 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
  .studytime,.menu{display:none}
  header{padding:12px 0}
 }
+
+/* ---------- Relevant Topics: resource progress ---------- */
+.rt-progress{margin:14px 0 10px;padding:12px 14px;border:2px solid var(--line);border-radius:16px;background:var(--field)}
+.rt-progress-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+.rt-progress-head strong{font-size:.9rem}
+.rt-count{font-weight:800}
+.rt-bar{height:8px;border:1.5px solid var(--line);border-radius:999px;overflow:hidden;background:transparent}
+.rt-bar span{display:block;height:100%;background:var(--accent);border-radius:inherit;transition:width .2s ease}
+.rt-resources{display:grid;gap:0}
+.rt-resource{padding:13px 0;border-top:1px solid var(--line);display:grid;gap:9px}
+.rt-resource-main{display:grid;gap:5px}
+.rt-resource-label{font-size:.78rem;font-weight:800;letter-spacing:.05em;color:var(--muted);display:flex;align-items:center;gap:6px}
+.rt-resource-name{font-weight:800;color:var(--link);text-decoration:none;line-height:1.35}
+.rt-resource-name:hover{text-decoration:underline}
+.rt-actions{display:flex;flex-wrap:wrap;gap:8px}
+.rt-actions .btn{font-size:.78rem;padding:7px 10px}
+.rt-check{display:flex;align-items:center;gap:8px;font-weight:700;font-size:.86rem;cursor:pointer;user-select:none}
+.rt-check input{width:17px;height:17px;accent-color:var(--accent);margin:0}
+.rt-check input:checked + span{color:var(--accent)}
+.rt-resource.rt-complete .rt-resource-name{opacity:.72}
+.rt-embed{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.rt-embed[hidden]{display:none}
+.rt-embed iframe{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:12px;background:#000}
+.rt-embed-note{font-size:.8rem;color:var(--muted);margin-bottom:8px}
+.rt-open-external{margin-top:8px;font-size:.82rem}
+.rt-open-external a{color:var(--link);font-weight:800}
+.card.rt-complete{border-color:var(--accent)}
+@media (min-width:760px){.rt-resource{grid-template-columns:minmax(0,1fr) auto;align-items:center}.rt-check{justify-content:flex-end}}
 </style>
-<link rel="stylesheet" href="relevant-topics/relevant-topics.css">
 </head>
 <body>
 <header><div class="wrap">
@@ -556,7 +583,7 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 <!-- cards injected below -->
 </section>
 <footer>
-<strong>Como usar:</strong> assista ao vídeo explicativo, leia o artigo e depois acompanhe a notícia ou podcast. Anote expressões e argumentos — não apenas palavras isoladas. Ao terminar, marque o tema como estudado. Os links de YouTube com pesquisa direcionada ajudam a encontrar episódios adequados quando não há um único vídeo específico indicado.
+<strong>Como usar:</strong> assista ao vídeo explicativo, leia o artigo e depois acompanhe a notícia ou podcast. Anote expressões e argumentos — não apenas palavras isoladas. Ao concluir cada recurso, marque-o como concluído. Quando os 3 estiverem concluídos, o tema passa a 3/3 e é considerado estudado. Os links de YouTube com pesquisa direcionada ajudam a encontrar episódios adequados quando não há um único vídeo específico indicado.
 </footer>
 </section>
 
@@ -855,7 +882,6 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 <script src="questions.js"></script>
 <script src="level-test-items.js"></script>
 <script src="level-test.js"></script>
-<script src="relevant-topics/relevant-topics.js"></script>
 <script>
 const topics = [
 {n:1,icon:"🌍",title:"Climate Change & Global Warming",cat:"science",ted:["TED – Climate change and global warming","https://www.ted.com/search?q=climate%20change%20global%20warming"],read:["Our World in Data – CO₂ and greenhouse gas emissions","https://ourworldindata.org/co2-and-greenhouse-gas-emissions"],news:["BBC – Climate change and global warming","https://www.youtube.com/results?search_query=BBC+The+Climate+Question+climate+change+global+warming"]},
@@ -885,6 +911,32 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'
 let done=new Set(store.get(KEYS.done,[]).map(Number));
 let notes=store.get(KEYS.notes,{});
 let cards=store.get(KEYS.cards,[]);
+const RESOURCE_KEY='englishStudiesTopicResourcesV1';
+const RESOURCE_KEYS=['ted','read','news'];
+const RESOURCE_LABELS={ted:'TED / TED-Ed',read:'TEXT / ARTICLE',news:'NEWS / VIDEO PODCAST'};
+const RESOURCE_ICONS={ted:'🎥',read:'📖',news:'📰'};
+let resourceDone=store.get(RESOURCE_KEY,{});
+if(!resourceDone||typeof resourceDone!=='object'||Array.isArray(resourceDone))resourceDone={};
+function resourceState(id){
+ const x=resourceDone[String(id)]||{};
+ return {ted:!!x.ted,read:!!x.read,news:!!x.news};
+}
+function resourceCount(id){const x=resourceState(id);return RESOURCE_KEYS.filter(k=>x[k]).length}
+function resourceComplete(id){return resourceCount(id)===3}
+function saveResourceState(id,key,value){
+ const k=String(id), x=resourceState(id);
+ x[key]=!!value; resourceDone[k]=x; store.set(RESOURCE_KEY,resourceDone);
+ if(resourceComplete(id))done.add(Number(id)); else done.delete(Number(id));
+ store.set(KEYS.done,[...done]);
+}
+// Migration: an old manually completed topic becomes 3/3 once; incomplete topics start at 0/3.
+topics.forEach(t=>{
+ const k=String(t.n);
+ if(!Object.prototype.hasOwnProperty.call(resourceDone,k)){
+  resourceDone[k]=done.has(t.n)?{ted:true,read:true,news:true}:{ted:false,read:false,news:false};
+ }
+});
+store.set(RESOURCE_KEY,resourceDone);
 const openPanels=new Set();
 const root=document.getElementById('cards');
 const topicById=id=>topics.find(t=>t.n===Number(id));
@@ -892,7 +944,7 @@ const cardsOf=id=>cards.filter(c=>c.topic===Number(id));
 const dueCards=()=>cards.filter(c=>c.due<=Date.now());
 
 function updateProgress(){
- const total=topics.length, n=topics.filter(t=>done.has(t.n)).length, pct=Math.round(n/total*100);
+ const total=topics.length, n=topics.filter(t=>resourceComplete(t.n)).length, pct=Math.round(n/total*100);
  document.getElementById('ptext').textContent=`${n} de ${total} temas estudados (${pct}%)`;
  document.getElementById('pfill').style.width=pct+'%';
  document.getElementById('pbar').setAttribute('aria-valuenow',pct);
@@ -901,14 +953,45 @@ function updateProgress(){
  b.textContent=cards.length?`🗂️ Revisar flashcards (${due} para hoje · ${cards.length} no total)`:'🗂️ Revisar flashcards (nenhum ainda)';
 }
 
+
+function embedUrl(key,url){
+ try{
+  const u=new URL(url), h=u.hostname.replace(/^www\./,'');
+  if(key==='ted' && /(^|\.)ted\.com$/.test(h)){
+   const m=u.pathname.match(/^\/talks\/([^/?#]+)/);
+   if(m)return 'https://embed.ted.com/talks/'+m[1];
+  }
+  if(/(^|\.)youtube\.com$/.test(h)){
+   let id=null;
+   if(u.pathname==='/watch')id=u.searchParams.get('v');
+   else{const m=u.pathname.match(/^\/(?:shorts|embed|live)\/([\w-]{6,15})/);if(m)id=m[1]}
+   if(id)return 'https://www.youtube.com/embed/'+encodeURIComponent(id)+'?rel=0';
+  }
+  if(h==='youtu.be'){const id=u.pathname.slice(1).split('/')[0];if(id)return 'https://www.youtube.com/embed/'+encodeURIComponent(id)+'?rel=0'}
+ }catch(e){}
+ return null;
+}
+function resourceHTML(t){
+ const parts=RESOURCE_KEYS.map(key=>{
+  const item=t[key], checked=resourceState(t.n)[key], src=embedUrl(key,item[1]);
+  return `<div class="rt-resource ${checked?'rt-complete':''}" data-rt-resource="${key}">
+   <div class="rt-resource-main">
+    <div class="rt-resource-label"><span>${RESOURCE_ICONS[key]}</span><span>${RESOURCE_LABELS[key]}</span></div>
+    <a class="rt-resource-name" href="${esc(item[1])}" target="_blank" rel="noopener noreferrer">${esc(item[0])} ↗</a>
+    <div class="rt-actions">${src?`<button class="btn ghost rt-open" type="button" data-rt-open="${key}">Abrir aqui</button>`:''}<a class="btn ghost" href="${esc(item[1])}" target="_blank" rel="noopener noreferrer">Abrir externamente ↗</a></div>
+   </div>
+   <label class="rt-check"><input type="checkbox" data-rt-check="${key}" ${checked?'checked':''}><span>${checked?'✓ Concluído':'Marcar como concluído'}</span></label>
+  </div>`;
+ }).join('');
+ const n=resourceCount(t.n);
+ return `<div class="rt-progress"><div class="rt-progress-head"><strong>Progresso do tema</strong><span class="rt-count">${n}/3</span></div><div class="rt-bar" role="progressbar" aria-valuemin="0" aria-valuemax="3" aria-valuenow="${n}"><span style="width:${n/3*100}%"></span></div></div><div class="rt-resources">${parts}</div><div class="rt-embed" hidden></div>`;
+}
 function cardHTML(t){
- const mine=cardsOf(t.n), nOpen=openPanels.has('notes-'+t.n), cOpen=openPanels.has('cards-'+t.n);
- const rt=EASRelevantTopics;
- const progress=rt.migrate(topics,done);
- const complete=rt.complete(progress,t.n);
- return `<article class="card ${complete?'done rt-complete':''}" data-id="${t.n}">
- <div class="cardhead"><div class="num">${t.n}</div><div style="flex:1"><h2>${t.icon} ${t.title}</h2></div></div>
- ${rt.render(t,progress)}
+ const mine=cardsOf(t.n), nOpen=openPanels.has('notes-'+t.n), cOpen=openPanels.has('cards-'+t.n), complete=resourceComplete(t.n);
+ return `<article class="card ${complete?'rt-complete':''}" data-id="${t.n}">
+ <div class="cardhead"><div class="num">${t.n}</div><div style="flex:1"><h2>${t.icon} ${t.title}</h2></div>
+ <strong class="rt-count">${resourceCount(t.n)}/3 ${complete?'✓':''}</strong></div>
+ <div class="links">${resourceHTML(t)}</div>
  <details class="panel" data-panel="notes-${t.n}" ${nOpen?'open':''}>
   <summary>📝 Anotações${notes[t.n]?' ✓':''}</summary>
   <textarea class="notes" data-id="${t.n}" placeholder="Expressões, argumentos, ideias principais…" aria-label="Anotações do tema ${t.n}">${esc(notes[t.n]||'')}</textarea>
@@ -926,6 +1009,7 @@ function cardHTML(t){
  </details>
  </article>`;
 }
+
 function render(){
  const q=document.getElementById('search').value.toLowerCase();
  const f=document.getElementById('filter').value;
@@ -938,24 +1022,13 @@ function render(){
 
 let savedTimer;
 root.addEventListener('change',e=>{
- const rtCheck=e.target.closest&&e.target.closest('[data-rt-check]');
- if(rtCheck){
-  const card=rtCheck.closest('.card'), id=Number(card.dataset.id), key=rtCheck.dataset.rtCheck;
-  const progress=EASRelevantTopics.set(topics,done,store,KEYS.done,id,key,rtCheck.checked);
-  const n=EASRelevantTopics.count(progress,id), complete=EASRelevantTopics.complete(progress,id);
-  card.classList.toggle('done',complete); card.classList.toggle('rt-complete',complete);
-  const count=card.querySelector('.rt-count'); if(count)count.textContent=n+'/3';
-  const bar=card.querySelector('.rt-bar span'); if(bar)bar.style.width=(n/3*100)+'%';
-  const barBox=card.querySelector('.rt-bar'); if(barBox)barBox.setAttribute('aria-valuenow',String(n));
-  const label=rtCheck.querySelector('span'); if(label)label.textContent=rtCheck.checked?'✓ Concluído':'Marcar como concluído';
-  return;
- }
- if(!e.target.classList.contains('donebox'))return;
- const id=Number(e.target.dataset.id);
- e.target.checked?done.add(id):done.delete(id);
- e.target.closest('.card').classList.toggle('done',e.target.checked);
- store.set(KEYS.done,[...done]);
- updateProgress();
+ const box=e.target.closest('[data-rt-check]');
+ if(!box)return;
+ const card=e.target.closest('.card'), id=Number(card.dataset.id), key=e.target.dataset.rtCheck;
+ saveResourceState(id,key,e.target.checked);
+ render();
+ const again=root.querySelector(`.card[data-id=\"${id}\"] [data-rt-check=\"${key}\"]`);
+ if(again)again.focus();
 });
 root.addEventListener('input',e=>{
  if(!e.target.classList.contains('notes'))return;
@@ -985,9 +1058,12 @@ function addCard(article){
  if(again)again.focus();
 }
 root.addEventListener('click',e=>{
- const rtOpen=e.target.closest&&e.target.closest('[data-rt-open]');
- if(rtOpen){ const card=rtOpen.closest('.card'), id=Number(card.dataset.id), key=rtOpen.dataset.rtOpen, topic=topicById(id); if(topic)EASRelevantTopics.openEmbed(card,key,topic[key][1]); return; }
  const article=e.target.closest('.card');
+ if(e.target.classList.contains('rt-open')){
+  const key=e.target.dataset.rtOpen, id=Number(article.dataset.id), item=topicById(id)[key], area=article.querySelector('.rt-embed'), src=embedUrl(key,item[1]);
+  if(area){area.hidden=false;area.innerHTML=src?`<div class=\"rt-embed-note\">Conteúdo incorporado. Se o site bloquear a visualização, use o link externo.</div><iframe src=\"${esc(src)}\" title=\"${esc(RESOURCE_LABELS[key])}\" loading=\"lazy\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe><div class=\"rt-open-external\"><a href=\"${esc(item[1])}\" target=\"_blank\" rel=\"noopener noreferrer\">Abrir externamente ↗</a></div>`:'<div class=\"rt-embed-note\">Este conteúdo não pode ser incorporado automaticamente. Use “Abrir externamente”.</div>'; }
+  return;
+ }
  if(e.target.classList.contains('addbtn'))addCard(article);
  else if(e.target.dataset.del){
   cards=cards.filter(c=>c.id!==e.target.dataset.del);

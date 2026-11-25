@@ -1,10 +1,3 @@
-## V8.2 — Relevant Topics
-- Reworked Relevant Topics directly in the original rendering flow so the changes are visible and stable.
-- Added independent TED, reading and news checks with 0/3–3/3 progress.
-- Preserved existing topic completion by migrating completed topics to 3/3.
-- Added optional in-app embeds only for direct TED/YouTube URLs, with external fallback.
-- Kept the rest of the application structure and functionality unchanged.
-
 # Changelog
 
 Registro das mudanças do **English Advanced Studies**. Os arquivos principais são `index.html`
@@ -46,3 +39,10 @@ Registro das mudanças do **English Advanced Studies**. Os arquivos principais s
 - v5: Practice Exercises (6 tópicos de gramática). v4: backup, sequência diária, tema claro/escuro,
   miniaturas e busca na playlist. v3: menu principal, My English Playlist, Practice Exercises (base).
   v2: barra de progresso, anotações e flashcards.
+
+## V8 — Relevant Topics (direct integration)
+- Relevant Topics now uses three independent resource checks per topic (TED, article, news/video).
+- Each topic shows 0/3–3/3 progress and is automatically considered studied at 3/3.
+- Direct TED/YouTube resources can be opened inside the topic card when an embeddable URL exists; external links remain available.
+- The implementation is integrated directly into `index.html` to preserve the existing app architecture and avoid a separate-module dependency.
+- Service-worker cache version bumped.

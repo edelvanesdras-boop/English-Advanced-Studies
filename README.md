@@ -1,16 +1,14 @@
-# Relevant Topics — V8
+# Relevant Topics — V8.1
 
-Esta pasta contém a camada específica de evolução da aba **Relevant Topics**.
+Esta pasta contém apenas a camada de melhoria da aba **Relevant Topics**.
 
-## Arquivos
-- `relevant-topics.js` — progresso individual 0/3, incorporação sob demanda de vídeos/leitura e integração com o progresso existente.
-- `relevant-topics.css` — estilos adicionais da aba.
+Ela não duplica os dados dos 15 temas nem substitui o renderizador original. O `index.html` fornece uma pequena ponte (`window.__EAS_RELEVANT_TOPICS__`) com referências ao estado já existente do aplicativo.
 
-## Princípios
-- Não usa IA.
-- Não faz scraping nem copia artigos.
-- Não abre conteúdo automaticamente.
-- Mantém o link externo como fallback.
-- Usa o `localStorage` já existente do aplicativo.
+## O que esta camada adiciona
+- 3 atividades independentes por tema: TED/Video, Reading e News/Video Podcast.
+- Progresso por tema de 0/3 a 3/3.
+- Conclusão automática do tema ao atingir 3/3.
+- Persistência independente do progresso em `localStorage`.
+- Tentativa de incorporação de YouTube/TED e leitura via iframe, sempre com link externo de fallback.
 
-A pasta foi adicionada sem mover os arquivos originais do aplicativo.
+Não há AI, scraping ou busca automática de conteúdo nesta versão.

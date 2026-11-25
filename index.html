@@ -1924,11 +1924,23 @@ applyStyle();
 renderStreak();
 route();
 </script>
-<script src="relevant-topics/relevant-topics.js"></script>
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
 }
 </script>
+
+<script>
+/* Relevant Topics bridge: exposes only the existing app state needed by the isolated module. */
+window.__EAS_RELEVANT_TOPICS__ = {
+  get topics(){ return topics; },
+  get done(){ return done; },
+  get store(){ return store; },
+  get KEYS(){ return KEYS; },
+  get root(){ return root; },
+  updateProgress
+};
+</script>
+<script src="relevant-topics/relevant-topics.js"></script>
 </body>
 </html>

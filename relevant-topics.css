@@ -1,17 +1,15 @@
-
-/* Relevant Topics — V8 enhancement layer.  Loaded separately so this tab can be worked on independently. */
+/* Relevant Topics — V8.1 isolated enhancement layer. */
 .rt-progress-mini{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:0 0 12px;color:var(--muted);font-size:.82rem}
 .rt-progress-mini strong{color:var(--ink);font-size:.9rem}
 .rt-progress-bar{height:7px;flex:1 1 150px;min-width:120px;background:var(--accent2);border-radius:999px;overflow:hidden}
 .rt-progress-bar span{display:block;height:100%;width:0;background:var(--green);border-radius:999px;transition:width .25s ease}
-.rt-resources{display:grid;gap:9px;margin-top:4px}
+.rt-resources{display:grid;gap:10px;margin-top:4px}
 .rt-resource{border-top:1px solid var(--line);padding-top:10px}
-.rt-resource-head{display:flex;gap:10px;align-items:flex-start}
+.rt-resource-head{display:flex;gap:12px;align-items:flex-start}
 .rt-resource-main{flex:1;min-width:0}
 .rt-resource-title{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.rt-resource-title strong{font-size:.86rem}
 .rt-resource-title .rt-type{color:var(--muted);font-size:.72rem;font-weight:750;letter-spacing:.04em;text-transform:uppercase}
-.rt-resource-name{display:block;color:var(--link);font-weight:650;font-size:.9rem;overflow-wrap:anywhere;margin-top:2px}
+.rt-resource-name{display:block;color:var(--link);font-weight:650;font-size:.9rem;overflow-wrap:anywhere;margin-top:3px}
 .rt-actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:7px}
 .rt-actions .btn{font-size:.78rem;padding:6px 10px}
 .rt-check{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:.78rem;white-space:nowrap;margin-left:auto}
@@ -25,7 +23,7 @@
 .rt-open-external a{font-weight:650}
 .rt-hidden-legacy{display:none!important}
 @media(max-width:760px){
-  .rt-resource-head{align-items:stretch}
+  .rt-resource-head{align-items:stretch;flex-direction:column}
   .rt-check{margin-left:0}
   .rt-embed iframe{height:56vw;min-height:210px}
   .rt-embed.article iframe{height:75vw;min-height:300px}

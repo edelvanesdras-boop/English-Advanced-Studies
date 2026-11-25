@@ -1,3 +1,8 @@
+## V8.1 — Relevant Topics
+- Added isolated Relevant Topics enhancement layer without moving the original app files.
+- Added 0/3–3/3 resource progress, independent checks, and optional in-place embeds with external fallback.
+- Kept original topic data, playlist, practice, level test, settings and other app functionality intact.
+
 # Changelog
 
 Registro das mudanças do **English Advanced Studies**. Os arquivos principais são `index.html`
@@ -39,9 +44,3 @@ Registro das mudanças do **English Advanced Studies**. Os arquivos principais s
 - v5: Practice Exercises (6 tópicos de gramática). v4: backup, sequência diária, tema claro/escuro,
   miniaturas e busca na playlist. v3: menu principal, My English Playlist, Practice Exercises (base).
   v2: barra de progresso, anotações e flashcards.
-
-## V8 — Relevant Topics (camada 1)
-- Mantida a estrutura original da V8.
-- A aba Relevant Topics ganhou progresso independente por recurso (TED, artigo e notícia/vídeo): 0/3 a 3/3.
-- Vídeos/leitura podem ser carregados dentro do cartão somente após clique, quando a fonte permite incorporação; o link externo permanece disponível.
-- A implementação específica foi isolada em `relevant-topics/`.

@@ -1,3 +1,11 @@
+# V11.5 — Adesivo: menu branco
+
+- Alteração exclusiva no estilo **Adesivo** do menu principal.
+- Todas as fontes dos 8 cartões ficaram brancas.
+- Bordas dos 8 cartões ficaram brancas.
+- Ícones, contornos e traços dos ícones ficaram brancos.
+- Nenhum outro estilo ou funcionalidade foi alterado.
+
 ## V11.4 — unified menu design
 - Reworked the main menu styling so the eight modules follow the same visual language within each selected app style.
 - Removed the previous per-module overrides that caused the four new cards to become darker or visually inconsistent in some themes.

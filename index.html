@@ -739,6 +739,15 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
  .menu .menucard .micon svg{width:23px;height:23px}
 }
 
+/* Adesivo — menu only: white typography, borders and icons on all eight cards. */
+:root[data-style="adesivo"] .menu .menucard,
+:root[data-style="adesivo"] .menu .menucard strong,
+:root[data-style="adesivo"] .menu .menucard small,
+:root[data-style="adesivo"] .menu .menucard .mstat{color:#fff}
+:root[data-style="adesivo"] .menu .menucard{border-color:#fff}
+:root[data-style="adesivo"] .menu .menucard .micon{border-color:#fff;color:#fff;background:rgba(255,255,255,.18)}
+:root[data-style="adesivo"] .menu .menucard .micon svg{stroke:#fff}
+
 /* Shared visual language for the three new areas */
 #view-vocabulary,#view-writing,#view-stats{max-width:1180px}
 .eas-kicker{display:inline-flex;align-items:center;gap:7px;color:var(--accent);font-size:.76rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-bottom:7px}

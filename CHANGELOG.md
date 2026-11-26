@@ -1,4 +1,13 @@
-# V11.5 — Adesivo: menu branco
+# V11.7 — Menu: contraste e estilos
+
+- **Adesivo:** o texto branco nos 8 cartões do menu tinha contraste baixo em 6 deles (de 1,8:1 a 3,0:1; o mínimo recomendado é 4,5:1).
+  Agora o texto é escuro (`#0F1235`) nos cartões claros (laranja, verde, amarelo, rosa, azul-claro e mostarda, mínimo 5,98:1)
+  e continua branco no azul e no roxo (6,35:1 e 5,19:1). As cores dos cartões não mudaram.
+- **Correção:** as cores de *Level Test* e *My English Playlist* (verde e amarelo, com letra branca) apareciam em **todos** os estilos.
+  Agora ficam só no Adesivo; Caderno, Estúdio, Metrô, Calma e Foco voltaram ao visual de cada um.
+- Só CSS do menu. Nenhuma função, tela ou dado foi alterado. `service-worker.js`: cache `v11.7-menu-contrast`.
+
+## V11.5 — Adesivo: menu branco
 
 - Alteração exclusiva no estilo **Adesivo** do menu principal.
 - Todas as fontes dos 8 cartões ficaram brancas.

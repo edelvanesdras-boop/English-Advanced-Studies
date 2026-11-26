@@ -677,18 +677,7 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
 .menu .menucard:nth-child(7) .micon,
 .menu .menucard:nth-child(8) .micon{background:rgba(255,255,255,.18)}
 
-/* Adesivo — all eight cards use the same bright, playful language. */
-.menu .menucard:nth-child(3){background:#20B887;color:#fff}
-.menu .menucard:nth-child(4){background:#F0B900;color:#fff}
-.menu .menucard:nth-child(5){background:#E86B8F;color:#fff}
-.menu .menucard:nth-child(6){background:#765BC2;color:#fff}
-.menu .menucard:nth-child(7){background:#2DA8D5;color:#fff}
-.menu .menucard:nth-child(8){background:#D6A52A;color:#fff}
-.menu .menucard:nth-child(5) .micon,
-.menu .menucard:nth-child(6) .micon,
-.menu .menucard:nth-child(7) .micon,
-.menu .menucard:nth-child(8) .micon{background:rgba(255,255,255,.22);color:inherit;border:0}
-
+/* Adesivo: cores do menu ficam no bloco "Adesivo — menu" mais abaixo (restrito a esse estilo). */
 /* Caderno — editorial and quiet, just like the existing cards. */
 :root[data-style="caderno"] .menu .menucard:nth-child(5),
 :root[data-style="caderno"] .menu .menucard:nth-child(6),
@@ -745,15 +734,38 @@ dialog#review{border:var(--bw) solid var(--edge);border-radius:var(--rad);box-sh
  .menu .menucard .micon svg{width:23px;height:23px}
 }
 
-/* Adesivo — menu only: white typography, borders and icons on all eight cards. */
+/* Adesivo — menu: 8 cartões vivos, restritos a este estilo.
+   Contraste: texto branco só no azul (#3140FF, 6,35:1) e no roxo (#765BC2, 5,19:1);
+   texto escuro (#0F1235) nos demais (mínimo 5,98:1). */
+:root[data-style="adesivo"] .menu .menucard:nth-child(1){background:#3140FF}
+:root[data-style="adesivo"] .menu .menucard:nth-child(2){background:#FF7A1A}
+:root[data-style="adesivo"] .menu .menucard:nth-child(3){background:#20B887}
+:root[data-style="adesivo"] .menu .menucard:nth-child(4){background:#F0B900}
+:root[data-style="adesivo"] .menu .menucard:nth-child(5){background:#E86B8F}
+:root[data-style="adesivo"] .menu .menucard:nth-child(6){background:#765BC2}
+:root[data-style="adesivo"] .menu .menucard:nth-child(7){background:#2DA8D5}
+:root[data-style="adesivo"] .menu .menucard:nth-child(8){background:#D6A52A}
 :root[data-style="adesivo"] .menu .menucard,
 :root[data-style="adesivo"] .menu .menucard strong,
 :root[data-style="adesivo"] .menu .menucard small,
-:root[data-style="adesivo"] .menu .menucard .mstat{color:#fff}
-:root[data-style="adesivo"] .menu .menucard{border-color:#fff}
-:root[data-style="adesivo"] .menu .menucard .micon{border:3px solid #fff;color:#fff;background:rgba(255,255,255,.18)}
-:root[data-style="adesivo"] .menu .menucard .micon svg{stroke:#fff}
-
+:root[data-style="adesivo"] .menu .menucard .mstat{color:#0F1235}
+:root[data-style="adesivo"] .menu .menucard{border-color:var(--edge)}
+:root[data-style="adesivo"] .menu .menucard .micon{background:#fff;color:#0F1235;border:3px solid #0F1235}
+:root[data-style="adesivo"] .menu .menucard .micon svg{stroke:#0F1235}
+:root[data-style="adesivo"] .menu .menucard:nth-child(1),
+:root[data-style="adesivo"] .menu .menucard:nth-child(1) strong,
+:root[data-style="adesivo"] .menu .menucard:nth-child(1) small,
+:root[data-style="adesivo"] .menu .menucard:nth-child(1) .mstat{color:#fff}
+:root[data-style="adesivo"] .menu .menucard:nth-child(1){border-color:#fff}
+:root[data-style="adesivo"] .menu .menucard:nth-child(1) .micon{background:rgba(255,255,255,.18);color:#fff;border:3px solid #fff}
+:root[data-style="adesivo"] .menu .menucard:nth-child(1) .micon svg{stroke:#fff}
+:root[data-style="adesivo"] .menu .menucard:nth-child(6),
+:root[data-style="adesivo"] .menu .menucard:nth-child(6) strong,
+:root[data-style="adesivo"] .menu .menucard:nth-child(6) small,
+:root[data-style="adesivo"] .menu .menucard:nth-child(6) .mstat{color:#fff}
+:root[data-style="adesivo"] .menu .menucard:nth-child(6){border-color:#fff}
+:root[data-style="adesivo"] .menu .menucard:nth-child(6) .micon{background:rgba(255,255,255,.18);color:#fff;border:3px solid #fff}
+:root[data-style="adesivo"] .menu .menucard:nth-child(6) .micon svg{stroke:#fff}
 /* Shared visual language for the three new areas */
 #view-vocabulary,#view-writing,#view-stats{max-width:1180px}
 .eas-kicker{display:inline-flex;align-items:center;gap:7px;color:var(--accent);font-size:.76rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-bottom:7px}
